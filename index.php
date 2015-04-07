@@ -1,0 +1,1 @@
+<?php echo file_get_contents('Proyecto_html/Proyecto_html/home.html'); ?>
