@@ -1,1 +1,1 @@
-<?php echo file_get_contents('Proyecto_html/Proyecto_html/home.html'); ?>
+<?php include_once("Proyecto_html/Proyecto_html/home.html"); ?>
