@@ -1,0 +1,15 @@
+<div class="row" ng-repeat="estampa in estampas | filter:search">
+	<div class="col-md-10 col-sm-offset-1">    
+		<div class="row">
+			<div class="col-md-2 dragg">
+				<img src="{{estampa.imagen}}" class="img-circle " width="90" height="90">
+			</div>
+			<div class="col-md-8">
+				<h3>{{estampa.nombre}}</h3>
+				<p>{{estampa.informacion}}</p>
+				<p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>				
+				<p><button class="btn btn-default" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</button></p>
+			</div>
+		</div>
+	</div>
+</div>

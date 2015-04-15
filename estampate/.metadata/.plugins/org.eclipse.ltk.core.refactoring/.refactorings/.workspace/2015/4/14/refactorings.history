@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;UserEJB&apos; to &apos;EstampateEJB&apos;" description="Rename resource &apos;UserEJB&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/UserEJB" name="EstampateEJB" stamp="1428128793593" updateReferences="true"/>
+</session>

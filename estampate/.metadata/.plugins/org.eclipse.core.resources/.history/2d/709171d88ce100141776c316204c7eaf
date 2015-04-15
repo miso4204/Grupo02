@@ -1,0 +1,111 @@
+
+<script type="text/javascript">
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+	function drop(ev, estampa) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+
+
+<h1 class="page-header">Personaliza tu Camiseta!</h1>
+<div class="row placeholders">
+	<div class="container-fluid">
+		<div class="content-wrapper">
+			<div class="item-container">
+				<div class="container">
+					<div class="col-md-9">
+						<div class="product col-md-9 service-image-left">
+							<div id="col-md-12 container">
+								<img id="image" src="{{tipoCamisetaSeleccionado.ubicacion}}" width="400" height="300" />
+								<div class="dragg" id="text" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+							</div>
+						</div>
+						<div class="container service1-items col-sm-1 col-md-1 pull-left">
+							<a id="item-1" class="service1-item"> <img src="{{tipoCamisetaSeleccionado.ubicacion}}" alt=""></img>
+							</a>
+							<!--<a id="item-2" class="service1-item">
+                                                    <img src="http://www.huetrap.com/imageuploads/product/00243/1000X1000_20140324173759_HT12WKGRAWHT00243%20BACK.jpg" alt=""></img>
+                                                </a>-->
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="product-rating">
+							<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i>
+						</div>
+						<hr>
+
+						<div class="product-price">{{tipoCamisetaSeleccionado.valor|currency}}</div>
+						<div class="product-stock">In Stock</div>
+						<hr>
+						<div class="btn-group cart">
+							<button type="button" class="btn btn-success" ng-click="addCarrito()">Add to cart</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<br />
+				<br />
+				<br />
+				<tabset justified="true"> <tab heading="Descripci&oacute;n">
+				<section class="container product-info">
+					<div class="product-title">{{tipoCamisetaSeleccionado.nombre}}</div>
+					<div class="product-desc">
+						Camiseta <select name="material" id="material">
+							<option ng-repeat="material in materiales" value="{{material.id}}">{{material.nombre}}</option>
+						</select>
+					</div>
+				</section>
+				</tab> <tab heading="Tama&ntilde;o">
+				<section class="container">
+					<div class="container">
+						<br />
+						<br /> <label for="fun" class="col-sm-2 col-md-2 control-label text-right">Talla</label>
+						<div class="funkyradio">
+							<div class="col-md-2 funkyradio-primary" ng-repeat="talla in tallas">
+								<input type="radio" name="radio" id="radio{{talla.id}}" ng-click="setTalla(talla)" /> <label for="radio{{talla.id}}">{{talla.nombre}}</label>
+							</div>
+						</div>
+					</div>
+				</section>
+				</tab> <tab heading="Estampas">
+				<section class="container">
+					<br />
+					<br />
+					<div class="container">
+						<label for="fun" class="col-sm-2 col-md-2 control-label text-right">Color</label>
+						<div class="btn-group" data-toggle="buttons">
+
+							<label class="btn btn-default" ng-repeat="color in colores" style="background-color: {{color.codigo" ng-click="setColor(color)"> <input type="radio" name="options" id="option{{color.id}}" autocomplete="off"> <span class="glyphicon glyphicon-ok"></span>
+							</label>
+
+						</div>
+					</div>
+				</section>
+				</tab> <tab heading="Estampas">
+				<section class="container">
+					<br />
+					<p>Arrastra una estampa sobre la camiseta</p>
+					<br />
+					<div class="row placeholders">
+						<div class="col-xs-6 col-sm-3 placeholder" ng-repeat="estampa in estampas">
+							<div class="dragg" id="div{{estampa.id}}" ondrop="drop(event);" ondragover="allowDrop(event)">
+								<img src="{{estampa.imagen}}" class="img-circle" alt="Generic placeholder thumbnail" draggable="true" ondragstart="drag(event)" id="drag{{estampa.id}}" width="90" height="90" ng-mousedown="setEstampa(estampa)">
+							</div>
+							<h4>{{estampa.informacion}}</h4>
+							<span class="text-muted">{{estampa.precio|currency}}</span>
+						</div>
+					</div>
+				</section>
+				</tab> </tabset>
+			</div>
+		</div>
+	</div>

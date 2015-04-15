@@ -1,0 +1,30 @@
+<select ng-options="tipo for tipo in ['Galeria','Lista']" ng-model="vista">
+</select>
+<div ng-show="vista=='Galeria'">
+    <carousel interval="myInterval">
+      <slide ng-repeat="estampa in estampas">
+        <img ng-src="{{estampa.imagen}}" style="margin:auto;" class="img-circle" width="250" height="250">
+        <div class="carousel-caption">
+          <h4>{{estampa.nombre}}</h4>
+		  <p>{{estampa.informacion}}</p>
+		  <p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>
+		  <p><a href="#/camisa" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</a></p>				
+        </div>
+      </slide>
+    </carousel>
+</div>
+<div class="row" ng-repeat="estampa in estampas | filter:search" ng-show="vista=='Lista'">
+	<div class="col-md-10 col-sm-offset-1">    
+		<div class="row">
+			<div class="col-md-2 dragg">
+				<img src="{{estampa.imagen}}" class="img-circle " width="90" height="90">
+			</div>
+			<div class="col-md-8">
+				<h3>{{estampa.nombre}}</h3>
+				<p>{{estampa.informacion}}</p>
+				<p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>				
+				<p><a href="#/camisa" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</a></p>
+			</div>
+		</div>
+	</div>
+</div>

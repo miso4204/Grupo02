@@ -1,0 +1,9 @@
+	<div class="col-md-2 slide">
+		<ul class="nav nav-sidebar" ng-show="funcionalidades!=null">
+			<li id="func_0"class="funcion active" ><a href="/estampateWEB">&nbsp;&nbsp;&nbsp;&nbsp;Inicio</a></li>
+			<li id="func_{{privilegio.id}}" class="funcion" ng-repeat="privilegio in  funcionalidades" ><a href="{{privilegio.url}}}">&nbsp;&nbsp;&nbsp;&nbsp;{{privilegio.nombre}}</a></li>
+		</ul>
+	</div>
+	<div class="jumbotron col-sm-10">
+		HOLA
+	</div>

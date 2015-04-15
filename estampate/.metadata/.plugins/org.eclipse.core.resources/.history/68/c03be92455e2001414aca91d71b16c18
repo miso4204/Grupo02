@@ -1,0 +1,5 @@
+package edu.uniandes.service.daos;
+
+public class PersonaDAO {
+
+}

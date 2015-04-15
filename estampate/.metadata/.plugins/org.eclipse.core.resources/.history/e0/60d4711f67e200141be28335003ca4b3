@@ -1,0 +1,52 @@
+package edu.uniandes.service.ws;
+
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.SessionContext;
+import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import edu.uniandes.service.daos.EstampaDAO;
+import edu.uniandes.service.daos.UsuarioDAO;
+import edu.uniandes.service.entidades.Estampa;
+import edu.uniandes.service.entidades.Usuario;
+import edu.uniandes.service.util.Constantes;
+
+@Path("/Estampa")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@Stateless
+public class EstampaResource {
+	@Resource
+	private SessionContext context;
+	@EJB
+	private EstampaDAO estampaDAO;
+	@EJB
+	private UsuarioDAO usuarioDAO;
+	@GET	
+	public List<Estampa> list(){
+		return estampaDAO.findAll(true);
+	}
+	@GET
+	@Path("/ByUser")
+	public List<Estampa> listByUser(){
+		List<Estampa> estampas=null;
+		Principal principal=context.getCallerPrincipal();
+		Usuario usuario=usuarioDAO.getUsuario(principal.getName());
+		if(Constantes.ADMIN_ROL.equals(usuario.getRolBean().getNombre())){
+			estampas=estampaDAO.findAll(true);
+		}else {
+			estampas=estampaDAO.getByUser(usuario,true);
+		}
+		return estampas;
+	}
+	
+}

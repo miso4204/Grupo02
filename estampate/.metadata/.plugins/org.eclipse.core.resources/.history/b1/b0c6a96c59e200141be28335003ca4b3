@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    Estampas
+  </div>
+  <div class="panel-footer">
+		<table>
+			<tr>
+				<td>Informaci&oacute;n</td>
+				<td>Imagen</td>
+				<td>Precio</td>
+				<td>Tema</td>
+				<td>Rating</td>
+				<td>Cantidad Votos</td>
+			</tr>
+			<tr ng-repeat="estampa in estampas">
+				<td>
+				<img src="{{estampa.image}}" />		
+				</td>
+				<td>{{estampa.nombre}}</td>
+				<td>{{estampa.informacion}}</td>
+				<td>{{estampa.popularidad}}</td>
+				<td>{{estampa.precio}}</td>
+				<td>{{estampa.ratting}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+/**
+ * Config Controllers
+ */
+
+var estampateControllers = angular.module('estampateControllers', []);

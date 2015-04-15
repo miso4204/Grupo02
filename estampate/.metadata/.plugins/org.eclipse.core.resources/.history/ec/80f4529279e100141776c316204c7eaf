@@ -1,0 +1,31 @@
+/**
+ * Config App
+ */
+var estampateApp = angular.module('estampateApp', [ 'ngRoute', 'estampateControllers', 'ngSanitize', 'ngCookies' ], function($compileProvider) {
+	$compileProvider.directive('compile', function($compile) {
+		return function(scope, element, attrs) {
+			scope.$watch(function(scope) {
+				return scope.$eval(attrs.compile);
+			}, function(value) {
+				element.html(value);
+				$compile(element.contents())(scope);
+			});
+		};
+	});
+});
+estampateApp.config([ '$routeProvider', function($routeProvider) {
+	$routeProvider.when('/', {
+		templateUrl : '/estampateWEB/html/inicio.html',
+		controller : 'mainCtrl'
+	}).when('/estampa', {
+		templateUrl : '/estampateWEB/html/estampa.html',
+		controller : 'estampaCtrl'
+	}).when('/camisa', {
+		templateUrl : '/estampateWEB/html/estampa.html',
+		controller : 'estampaCtrl'
+	})
+} ]);
+/*
+ * . otherwise({ redirectTo: '/phones' });
+ */
+

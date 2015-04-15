@@ -1,0 +1,28 @@
+package edu.uniandes.service.daos;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import edu.uniandes.service.entidades.Rol;
+import edu.uniandes.service.entidades.Usuario;
+
+@Stateless
+@LocalBean
+public class UsuarioDAO extends AbstractDAO<Usuario> {
+
+	/**
+	 * Default constructor.
+	 */
+	public UsuarioDAO() {
+		super(Usuario.class);
+	}
+
+	@PersistenceContext(unitName = "estampatePU")
+	private EntityManager em;
+
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
+	
+}

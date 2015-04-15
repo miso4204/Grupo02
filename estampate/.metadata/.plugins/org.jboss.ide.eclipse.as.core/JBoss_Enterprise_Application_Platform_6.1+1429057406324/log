@@ -1,0 +1,10 @@
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2015-04-14 19:23:38.158
+!MESSAGE The server "JBoss Enterprise Application Platform 6.1+" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre6 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2015-04-14 19:23:40.341
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2015-04-14 19:24:05.386
+!MESSAGE Server Startup Succeeded

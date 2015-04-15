@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements to &apos;src&apos;&#x0D;&#x0A;- Original project: &apos;UserEJBP&apos;&#x0D;&#x0A;- Destination element: &apos;src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     edu.uniandes.UserEJB.java&#x0D;&#x0A;     edu.uniandes.UserEJBLocal.java&#x0D;&#x0A;     edu.uniandes.UserEJBRemote.java" description="Copy compilation units" element1="/ejbModule&lt;edu.uniandes{UserEJB.java" element2="/ejbModule&lt;edu.uniandes{UserEJBLocal.java" element3="/ejbModule&lt;edu.uniandes{UserEJBRemote.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1427263886241" target="/UserEJB/src" units="3" version="1.0"/>
+</session>

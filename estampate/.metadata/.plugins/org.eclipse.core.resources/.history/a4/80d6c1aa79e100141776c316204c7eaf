@@ -1,0 +1,57 @@
+/**
+ * Config Controllers
+ */
+
+var estampateControllers = angular.module('estampateControllers', ['ngCookies']);
+
+estampateControllers.controller('mainCtrl', [ '$scope', '$http','$cookieStore', function($scope, $http, $cookieStore) {
+	$http.get("/estampateWEB/webresources/Funcionalidades").success(function(response) {
+		$scope.funcionalidades = response;
+		$scope.prueba=$cookieStore.get("estampaSelected")
+	});
+} ]);
+
+
+
+estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$http.get("/estampateWEB/webresources/Estampa").success(function (response){
+		$scope.estampas= response;					
+	} );
+	$scope.selecionarEstampa=function(estampa){
+		$cookieStore.put('estampaSelected',estampa);
+	}		
+} ]);
+
+
+
+
+estampateControllers.controller('catalogoCtrl', [ '$scope', '$routeParams','$http', function($scope, $routeParams) {
+	
+} ]);
+estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http', function($scope, $routeParams) {
+	$scope.tipoCamiseta=$routeParams.tipoCamiseta;
+	$http.get("/estampateWEB/webresources/Talla").success(function (response){
+		$scope.tallas= response;					
+	} );
+} ]);
+
+
+estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http', function($scope, $routeParams) {
+	$scope.tipoCamiseta=$routeParams.tipoCamiseta;
+	$http.get("/estampateWEB/webresources/Talla").success(function (response){
+		$scope.tallas= response;					
+	} );
+	$http.get("/estampateWEB/webresources/Color").success(function (response){
+		$scope.colores= response;					
+	} );
+	$http.get("/estampateWEB/webresources/Material").success(function (response){
+		$scope.materiales= response;					
+	} );
+	$http.get("/estampateWEB/webresources/Estampa").success(function (response){
+		$scope.estampas= response;					
+	} );
+	$http.get("/estampateWEB/html/comprador/personalizar.html").success(function (response){
+		$scope.html= response;					
+		cargandoContent=false;
+	} );
+} ]);

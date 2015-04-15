@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.ws.rs.Consumes"/>
+<fullyQualifiedTypeName name="javax.ws.rs.core.MediaType"/>
+<fullyQualifiedTypeName name="javax.ws.rs.Produces"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="javax.ws.rs.core.UriInfo"/>
+<fullyQualifiedTypeName name="javax.annotation.security.DeclareRoles"/>
+<fullyQualifiedTypeName name="javax.ws.rs.container.ResourceContext"/>
+<fullyQualifiedTypeName name="javax.ws.rs.core.Context"/>
+<fullyQualifiedTypeName name="javax.ejb.SessionContext"/>
+<fullyQualifiedTypeName name="javax.annotation.Resource"/>
+<fullyQualifiedTypeName name="java.security.Principal"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.daos.AbstractDAO"/>
+<fullyQualifiedTypeName name="javax.ejb.EJB"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.daos.PrivilegioDAO"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.ws.FuncionalidadesService"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.entidades.Privilegio"/>
+<fullyQualifiedTypeName name="javax.persistence.FetchType"/>
+<fullyQualifiedTypeName name="javax.annotation.security.RolesAllowed"/>
+<fullyQualifiedTypeName name="org.jboss.ejb3.annotation.SecurityDomain"/>
+<fullyQualifiedTypeName name="org.jboss.security.annotation.SecurityDomain"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.entidades.MetodoEnvio"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.daos.MetodoEnvioDAO"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.entidades.Rol"/>
+<fullyQualifiedTypeName name="javax.ejb.LocalBean"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.entidades.Persona"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContexts"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.daos.UsuarioDAO"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.util.Constantes"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.persistence.Query"/>
+<fullyQualifiedTypeName name="edu.uniandes.service.entidades.Usuario"/>
+<fullyQualifiedTypeName name="javax.ws.rs.GET"/>
+<fullyQualifiedTypeName name="javax.ws.rs.Path"/>
+<fullyQualifiedTypeName name="javax.ejb.Stateless"/>
+</qualifiedTypeNameHistroy>

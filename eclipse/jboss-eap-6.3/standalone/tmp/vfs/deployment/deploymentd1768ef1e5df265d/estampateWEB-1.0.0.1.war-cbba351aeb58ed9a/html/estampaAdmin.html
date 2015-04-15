@@ -1,0 +1,21 @@
+<div class="col-md-9 main">
+	<h1 class="page-header">Estampas</h1>
+	<table class="table table-hover">
+		<tr>	
+			<th>Imagen</th>
+			<th>Informaci&oacute;n</th>
+			<th>Precio</th>
+			<th>Tema</th>
+			<th>Rating</th>
+			<th>Cantidad Votos</th>
+		</tr>
+		<tr ng-repeat="estampa in estampas | filter:search">
+			<td><img src="{{estampa.imagen}}" class="img-circle " width="90" height="90"></td>
+			<td>{{estampa.nombre}}</td>
+			<td>{{estampa.informacion}}</td>
+			<td>{{estampa.popularidad}}</td>
+			<td>{{estampa.precio}}</td>
+			<td>{{estampa.ratting}}</td>
+		</tr>
+	</table>
+</div>	

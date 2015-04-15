@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Export-Package: de.schlichtherle.io;x-friends:="org.jboss.ide.eclipse.
+ archives.test",de.schlichtherle.io.archive.spi;x-friends:="org.jboss.
+ ide.eclipse.archives.test",org.jboss.ide.eclipse.archives.core,org.jb
+ oss.ide.eclipse.archives.core.ant,org.jboss.ide.eclipse.archives.core
+ .asf,org.jboss.ide.eclipse.archives.core.build,org.jboss.ide.eclipse.
+ archives.core.model,org.jboss.ide.eclipse.archives.core.model.interna
+ l;x-friends:="org.jboss.ide.eclipse.archives.test",org.jboss.ide.ecli
+ pse.archives.core.model.internal.xb;x-friends:="org.jboss.ide.eclipse
+ .archives.test",org.jboss.ide.eclipse.archives.core.model.other.inter
+ nal,org.jboss.ide.eclipse.archives.core.model.types,org.jboss.ide.ecl
+ ipse.archives.core.project,org.jboss.ide.eclipse.archives.core.util,o
+ rg.jboss.ide.eclipse.archives.core.util.internal;x-friends:="org.jbos
+ s.ide.eclipse.archives.test",org.jboss.ide.eclipse.archives.core.xpl
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: archivescore.jar,archivescore-eclipse.jar,lib/truezi
+ p-6.6.jar
+Built-By: hudson
+Eclipse-BundleShape: dir
+Bundle-Name: %Bundle-Name.0
+Bundle-Localization: plugin
+Created-By: Apache Maven 3.2.5
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.apache.ant;bundle-version="1.7.1",org.apache.xerce
+ s;bundle-version="2.9.0",org.eclipse.core.commands;bundle-version="3.
+ 6.0",org.eclipse.core.filesystem;bundle-version="1.3.100",org.eclipse
+ .core.resources;bundle-version="3.7.100",org.eclipse.core.runtime;bun
+ dle-version="3.7.0",org.eclipse.core.variables;bundle-version="3.2.50
+ 0",org.jboss.tools.usage;resolution:=optional;x-installation:=greedy,
+ org.jboss.tools.archives.scanner;bundle-version="3.5.0";visibility:=r
+ eexport
+Bundle-Vendor: %Bundle-Vendor.0
+Eclipse-SourceReferences: scm:git:https://github.com/jbosstools/jbosst
+ ools-server.git;path="archives/plugins/org.jboss.ide.eclipse.archives
+ .core";commitId=c666b2504f345982207a8581ca600792e842c20e
+Bundle-Version: 3.5.3.CR1-v20150312-0240-B128
+Build-Jdk: 1.7.0_67
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.jboss.ide.eclipse.archives.core.ArchivesCorePlug
+ in
+Bundle-SymbolicName: org.jboss.ide.eclipse.archives.core;singleton:=tr
+ ue
+Archiver-Version: Plexus Archiver
+

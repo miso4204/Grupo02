@@ -1,0 +1,15 @@
+	<div class="col-sm-2 slide">
+		<ul class="nav nav-sidebar" ng-show="funcionalidades!=null">
+			<li id="func_0"class="funcion active" ><a href="/estampateWEB">&nbsp;&nbsp;&nbsp;&nbsp;Inicio</a></li>
+			<li id="func_{{privilegio.id}}" class="funcion" ng-repeat="privilegio in  funcionalidades" ><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;{{privilegio.nombre}}</a></li>
+		</ul>
+	</div>
+	<div class="jumbotron col-sm-10">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Vabrik Fashion</h1>
+				<p>Este es un portal exclusivo para ti, compra camisetas dise&ntilde;adas por ti mismo, con estampados exclusivos.</p>
+			</div>
+			<img src="/estampateWEB/img/camisetadam.jpg" width="350">
+		</div>
+	</div>

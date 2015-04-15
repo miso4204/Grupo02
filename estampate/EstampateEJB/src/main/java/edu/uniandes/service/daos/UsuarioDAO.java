@@ -1,0 +1,43 @@
+package edu.uniandes.service.daos;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import edu.uniandes.service.entidades.Rol;
+import edu.uniandes.service.entidades.Usuario;
+
+@Stateless
+@LocalBean
+public class UsuarioDAO extends AbstractDAO<Usuario> {
+
+	/**
+	 * Default constructor.
+	 */
+	public UsuarioDAO() {
+		super(Usuario.class);
+	}
+
+	@PersistenceContext(unitName = "estampatePU")
+	private EntityManager em;
+
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
+
+	public Usuario getUsuario(String userName,boolean detach) {
+		Usuario usuario = null;
+		try {
+			Query query = em.createQuery("select u from Usuario u where u.username= :user");
+			query.setParameter("user", userName);
+			usuario = (Usuario) query.getSingleResult();
+			detachObject(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuario;
+	}
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="catalogoApp">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Vabrik Fashion</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/estampateWEB/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/estampateWEB/css/dashboard.css" rel="stylesheet">
+<link href="/estampateWEB/css/personalizar.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="controllerCatalogo">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Vabrik Fashion</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="../html/carrito.html">Carrito</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/estampateWEB/Logout">Sign out</a></li>
+				</ul>
+				<ul class="navbar-form navbar-right">
+					<li>
+						<input type="text" class="form-control" placeholder="Search..." ng-model="search">				
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" >
+		<div class="row">
+			<div class="col-sm-3 sidebar">
+				<ul class="nav nav-sidebar" ng-show="cargandoFuncionalidades">
+					<li><img src="/estampateWEB/img/loading.gif" /></li>
+				</ul>
+				<ul class="nav nav-sidebar" ng-show="funcionalidades!=null">
+					<li id="func_0"class="funcion active" ng-click="active(0);hideContent();inicio()"><a href="#">Inicio</a></li>
+					<li id="func_{{privilegio.id}}" class="funcion" ng-repeat="privilegio in  funcionalidades" ng-click="active(privilegio.id);hideContent();redirec(privilegio)"><a href="#">{{privilegio.nombre}}</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 main" >				
+				<div class="row placeholders" ng-show="cargandoTipoCamisetas">
+					<img src="/estampateWEB/img/loading.gif" />
+				</div>
+				<div class="row placeholders" compile="html" >
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="/estampateWEB/bootstrap/js/bootstrap.min.js"></script>	
+	<script src="/estampateWEB/js/angular.min.js"></script>		
+	<script src="/estampateWEB/js/angular-sanitize.min.js"></script>	
+	<script type="text/javascript">		
+    	var catalogoApp=angular.module("catalogoApp",['ngSanitize'], function($compileProvider) {			
+			$compileProvider.directive('compile', function($compile) {
+			  // directive factory creates a link function
+			  return function(scope, element, attrs) {
+				scope.$watch(
+				  function(scope) {             
+					return scope.$eval(attrs.compile);
+				  },
+				  function(value) {         
+					element.html(value);
+					$compile(element.contents())(scope);
+				  }
+				);
+			  };
+			});
+		  });
+    	    catalogoApp.controller("controllerCatalogo",function($scope,$http){
+						$scope.tipoCamisetaSeleccionado={};
+						$scope.estampaSelected={};
+						$scope.tallaSelected={};
+						$scope.colorSelected={};
+						$scope.cargandoFuncionalidades=true;
+						$scope.cargandoContent=true;    	
+						$scope.html="";
+						$scope.textCamiseta='';
+						$scope.camisasEnCarrito=[];
+						$http.get("/estampateWEB/webresources/Funcionalidades").success(
+								function(response){
+									$scope.funcionalidades=response;
+									$scope.cargandoFuncionalidades=false;
+								}
+						);    			
+						/**Metodos del Controlador **/
+						$scope.personalizar=function (tipoCamiseta){
+							$scope.tipoCamisetaSeleccionado=tipoCamiseta;
+							$http.get("/estampateWEB/webresources/Talla").success(function (response){
+								$scope.tallas= response;					
+							} );
+							$http.get("/estampateWEB/webresources/Color").success(function (response){
+								$scope.colores= response;					
+							} );
+							$http.get("/estampateWEB/webresources/Material").success(function (response){
+								$scope.materiales= response;					
+							} );
+							$http.get("/estampateWEB/webresources/Estampa").success(function (response){
+								$scope.estampas= response;					
+							} );
+							$http.get("/estampateWEB/html/comprador/personalizar.html").success(function (response){
+								$scope.html= response;					
+								cargandoContent=false;
+							} );
+						};
+						$scope.setEstampa= function(estampa){
+							$scope.estampaSelected=estampa;
+						}
+						$scope.redirec=function(privilegio){
+							cargandoContent=true;			
+							eval(privilegio.funcion+"($scope,$http)");
+							$http.get(privilegio.url).success(function (response){
+											$scope.html= response;					
+											cargandoContent=false;
+							} );
+						};
+						$scope.hideFuncion=function(){
+							cargandoFuncionalidades=true;
+						};
+						$scope.hideContent=function(){
+							cargandoContent=true;
+						};
+						$scope.setEstampa=function(estampa){							
+							$scope.estampaSelected=estampa;
+						}
+						$scope.setColor=function(color){
+							$scope.colorSelected=color;
+						}
+						$scope.setMaterial=function(material){
+							$scope.materialSelected=material;
+						}
+						$scope.setTalla=function(talla){
+							$scope.tallaSelected=talla;
+						}
+						$scope.inicio=function (){							
+							$http.get("/estampateWEB/html/inicio.html").success(function (response){
+											$scope.html= response;					
+											cargandoContent=false;
+							} );
+						};
+						$scope.active=function(id){
+							$(".funcion").removeClass("active");
+							$("#func_"+id).removeClass();
+							$("#func_"+id).addClass("active");						
+						}
+						$scope.addCarrito=function(){
+							if(isEmptyJSON($scope.tipoCamisetaSeleccionado)){
+								alert("Debe seleccionar una camisa");
+								return;
+							}else if(isEmptyJSON($scope.estampaSelected)){
+								alert("Debe seleccionar una estampa para la camiseta");
+								return;
+							}else if(isEmptyJSON($scope.tallaSelected)){
+								alert("Debe seleccionar la talla de la camiseta");
+								return;
+							}else if(isEmptyJSON($scope.colorSelected)){
+								alert("Debe seleccionar el color de la camiseta");
+								return;
+							}
+							
+							
+							$scope.camisasEnCarrito[camisasEnCarrito.length]={
+								precio:(estampaSelected.precio+tipoCamisetaSeleccionado.valor),
+								texto:$scope.textCamiseta,
+								colorCamiseta:colorSelected,
+								estampaBean:estampaSelected,
+								materialCamiseta:{},
+								tallaCamiseta:tallaSelected,
+								tamanoEstampadoBean:{},
+								ubicacionEstampadoBean:{},
+								tipoCamiseta:tipoCamisetaSeleccionado
+							}
+						}						
+						$scope.hideFuncion();
+						$scope.hideContent();
+						$scope.inicio();
+			});  
+			function isEmptyJSON (obj) {
+				for(var i in obj) { return false; }
+				return true;
+			}
+    </script>	
+    <script type="text/javascript">
+		function loadTipoCamiseta($scope,$http) {				
+			$http.get("/estampateWEB/webresources/TipoCamiseta").success(
+					function(response){
+						$scope.tiposCamisetas=response;
+						$scope.cargandoContent=false;	
+					}    		
+			);
+		}
+	</script>
+</body>
+</html>

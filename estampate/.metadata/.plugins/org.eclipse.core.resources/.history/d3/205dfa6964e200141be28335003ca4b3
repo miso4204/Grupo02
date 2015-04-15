@@ -1,0 +1,23 @@
+package edu.uniandes.service.ws;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import edu.uniandes.service.entidades.Persona;
+
+@Path("/Persona")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class PersonaResource {
+	@GET
+	Path("ByUser")
+	public List<Persona> getByUser(){
+		
+	}	
+}

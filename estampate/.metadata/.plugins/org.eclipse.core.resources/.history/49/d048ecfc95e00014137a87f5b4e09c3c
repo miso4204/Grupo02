@@ -1,0 +1,15 @@
+/**
+ * Config Controllers
+ */
+
+var estampateControllers = angular.module('estampateControllers', []);
+
+estampateControllers.controller('mainCtrl', [ '$scope', '$http',
+		function($scope, $http) {
+			
+		} ]);
+
+estampateControllers.controller('PhoneDetailCtrl', [ '$scope', '$routeParams',
+		function($scope, $routeParams) {
+			$scope.phoneId = $routeParams.phoneId;
+		} ]);

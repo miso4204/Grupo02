@@ -1,0 +1,15 @@
+/**
+ * Config Controllers
+ */
+
+var estampateControllers = angular.module('estampateControllers', []);
+
+estampateControllers.controller('mainCtrl', [ '$scope', '$http', function($scope, $http) {
+	$http.get("/estampateWEB/webresources/Funcionalidades").success(function(response) {
+		$scope.funcionalidades = response;
+	});
+} ]);
+
+estampateControllers.controller('catalogoCtrl', [ '$scope', '$routeParams','$http', function($scope, $routeParams) {
+	$scope.phoneId = $routeParams.phoneId;
+} ]);

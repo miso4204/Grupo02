@@ -1,0 +1,29 @@
+<table>
+	<tr>
+		<td>Información</td>
+		<td>Imagen</td>
+		<td>Precio</td>
+		<td>Tema</td>
+		<td>Rating</td>
+		<td>Cantidad Votos</td>
+	</tr>
+	<tr  ng-repeat="estampa in estampas">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+ID
+INFORMACION
+IMAGEN
+PRECIO
+TEMA
+USUARIO
+RATTING
+CANTIDAD_VOTOS
+POPULARIDAD
+NOMBRE
