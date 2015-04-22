@@ -1,8 +1,0 @@
-Java HotSpot(TM) 64-Bit Server VM (25.31-b07) for windows-amd64 JRE (1.8.0_31-b13), built on Dec 17 2014 21:00:28 by "java_re" with MS VC++ 10.0 (VS2010)
-Memory: 4k page, physical 4055292k(1444716k free), swap 8551228k(4252856k free)
-CommandLine flags: -XX:GCLogFileSize=3145728 -XX:InitialHeapSize=1073741824 -XX:MaxHeapSize=1073741824 -XX:NumberOfGCLogFiles=5 -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:-TraceClassUnloading -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseGCLogFileRotation -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
-2015-03-23T23:23:55.180-0500: 7.227: [GC (Metadata GC Threshold) [PSYoungGen: 262144K->19747K(305664K)] 262144K->19755K(1005056K), 0.0502894 secs] [Times: user=0.19 sys=0.00, real=0.06 secs] 
-2015-03-23T23:23:55.242-0500: 7.278: [Full GC (Metadata GC Threshold) [PSYoungGen: 19747K->0K(305664K)] [ParOldGen: 8K->18896K(699392K)] 19755K->18896K(1005056K), [Metaspace: 19255K->19255K(1067008K)], 0.1884470 secs] [Times: user=0.63 sys=0.00, real=0.19 secs] 
-2015-03-23T23:23:58.133-0500: 10.182: [GC (Metadata GC Threshold) [PSYoungGen: 183242K->21144K(305664K)] 202138K->40040K(1005056K), 0.0346231 secs] [Times: user=0.13 sys=0.03, real=0.05 secs] 
-2015-03-23T23:23:58.180-0500: 10.217: [Full GC (Metadata GC Threshold) [PSYoungGen: 21144K->0K(305664K)] [ParOldGen: 18896K->29795K(699392K)] 40040K->29795K(1005056K), [Metaspace: 31638K->31636K(1079296K)], 0.1041532 secs] [Times: user=0.25 sys=0.02, real=0.09 secs] 
-2015-03-23T23:47:00.701-0500: 1392.739: [GC (Allocation Failure) [PSYoungGen: 262144K->25506K(305664K)] 291939K->55310K(1005056K), 0.1155631 secs] [Times: user=0.31 sys=0.00, real=0.12 secs] 
