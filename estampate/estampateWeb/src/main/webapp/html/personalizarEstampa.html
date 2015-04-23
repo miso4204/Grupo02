@@ -17,7 +17,7 @@
 <div class="row placeholders">
 	<div class="container-fluid">
 		<div class="content-wrapper">
-			<div class="item-container">
+			<div class="item-container" ng-model="tipoCamisetaSeleccionado">
 				<div class="container">
 					<div class="col-md-9">
 						<div class="product col-md-9 service-image-left">
@@ -91,13 +91,15 @@
 				</tab> <tab heading="Camisetas">
 				<section class="container">
 					<br />
-					<p>Arrastra una estampa sobre la camiseta</p>
 					<br />
 					<div class="row placeholders">
 						<div class="col-xs-6 col-sm-3 placeholder" ng-repeat="tipoCamisa in tiposCamisetas">
+							
+  							<input type="radio" name="fb" value="{{tipoCamisa.id}}" ng-model="value" ng-change='newValue(value)'/>
 							<img src="{{tipoCamisa.ubicacion}}" class="img-responsive" alt="Generic placeholder thumbnail">
 							<h4>{{tipoCamisa.nombre}}</h4>
-							<span class="text-muted">{{tipoCamisa.valor| currency}}</span><br />
+							<span class="text-muted">{{tipoCamisa.valor| currency}}</span><br />s
+							
 						</div>
 					</div>
 				</section>

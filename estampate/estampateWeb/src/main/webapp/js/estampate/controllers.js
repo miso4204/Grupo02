@@ -60,15 +60,12 @@ estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','
 } ]);
 
 estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
-	$http.get("/estampateWEB/webresources/TipoCamiseta").success(function (response){
-		$scope.tipoCamisetaSeleccionado= response[0];
-		//alert("Camisetas" + $scope.tipoCamisetaSeleccionado.ubicacion);
-	} );
+	$scope.value= 0;
 	$scope.estampaSelected=$cookieStore.get('estampaSelected');
-	//alert("Estampaaaa" + $scope.estampaSelected);
 	$scope.tipoCamisetaSeleccionado=$cookieStore.get('tipoCamisetaSelected');
 		$http.get("/estampateWEB/webresources/Talla").success(function (response){
-			$scope.tallas= response;					
+			$scope.tallas= response;
+			
 		} );
 		$http.get("/estampateWEB/webresources/Color").success(function (response){
 			$scope.colores= response;					
@@ -77,8 +74,14 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 			$scope.materiales= response;					
 		} );
 		$http.get("/estampateWEB/webresources/TipoCamiseta").success(function (response){
-			$scope.tiposCamisetas= response;					
+			
+			$scope.tiposCamisetas= response;
+			$scope.tipoCamisetaSeleccionado = response[0];
 		} );
+	    
+	    $scope.newValue = function(value) {
+	    	$scope.tipoCamisetaSeleccionado = $scope.tiposCamisetas[value-1];
+	    }
 } ]);
 
 estampateControllers.controller('estampaAdminCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
