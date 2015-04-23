@@ -19,7 +19,7 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 		controller : 'mainCtrl'
 	}).when('/estampa', {
 		templateUrl : '/estampateWEB/html/estampa.html',
-		controller : 'estampaCtrl'
+		controller : 'catalogoEstampaCtrl'
 	}).when('/camisa', {
 		templateUrl : '/estampateWEB/html/camiseta.html',
 		controller : 'camisaCtrl'
@@ -35,6 +35,12 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/perfil', {
 		templateUrl : '/estampateWEB/html/perfil.html',
 		controller : 'perfilCtrl'
+	}).when('/estampado', {
+		templateUrl : '/estampateWEB/html/catalogoEstampas.html',
+		controller : 'estampaCtrl'
+	}).when('/personalizarEstampa', {
+		templateUrl : '/estampateWEB/html/personalizarEstampa.html',
+		controller : 'personalizarEstampaCtrl'
 	})
 } ]);
 

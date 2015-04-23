@@ -1,0 +1,39 @@
+<div class="col-md-9 main">
+	<h1 class="page-header">Personaliza tu Camiseta!</h1>
+<div class="row placeholders">
+<div class="container-fluid">
+    <div class="content-wrapper">   
+        <div class="item-container">    
+            <div class="container"> 
+                <div class="col-md-8">
+                    <div class="product col-md-10 service-image-left">
+                    	<center>
+                            <div id="col-md-12 container">
+                                <center>
+                                <img id="image" ng-src="{{estampaSeleccionada.imagen}}" width="400" height="300" style="padding-top: 15px; padding-left: 18px;"/>
+                        		</center>
+                   	 		</div>
+               	 		</center>
+           		 	</div>
+            
+        		</div>			            
+		        <div class="col-md-4">
+		            <div class="product-title" align="left">{{estampaSeleccionada.nombre}}</div>
+		            <div class="product-desc" align="left">{{estampaSeleccionada.informacion}}</div>
+		
+		            <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+		            <hr>
+		
+		            <div class="product-price">{{estampaSeleccionada.precio|currency}}</div>
+		            <hr>
+		            <div class="btn-group cart">
+		            	<a href="#/personalizarEstampa" class="btn btn-success" role="button" ng-click="selecionarEstampa(estampaSeleccionada)">Agregar a Camiseta </a>
+		                
+		            </div>
+		        </div>
+	    	</div> 
+		</div>                          
+	</div>
+</div>
+</div>
+</div>
