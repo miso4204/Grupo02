@@ -36,7 +36,7 @@ public class EstampaResource {
 		return estampaDAO.findAll(true);
 	}
 	@GET
-	@Path("/ByUser")
+	@Path("/User")
 	public List<Estampa> listByUser(){
 		List<Estampa> estampas=null;
 		Principal principal=context.getCallerPrincipal();

@@ -9,11 +9,13 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import edu.uniandes.service.daos.EstampaDAO;
+import edu.uniandes.service.daos.PersonaDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.Persona;
 
@@ -26,10 +28,17 @@ public class PersonaResource {
 	private SessionContext context;
 	@EJB
 	private UsuarioDAO usuarioDAO;
+	@EJB
+	private PersonaDAO personaDAO;
+
 	@GET
-	@Path("ByUser")
-	public Persona getByUser(){
-		String userName=context.getCallerPrincipal().getName();		
-		return usuarioDAO.getUsuario(userName,true).getPersonaBean();
+	public Persona getByUser() {
+		String userName = context.getCallerPrincipal().getName();
+		return usuarioDAO.getUsuario(userName, true).getPersonaBean();
+	}
+
+	@PUT
+	public void edit(Persona persona) {
+		personaDAO.edit(persona);		
 	}	
 }

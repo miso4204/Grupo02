@@ -30,7 +30,6 @@ public class FuncionalidadesResource {
 	private PrivilegioDAO privilegioDAO;
 	@GET	
 	public List<Privilegio> list(){
-		HashMap<String,String> funcionalidades =new HashMap<String,String>();
 		Principal principal=context.getCallerPrincipal();
 		String user=principal.getName();
 		List<Privilegio> privilegios=privilegioDAO.list(user,true);

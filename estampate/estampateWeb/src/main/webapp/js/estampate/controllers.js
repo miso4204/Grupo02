@@ -85,7 +85,7 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 } ]);
 
 estampateControllers.controller('estampaAdminCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
-	$http.get("/estampateWEB/webresources/Estampa/ByUser").success(function (response){
+	$http.get("/estampateWEB/webresources/Estampa/User").success(function (response){
 		$scope.estampas= response;					
 	} );
 } ]);
@@ -96,8 +96,26 @@ estampateControllers.controller('camisetasAdminCtrl', [ '$scope', '$routeParams'
 	} );
 } ]);
 
-estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
-	$http.get("/estampateWEB/webresources/Persona/ByUser").success(function (response){
+estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
+	$scope.alerts=[]
+	$http.get("/estampateWEB/webresources/Persona").success(function (response){
 		$scope.persona= response;					
 	} );
+	$scope.guardarPerfil=function (){
+		$http.put("/estampateWEB/webresources/Persona/",$scope.persona).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+		});
+	};
+	$scope.closeAlert=function() {
+	    $scope.alerts=[];
+	};
+	$scope.guardarPassword=function(){
+		$http.put("/estampateWEB/webresources/Usuario/",$scope.persona).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+		});
+	}  
 } ]);
