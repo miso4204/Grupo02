@@ -15,7 +15,7 @@ public class Estampa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "ESTAMPA_ID_GENERATOR")
+	@SequenceGenerator(name = "ESTAMPA_ID_GENERATOR", sequenceName= "ESTAMPA_ID_GENERATOR")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ESTAMPA_ID_GENERATOR")
 	private long id;
 

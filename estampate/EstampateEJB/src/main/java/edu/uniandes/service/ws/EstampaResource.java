@@ -1,7 +1,6 @@
 package edu.uniandes.service.ws;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,8 +8,12 @@ import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -48,5 +51,24 @@ public class EstampaResource {
 		}
 		return estampas;
 	}
-	
+	@GET
+	@Path("{id}")
+	public Estampa getById(@PathParam("id") Long id){			
+		return estampaDAO.find(id,true);
+	}
+	@POST
+	public void create(Estampa estampa){
+		Principal principal=context.getCallerPrincipal();
+		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),true);
+		estampa.setUsuarioBean(usuario);
+		estampaDAO.create(estampa);
+	}
+	@PUT
+	public void edit(Estampa estampa){
+		estampaDAO.edit(estampa);
+	}
+	@DELETE
+	public void delete(Estampa estampa){
+		estampaDAO.remove(estampa);
+	}
 }

@@ -1,7 +1,11 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class Usuario implements Serializable {
 
 	@Column(name="CANTIDAD_VOTOS")
 	private BigDecimal cantidadVotos;
-
+	@JsonIgnore
 	private String password;
 
 	private BigDecimal ratting;

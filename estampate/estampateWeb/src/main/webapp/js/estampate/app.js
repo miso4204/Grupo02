@@ -41,6 +41,12 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/personalizarEstampa', {
 		templateUrl : '/estampateWEB/html/personalizarEstampa.html',
 		controller : 'personalizarEstampaCtrl'
+	}).when('/crearEstampa', {
+		templateUrl : '/estampateWEB/html/crearEstampa.html',
+		controller : 'crearEstampaCtrl'
+	}).when('/modificarEstampa/:estampa', {
+		templateUrl : '/estampateWEB/html/modificarEstampa.html',
+		controller : 'modificarEstampaCtrl'
 	})
 } ]);
 

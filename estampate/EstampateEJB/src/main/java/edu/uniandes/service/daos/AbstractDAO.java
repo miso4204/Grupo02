@@ -35,10 +35,14 @@ public abstract class AbstractDAO<T> {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
+    public T find(Object id,boolean detach) {
+    	T entity= (T) getEntityManager().find(entityClass, id);
+    	if(detach){
+    		detachObject(entity);
+    	}
+        return entity;
     }
-    protected void detachList(List list){
+    protected void detachList(List<T> list){
     	if(list!=null){
 	    	for(Object entity:list){
 	    		detachObject(entity);    		

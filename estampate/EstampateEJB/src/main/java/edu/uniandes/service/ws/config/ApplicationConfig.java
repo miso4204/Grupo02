@@ -44,7 +44,10 @@ public class ApplicationConfig extends Application {
         resources.add(edu.uniandes.service.ws.ColorResource.class);
         resources.add(edu.uniandes.service.ws.TallaResource.class);
         resources.add(edu.uniandes.service.ws.MaterialResource.class);
-        resources.add(edu.uniandes.service.ws.MetodoEnvioResource.class);        
+        resources.add(edu.uniandes.service.ws.MetodoEnvioResource.class);
+        resources.add(edu.uniandes.service.ws.UsuarioResource.class);
+        resources.add(edu.uniandes.service.ws.TemaResource.class);
+        
     }
     
 }
