@@ -1,0 +1,7 @@
+<h1 class="page-header">Camisetas</h1>             
+<div class="col-xs-6 col-sm-3 placeholder" ng-repeat="tipoCamisa in tiposCamisetas |  filter: search " ng-show="tiposCamisetas!=null">
+	<img src="{{tipoCamisa.ubicacion}}" class="img-responsive" alt="Generic placeholder thumbnail">
+	<h4>{{tipoCamisa.nombre}}</h4>
+	<span class="text-muted">{{tipoCamisa.valor| currency}}</span><br />
+	<a href="#/personalizar" class="btn btn-primary" ng-click="selecionarTipoCamiseta(tipoCamisa)">Personalizar</a>
+</div>

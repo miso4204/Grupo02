@@ -1,0 +1,13 @@
+<div ng-show="_CONDICION1_">
+    <carousel interval="myInterval">
+      <slide ng-repeat="estampa in estampas">
+        <img ng-src="{{estampa.imagen}}" style="margin:auto;" class="img-circle" width="250" height="250">
+        <div class="carousel-caption">
+          <h4>{{estampa.nombre}}</h4>
+		  <p>{{estampa.informacion}}</p>
+		  <p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>
+		  <p><a href="#/camisa" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</a></p>				
+        </div>
+      </slide>
+    </carousel>
+</div>
