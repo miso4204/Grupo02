@@ -1,7 +1,9 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class CarritoCompra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CARRITO_COMPRAS_ID_GENERATOR" )
+	@SequenceGenerator(name ="CARRITO_COMPRAS_ID_GENERATOR", sequenceName="CARRITO_COMPRAS_ID_GENERATOR")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARRITO_COMPRAS_ID_GENERATOR")
 	private long id;
 

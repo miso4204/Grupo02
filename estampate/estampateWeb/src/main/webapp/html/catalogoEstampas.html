@@ -10,7 +10,7 @@
                     	<center>
                             <div id="col-md-12 container">
                                 <center>
-                                <img id="image" ng-src="{{estampaSeleccionada.imagen}}" width="400" height="300" style="padding-top: 15px; padding-left: 18px;"/>
+                                <img id="image" ng-src="{{estampaSeleccionada.imagen}}" width="300" height="250" style="padding-top: 15px; padding-left: 18px;"/>
                         		</center>
                    	 		</div>
                	 		</center>
@@ -20,7 +20,7 @@
 		        <div class="col-md-4">
 		            <div class="product-title" align="left">{{estampaSeleccionada.nombre}}</div>
 		            <div class="product-desc" align="left">{{estampaSeleccionada.informacion}}</div>
-		
+					<div class="product-desc" align="left">Por: {{estampaSeleccionada.usuarioBean.username}}</div>
 		            <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
 		            <hr>
 		

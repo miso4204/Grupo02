@@ -14,7 +14,7 @@ public class Camiseta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "CAMISETA_ID_GENERATOR")
+	@SequenceGenerator(name = "CAMISETA_ID_GENERATOR", sequenceName="CAMISETA_ID_GENERATOR")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMISETA_ID_GENERATOR")
 	private long id;
 

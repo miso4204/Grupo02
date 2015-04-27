@@ -71,7 +71,7 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 			
 		} );
 		$http.get("/estampateWEB/webresources/Color").success(function (response){
-			$scope.colores= response;					
+			$scope.colores= response;
 		} );
 		$http.get("/estampateWEB/webresources/Material").success(function (response){
 			$scope.materiales= response;					
@@ -85,6 +85,33 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 	    $scope.newValue = function(value) {
 	    	$scope.tipoCamisetaSeleccionado = $scope.tiposCamisetas[value-1];
 	    }
+	    $scope.setTalla=function (talla){
+	    	$scope.tallaSelected=talla;
+	    	
+		};
+		$scope.setColor=function (color){
+	    	$scope.colorSelected=color;
+	    	
+		};
+	    $scope.addCarrito=function (){
+	    	if( typeof $scope.tallaSelected === 'undefined' )
+	    	{
+	    		$scope.tallaSelected=$scope.tallas[0];
+	    	}
+	    	if( typeof $scope.colorSelected === 'undefined' )
+	    	{
+	    		$scope.colorSelected=$scope.colores[0];
+	    	}
+	    	var precio = $scope.tipoCamisetaSeleccionado.valor + $scope.estampaSelected.precio;
+	    	$scope.camiseta={"cantidad":1, "tipoCamiseta": $scope.tipoCamisetaSeleccionado, "estampaBean":$scope.estampaSelected, "tallaCamiseta":$scope.tallaSelected, "colorCamiseta":$scope.colorSelected, "precio":precio, "materialCamiseta":$scope.materiales[0]};
+	    	
+	    	
+			$http.put("/estampateWEB/webresources/Carrito/",$scope.camiseta).success(function (){
+				 alert('La camiseta ha sido agregada al carrito de compras');
+			} ).error(function(data, status, headers, config){
+				alert('Error al actualizar el carrito:'+data);
+			});
+		};
 } ]);
 
 estampateControllers.controller('modificarEstampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
