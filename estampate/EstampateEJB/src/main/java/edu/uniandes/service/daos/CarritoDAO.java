@@ -60,8 +60,13 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 	 * @return Lista de Camisetas en el carrito de compras de un usuario.
 	 */
 	public List<Camiseta> getItemsByUser(Usuario usuario){
+		System.out.println("Entro");
+		CarritoCompra carrito = getByUser(usuario);
+		System.out.println("obtuvo carrito");
+		List<Camiseta> lista = carrito.getCamisetas();
+		System.out.println("detach" + lista.size());
 		
-		return getByUser(usuario).getCamisetas();
+		return lista;
 	}
 	/**
 	 * Agrega un item al carrito de compras

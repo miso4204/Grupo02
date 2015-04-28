@@ -183,6 +183,22 @@ estampateControllers.controller('camisetasAdminCtrl', [ '$scope', '$routeParams'
 			
 	}
 } ]);
+estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$http.get("/estampateWEB/webresources/Carrito/").success(function (response){
+		 $scope.camisasEnCarrito = response;
+		 
+	} ).error(function(data, status, headers, config){
+		alert('Error al actualizar el carrito:'+data);
+	});	
+	$scope.getTotal = function(){
+	    var total = 0;
+	    for(var i = 0; i < $scope.camisasEnCarrito.length; i++){
+	        var product = $scope.camisasEnCarrito[i];
+	        total += (product.precio * product.cantidad);
+	    }
+	    return total;
+	}
+} ]);
 
 estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
 	$scope.alerts=[]

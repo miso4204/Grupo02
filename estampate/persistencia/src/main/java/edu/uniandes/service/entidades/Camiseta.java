@@ -1,7 +1,11 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.math.BigDecimal;
 
 /**
@@ -89,7 +93,7 @@ public class Camiseta implements Serializable {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
+	@JsonIgnore
 	public CarritoCompra getCarritoCompra() {
 		return this.carritoCompra;
 	}

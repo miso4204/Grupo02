@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity(name="TIPO_CAMISETA")
 public class TipoCamiseta implements Serializable {
 	@Id
@@ -50,7 +52,7 @@ public class TipoCamiseta implements Serializable {
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-
+	@JsonIgnore
 	public List<Camiseta> getCamisetas() {
 		return camisetas;
 	}

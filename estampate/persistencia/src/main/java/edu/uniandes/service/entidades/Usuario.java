@@ -97,7 +97,7 @@ public class Usuario implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	@JsonIgnore
 	public List<CarritoCompra> getCarritoCompras() {
 		return this.carritoCompras;
 	}
@@ -119,7 +119,7 @@ public class Usuario implements Serializable {
 
 		return carritoCompra;
 	}
-
+	@JsonIgnore
 	public List<Estampa> getEstampas() {
 		return this.estampas;
 	}
@@ -157,7 +157,7 @@ public class Usuario implements Serializable {
 	public void setRolBean(Rol rolBean) {
 		this.rolBean = rolBean;
 	}
-
+	@JsonIgnore
 	public List<UsuarioRedsocial> getUsuarioRedsocials() {
 		return this.usuarioRedsocials;
 	}

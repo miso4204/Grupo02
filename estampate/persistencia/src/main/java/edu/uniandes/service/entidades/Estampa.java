@@ -1,7 +1,11 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -106,7 +110,7 @@ public class Estampa implements Serializable {
 	public void setRatting(BigDecimal ratting) {
 		this.ratting = ratting;
 	}
-
+	@JsonIgnore
 	public List<Camiseta> getCamisetas() {
 		return this.camisetas;
 	}

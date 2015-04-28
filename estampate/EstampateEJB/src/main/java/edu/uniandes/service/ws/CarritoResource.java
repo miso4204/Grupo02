@@ -44,7 +44,9 @@ public class CarritoResource {
 		List<Camiseta> items=null;
 		Principal principal=context.getCallerPrincipal();
 		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
+		System.out.println("Usuario encontrado");
 		items=carritoDAO.getItemsByUser(usuario);
+		System.out.println("Obtuvo lista de camisas.");
 		return items;
 	}	
 	/**

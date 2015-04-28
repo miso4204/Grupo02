@@ -1,7 +1,11 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.List;
 
 
@@ -47,7 +51,7 @@ public class Rol implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	@JsonIgnore
 	public List<RolPrivilegio> getRolPrivilegios() {
 		return this.rolPrivilegios;
 	}
@@ -69,7 +73,7 @@ public class Rol implements Serializable {
 
 		return rolPrivilegio;
 	}
-
+	@JsonIgnore
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;
 	}

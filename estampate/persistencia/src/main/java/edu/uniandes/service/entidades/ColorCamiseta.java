@@ -1,7 +1,11 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.List;
 
 
@@ -46,7 +50,7 @@ public class ColorCamiseta implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	@JsonIgnore
 	public List<Camiseta> getCamisetas() {
 		return this.camisetas;
 	}
