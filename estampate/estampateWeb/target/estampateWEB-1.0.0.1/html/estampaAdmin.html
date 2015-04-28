@@ -9,13 +9,20 @@
 			<th>Rating</th>
 			<th>Cantidad Votos</th>
 		</tr>
-		<tr ng-repeat="estampa in estampas | filter:search">
+		<tr ng-repeat="estampa in estampas | filter:search">			
 			<td><img src="{{estampa.imagen}}" class="img-circle " width="90" height="90"></td>
 			<td>{{estampa.nombre}}</td>
 			<td>{{estampa.informacion}}</td>
 			<td>{{estampa.popularidad}}</td>
 			<td>{{estampa.precio}}</td>
 			<td>{{estampa.ratting}}</td>
+			<td>
+				<button type="button" class="btn btn-danger" ng-click="eliminar(estampa)">Eliminar</button>
+				<a type="button" class="btn btn-info" href="#/modificarEstampa/{{estampa.id}}" >Modificar</a>
+			</td>
 		</tr>
 	</table>
+	<div>
+    	<a class="btn btn-primary" href="#/crearEstampa" >Crear</a>    	
+	</div>
 </div>	

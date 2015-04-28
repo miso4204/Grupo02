@@ -1,5 +1,5 @@
 <div class="col-md-9 main">
-	<h1 class="page-header">Catalogo</h1>
+	<h1 class="page-header">Catalogo de Estampados</h1>
 <select ng-options="tipo for tipo in ['Galeria','Lista']" ng-model="vista">
 </select>
 <div ng-show="vista=='Galeria'">
@@ -10,7 +10,7 @@
           <h4>{{estampa.nombre}}</h4>
 		  <p>{{estampa.informacion}}</p>
 		  <p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>
-		  <p><a href="#/camisa" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</a></p>				
+		  <p><a href="#/estampado" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Ver</a></p>				
         </div>
       </slide>
     </carousel>
@@ -25,7 +25,7 @@
 				<h3>{{estampa.nombre}}</h3>
 				<p>{{estampa.informacion}}</p>
 				<p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>				
-				<p><a href="#/camisa" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Personalizar</a></p>
+				<p><a href="#/estampado" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Ver</a></p>
 			</div>
 		</div>
 	</div>

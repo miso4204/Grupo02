@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 
+
 /**
  * The persistent class for the PERSONA database table.
  * 
@@ -20,8 +21,8 @@ public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="PERSONA_ID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERSONA_ID_GENERATOR")
+	@SequenceGenerator(name = "PERSONA_ID_GENERATOR", sequenceName= "PERSONA_ID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONA_ID_GENERATOR")
 	private long id;
 
 	private String apellidos;
@@ -140,11 +141,11 @@ public class Persona implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
+	@JsonIgnore
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;
 	}
-	@JsonIgnore
+
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
