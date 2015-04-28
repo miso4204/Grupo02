@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -50,8 +51,20 @@ public class PersonaResource {
 		return usuarioDAO.getUsuario(userName, true).getPersonaBean();
 	}
 
+	@GET
+	@Path("/ById/{id}")
+	public Persona getById(@PathParam("id") Long id){			
+		//System.out.println("+++++ Inicio modificar");
+		//System.out.println(id);
+		//System.out.println("+++++ Fin modificar");
+		return personaDAO.find(id,true);
+	}
+	
 	@PUT
 	public void edit(Persona persona) {
+		//System.out.println("+++++ Inicio Logs");
+		//System.out.println(persona.getId());
+		//System.out.println("+++++ Fin Logs");
 		personaDAO.edit(persona);		
 	}
 	
@@ -60,8 +73,9 @@ public class PersonaResource {
 		personaDAO.create(persona);		
 	}
 	
-	@DELETE
-	public void delete(Persona estampa){
-		personaDAO.remove(estampa);
+	@PUT
+	@Path("/Delete")
+	public void delete(Persona persona){
+		personaDAO.remove(persona);
 	}
 }
