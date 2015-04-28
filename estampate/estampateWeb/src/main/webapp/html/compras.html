@@ -1,0 +1,126 @@
+ <h1 class="page-header">Checkout</h1>
+                
+                <div class="row placeholders">
+                    <div class="container-fluid">
+                        <div class="content-wrapper">   
+                            <div class="item-container">    
+                                <div class="container"> 
+                                    <div class="col-md-12">
+                                       Pasos para pago
+                                        <div class="container">
+                                            <form role="form">
+                                                <div class="row setup-content" id="step-1">
+                                                    <div class="col-xs-12">
+                                                        <div class="col-md-12">
+                                                            <legend>Informaci&oacuten de entrega</legend>
+                                                            <br><br>
+                                                            <div class="col-md-7 container-fluid well span6">
+                                                                <div class="row-fluid">
+                                                                    <div class="col-md-6 span2" >
+                                                                        <img src="https://secure.gravatar.com/avatar/800ab726e161fbc7a6846a5569489d86.jpg?s=46&amp;d=https%3A%2F%2Fcdn.shopify.com%2Fs%2Fassets%2Fcheckout%2Ficons%2Fgeneric-avatar-d506650896b57ee9a72be58464b55518.jpg" class="img-circle">
+                                                                    </div>
+                                                                    
+                                                                    <div class="span8" style="text-align: left;">
+                                                                        <strong>{{persona.email}}</strong>
+                                                                        <h6>Nombres: {{persona.nombres}}</h6>
+                                                                        <h6>Apellidos: {{persona.apellidos}}</h6>
+                                                                        <h6>Ciudad: {{persona.municipio}}</h6>
+                                                                        <h6>Direcci&oacuten: {{persona.direccion}}</h6>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-6 span2">
+                                                                        <a class="section__edit-link" data-edit-contact-information="true" href="#/perfil">Edit</a>
+                                                                    </div>
+                                                            </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br><br>
+                                                <div class="row setup-content" id="step-2">
+                                                    <div class="col-xs-12">
+                                                        <div class="col-md-12">
+                                                            <legend>M&eacutetodo de pago</legend>
+                                                            
+                                                            <div class="funkyradio">
+                                                                <div class="funkyradio-primary">
+                                                                    <input type="radio" name="radio" id="radio1" checked/>
+                                                                    <label for="radio1">Tarjeta de Cr&eacutedito</label>
+                                                                </div>
+                                                                Credit card form
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                                <h3 class="panel-title" style="height: 40px;"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Dettales del pago</h3>
+                                                                            </div>
+                                                                            <div class="panel-body">
+                                                                                <form role="form" id="payment-form">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-12">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cardNumber">CARD NUMBER</label>
+                                                                                                <div class="input-group">
+                                                                                                    <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required autofocus data-stripe="number" />
+                                                                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                                                                </div>
+                                                                                            </div>                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-7 col-md-7">
+                                                                                            <div class="form-group">
+                                                                                                <label for="expMonth">EXPIRATION DATE</label>
+                                                                                                <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                                                                    <input type="text" class="form-control" name="expMonth" placeholder="MM" required data-stripe="exp_month" />
+                                                                                                </div>
+                                                                                                <div class="col-xs-6 col-lg-6 pl-ziro">
+                                                                                                    <input type="text" class="form-control" name="expYear" placeholder="YY" required data-stripe="exp_year" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xs-5 col-md-5 pull-right">
+                                                                                            <div class="form-group">
+                                                                                                <label for="cvCode">CV CODE</label>
+                                                                                                <input type="password" class="form-control" name="cvCode" placeholder="CV" required data-stripe="cvc" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row" style="display:none;">
+                                                                                        <div class="col-xs-12">
+                                                                                            <p class="payment-errors"></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                <div class="funkyradio-primary">
+                                                                    <input type="radio" name="radio" id="radio2" />
+                                                                    <label for="radio2">PSE</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row setup-content" id="step-3">
+                                                    <div class="col-xs-12">
+                                                        <div class="col-md-12">
+                                                            <button class="btn btn-success btn-lg pull-right" type="submit" href="#/" ng-click="realizarPago()">Terminar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+
+                        </div>
+                    </div>
+                </div>

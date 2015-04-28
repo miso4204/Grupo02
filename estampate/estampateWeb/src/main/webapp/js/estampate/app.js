@@ -50,6 +50,12 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/carrito', {
 		templateUrl : '/estampateWEB/html/carrito.html',
 		controller : 'carritoCtrl'
+	}).when('/checkout', {
+		templateUrl : '/estampateWEB/html/compras.html',
+		controller : 'comprasCtrl'
+	}).when('/reportesAdmin', {
+		templateUrl : '/estampateWEB/html/reportes.html',
+		controller : 'reportesCtrl'
 	})
 } ]);
 

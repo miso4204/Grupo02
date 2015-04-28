@@ -45,7 +45,15 @@ estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http'
 	}		
 } ]);
 
-
+estampateControllers.controller('reportesCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$sce', function($scope, $routeParams, $http,$cookieStore,$sce) {	
+	$scope.report = 1;
+	$http.post('/estampateWEB/webresources/reportes/getReporte',report, {responseType:'arraybuffer'})
+	  .success(function (response) {
+	       var file = new Blob([response], {type: 'application/pdf'});
+	       var fileURL = URL.createObjectURL(file);
+	       $scope.content = $sce.trustAsResourceUrl(fileURL);
+	});
+} ]);
 
 estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
 	$scope.holaTest="hola :)";
@@ -198,6 +206,14 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 	    }
 	    return total;
 	}
+} ]);
+estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$http.get("/estampateWEB/webresources/Persona").success(function (response){
+		$scope.persona= response;					
+	} );
+	$scope.realizarPago=function (){
+		alert("Gracias por realizar su compra.");
+	};
 } ]);
 
 estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {

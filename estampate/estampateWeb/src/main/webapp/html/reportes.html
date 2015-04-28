@@ -1,0 +1,21 @@
+<h1 class="page-header">Reporte de Ratings</h1>
+ <p>Seleccione una opci&oacuten para obtener el reporte</p>
+    <form> 
+      <label for="first">Rating de Disenhos</label>
+      <input id="first" type="radio" name="content" ng-model="report" value="1">
+      <br />
+      <label for="other">Ventas por periodo</label>
+      <input id="other" type="radio" name="content" ng-model="report" value="2">
+    </form>
+    
+    <div class="wrapper">
+      <p ng-show="report == '1'">{{content}}</p>
+      <h2 ng-show="report == '2'">{{content}}</h2>
+    </div>
+<input type="radio" value="1" ng-model="report" name="Rating de Disenhos"/>
+<input type="radio" value="2" ng-model="report" name="Rating por Artistas"/>
+<input type="radio" value="3" ng-model="report" name="Ventas por periodo"/>
+<input type="radio" value="4" ng-model="report" name="Ventas por Artistas"/>
+<br/>
+<br/>
+<object data="{{content}}" type="application/pdf"></object>
