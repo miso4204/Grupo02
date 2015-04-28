@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteVentasArtista" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="faa7dd03-261e-48f3-9adf-0cf16e28fb0a">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="149"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cantidadVentas" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidadVentas]]></fieldDescription>
+	</field>
+	<field name="apellidosArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[apellidosArtista]]></fieldDescription>
+	</field>
+	<field name="nombresArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[nombresArtista]]></fieldDescription>
+	</field>
+	<field name="totalVentas" class="java.lang.String">
+		<fieldDescription><![CDATA[totalVentas]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="27" width="168" height="30" uuid="82b3b205-df27-4542-b776-f65293967805"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte Ventas por Artista]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="20" uuid="bd64412b-31a1-46bb-86e1-b39816ec3064"/>
+				<text><![CDATA[Nombre Artista	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="141" height="20" uuid="9b51bf2b-0f84-43f0-b3a5-f7bbe9954b77"/>
+				<text><![CDATA[Apellidos Artista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="0" width="88" height="20" uuid="9d47310c-d619-41ac-9d53-96a5332cf17e"/>
+				<text><![CDATA[Número de Ventas	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="0" width="128" height="20" uuid="b9f1790f-da03-4136-aa07-26c4e78a4a88"/>
+				<text><![CDATA[Total Ventas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="150" height="20" uuid="0c75e16a-2e01-4783-a532-40a4919f03d6"/>
+				<textFieldExpression><![CDATA[$F{nombresArtista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="141" height="20" uuid="f725e15a-2d8f-4bed-b2f6-826a09bc84a4"/>
+				<textFieldExpression><![CDATA[$F{apellidosArtista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="88" height="20" uuid="90c7d2bb-a25e-42fb-8221-09d994715667"/>
+				<textFieldExpression><![CDATA[$F{cantidadVentas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="128" height="20" uuid="38000c0a-6972-4594-bda2-1ef8db655dc8"/>
+				<textFieldExpression><![CDATA[$F{totalVentas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

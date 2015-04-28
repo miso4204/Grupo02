@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8ee43a73-21aa-4117-a30c-57d74bceb27c">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="27"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="promedioRatingDiseno" class="java.lang.String">
+		<fieldDescription><![CDATA[promedioRatingDiseno]]></fieldDescription>
+	</field>
+	<field name="nombresArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[nombresArtista]]></fieldDescription>
+	</field>
+	<field name="apellidosArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[apellidosArtista]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="20" width="254" height="30" uuid="a7e6701d-7183-4d23-9c12-f67ee4829fc8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte Ratting de Diseño de Artistas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="169" height="20" uuid="2aa9aaf7-82ef-47c3-8eb2-4d641d61c555"/>
+				<text><![CDATA[Nombre del Artista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="0" width="158" height="20" uuid="98a30cd3-4dbd-4d1e-b6f2-44a1c537b427"/>
+				<text><![CDATA[Apellido del Artista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="0" width="174" height="20" uuid="477c7c49-1f3a-40c9-97c4-46a0fa675f85"/>
+				<text><![CDATA[Promedio de Ratting de Diseño]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="169" height="20" uuid="b422ff71-a965-43be-a536-3971df774a9a"/>
+				<textFieldExpression><![CDATA[$F{nombresArtista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="0" width="158" height="20" uuid="f93a2b82-8891-4f37-bd2e-11844e6cc7b1"/>
+				<textFieldExpression><![CDATA[$F{apellidosArtista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="0" width="144" height="20" uuid="b6215dd1-0cfa-4b16-8c1e-bf0a244e0ff9"/>
+				<textFieldExpression><![CDATA[$F{promedioRatingDiseno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

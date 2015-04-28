@@ -62,6 +62,9 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/reportesAdmin', {
 		templateUrl : '/estampateWEB/html/reportes.html',
 		controller : 'reportesCtrl'
+	}).when('/catalogo', {
+		templateUrl : '/estampateWEB/html/catalogo.html',
+		controller : 'catalogoCtrl'
 	})
 } ]);
 

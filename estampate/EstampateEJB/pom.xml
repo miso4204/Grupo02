@@ -49,11 +49,18 @@
 			<artifactId>jboss-as-ejb3</artifactId>
 			<version>7.1.0.CR1</version>
 		</dependency>-->
+		
 		<dependency>
 			<groupId>edu.uniandes</groupId>
 			<artifactId>persistencia</artifactId>
 			<version>1.0.0.1</version>
 			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.uniandes.services</groupId>
+			<artifactId>EstampateReportEJB</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

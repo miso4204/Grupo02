@@ -91,11 +91,17 @@
 			<version>1.0.0.1</version>
 			<type>ejb</type>
 		</dependency>
+		
 		<dependency>
 			<groupId>edu.uniandes</groupId>
 			<artifactId>persistencia</artifactId>
 			<version>1.0.0.1</version>
 			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>edu.uniandes.services</groupId>
+			<artifactId>EstampateReportEJB</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

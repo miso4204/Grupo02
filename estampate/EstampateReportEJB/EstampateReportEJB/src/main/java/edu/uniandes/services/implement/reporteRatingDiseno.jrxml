@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteRatingDiseño" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d0ea4e7-9c50-4207-901d-4b313f2480c5">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="apellidosArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[apellidosArtista]]></fieldDescription>
+	</field>
+	<field name="cantidadVotos" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidadVotos]]></fieldDescription>
+	</field>
+	<field name="informacionEstampa" class="java.lang.String">
+		<fieldDescription><![CDATA[informacionEstampa]]></fieldDescription>
+	</field>
+	<field name="nombreEstampa" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreEstampa]]></fieldDescription>
+	</field>
+	<field name="nombresArtista" class="java.lang.String">
+		<fieldDescription><![CDATA[nombresArtista]]></fieldDescription>
+	</field>
+	<field name="rating" class="java.lang.String">
+		<fieldDescription><![CDATA[rating]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="212" y="28" width="182" height="30" uuid="a9337b92-316b-403e-abf5-28087621f411"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte Ratting de Disenos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="110" height="20" uuid="07a38e0c-e9c1-40bc-9545-f8747056ee85"/>
+				<text><![CDATA[Nombre de la Estampa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="122" height="20" uuid="16b341b2-a7de-4dd0-897f-5615b34cee69"/>
+				<text><![CDATA[Informacion de la Estampa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="0" width="84" height="20" uuid="da0db12c-9d6a-4d33-95b1-9f03dd9ff062"/>
+				<text><![CDATA[Cantidad Votos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="45" height="20" uuid="6ccffa3f-5cf3-41ac-9d7d-dc1f5aed103e"/>
+				<text><![CDATA[Ratting]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="0" width="100" height="20" uuid="89f9997e-aa39-4fcd-8cdb-f3f5ecac8e5a"/>
+				<text><![CDATA[Nombre Artista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="0" width="100" height="20" uuid="65e75258-c174-4f8d-a9d7-63981c9e6881"/>
+				<text><![CDATA[Apellido Artista]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="110" height="20" uuid="24f3468c-e2bb-440c-a1d8-89e37359a54f"/>
+				<textFieldExpression><![CDATA[$F{nombreEstampa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="122" height="20" uuid="29dd6700-9a8b-4391-a25d-d6959a5031b9"/>
+				<textFieldExpression><![CDATA[$F{informacionEstampa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="84" height="20" uuid="91f50b2c-7a6b-4405-98e5-c495ae757c3e"/>
+				<textFieldExpression><![CDATA[$F{cantidadVotos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="45" height="20" uuid="11600638-e95b-4e30-8daf-976678792024"/>
+				<textFieldExpression><![CDATA[$F{rating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="100" height="20" uuid="f798aa10-3ca0-45f6-9008-be783255f4ad"/>
+				<textFieldExpression><![CDATA[$F{nombresArtista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="0" width="100" height="20" uuid="f153c8e0-9a2a-4b3c-9660-89b81545e772"/>
+				<textFieldExpression><![CDATA[$F{apellidosArtista}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

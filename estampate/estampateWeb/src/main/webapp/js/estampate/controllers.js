@@ -25,6 +25,15 @@ estampateControllers.controller('catalogoEstampaCtrl', [ '$scope', '$routeParams
 		$cookieStore.put('estampaSelected',estampa);
 	}		
 } ]);
+estampateControllers.controller('catalogoCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
+	$scope.vista="Galeria";
+	$http.get("/estampateWEB/webresources/TipoCamiseta").success(function (response){
+		$scope.tiposCamisetas= response;					
+	} );
+	$scope.tipoCamisetaSelected=function(camisa){
+		$cookieStore.put('tipoCamisetaSelected',camisa);
+	}		
+} ]);
 
 estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
 	$scope.estampaSeleccionada=$cookieStore.get('estampaSelected');
@@ -47,12 +56,21 @@ estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http'
 
 estampateControllers.controller('reportesCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$sce', function($scope, $routeParams, $http,$cookieStore,$sce) {	
 	$scope.report = 1;
-	$http.post('/estampateWEB/webresources/reportes/getReporte',report, {responseType:'arraybuffer'})
+	$scope.changeContent = function(bytes) {
+	    var file = new Blob([bytes], {type: 'application/pdf'});
+	    var fileURL = URL.createObjectURL(file);
+	    console.log("fileURL is "+ fileURL);
+	    $scope.content = $sce.trustAsResourceUrl(fileURL);
+	}
+	$http.get("/estampateWEB/webresources/reportes/getReporte/1").success(function (response){
+		$scope.reporte= response;					
+	} );
+	/*$http.get('/estampateWEB/webresources/reportes/getReporte',report, {responseType:'arraybuffer'})
 	  .success(function (response) {
 	       var file = new Blob([response], {type: 'application/pdf'});
 	       var fileURL = URL.createObjectURL(file);
 	       $scope.content = $sce.trustAsResourceUrl(fileURL);
-	});
+	});*/
 } ]);
 
 estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
