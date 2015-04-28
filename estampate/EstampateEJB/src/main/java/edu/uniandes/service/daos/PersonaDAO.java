@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 
 import edu.uniandes.service.entidades.Persona;
 
-
 @Stateless
 @LocalBean
 public class PersonaDAO extends AbstractDAO<Persona> {

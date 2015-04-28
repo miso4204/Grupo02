@@ -1,0 +1,24 @@
+<div class="col-md-9 main">
+	<h1 class="page-header">Personas</h1>
+	<table class="table table-hover">
+		<tr>	
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Identificaci&oacute;n</th>
+			<th>email</th>
+		</tr>
+		<tr ng-repeat="persona in personas | filter:search">			
+			<td>{{persona.nombres}}</td>
+			<td>{{persona.apellidos}}</td>
+			<td>{{persona.identificacion}}</td>
+			<td>{{persona.email}}</td>
+			<td>
+				<button type="button" class="btn btn-danger" ng-click="eliminar(Persona)">Eliminar</button>
+				<a type="button" class="btn btn-info" href="#/modificarPersona/{{persona.id}}" >Modificar</a>
+			</td>
+		</tr>
+	</table>
+	<div>
+    	<a class="btn btn-primary" href="#/crearPersona" >Crear</a>    	
+	</div>
+</div>	

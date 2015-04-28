@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.util.Date;
 import java.util.List;
+
 
 
 /**
@@ -20,8 +19,8 @@ public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="PERSONA_ID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERSONA_ID_GENERATOR")
+	@SequenceGenerator(name = "PERSONA_ID_GENERATOR", sequenceName= "PERSONA_ID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONA_ID_GENERATOR")
 	private long id;
 
 	private String apellidos;
@@ -144,7 +143,7 @@ public class Persona implements Serializable {
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;
 	}
-	@JsonIgnore
+
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}

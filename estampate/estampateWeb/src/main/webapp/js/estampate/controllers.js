@@ -71,7 +71,7 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 			
 		} );
 		$http.get("/estampateWEB/webresources/Color").success(function (response){
-			$scope.colores= response;
+			$scope.colores= response;					
 		} );
 		$http.get("/estampateWEB/webresources/Material").success(function (response){
 			$scope.materiales= response;					
@@ -85,33 +85,6 @@ estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routePa
 	    $scope.newValue = function(value) {
 	    	$scope.tipoCamisetaSeleccionado = $scope.tiposCamisetas[value-1];
 	    }
-	    $scope.setTalla=function (talla){
-	    	$scope.tallaSelected=talla;
-	    	
-		};
-		$scope.setColor=function (color){
-	    	$scope.colorSelected=color;
-	    	
-		};
-	    $scope.addCarrito=function (){
-	    	if( typeof $scope.tallaSelected === 'undefined' )
-	    	{
-	    		$scope.tallaSelected=$scope.tallas[0];
-	    	}
-	    	if( typeof $scope.colorSelected === 'undefined' )
-	    	{
-	    		$scope.colorSelected=$scope.colores[0];
-	    	}
-	    	var precio = $scope.tipoCamisetaSeleccionado.valor + $scope.estampaSelected.precio;
-	    	$scope.camiseta={"cantidad":1, "tipoCamiseta": $scope.tipoCamisetaSeleccionado, "estampaBean":$scope.estampaSelected, "tallaCamiseta":$scope.tallaSelected, "colorCamiseta":$scope.colorSelected, "precio":precio, "materialCamiseta":$scope.materiales[0]};
-	    	
-	    	
-			$http.put("/estampateWEB/webresources/Carrito/",$scope.camiseta).success(function (){
-				 alert('La camiseta ha sido agregada al carrito de compras');
-			} ).error(function(data, status, headers, config){
-				alert('Error al actualizar el carrito:'+data);
-			});
-		};
 } ]);
 
 estampateControllers.controller('modificarEstampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
@@ -183,22 +156,6 @@ estampateControllers.controller('camisetasAdminCtrl', [ '$scope', '$routeParams'
 			
 	}
 } ]);
-estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
-	$http.get("/estampateWEB/webresources/Carrito/").success(function (response){
-		 $scope.camisasEnCarrito = response;
-		 
-	} ).error(function(data, status, headers, config){
-		alert('Error al actualizar el carrito:'+data);
-	});	
-	$scope.getTotal = function(){
-	    var total = 0;
-	    for(var i = 0; i < $scope.camisasEnCarrito.length; i++){
-	        var product = $scope.camisasEnCarrito[i];
-	        total += (product.precio * product.cantidad);
-	    }
-	    return total;
-	}
-} ]);
 
 estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
 	$scope.alerts=[]
@@ -225,4 +182,80 @@ estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http'
 			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
 		});
 	}  
+} ]);
+
+estampateControllers.controller('personaAdminCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$scope.alerts=[];	
+
+	$scope.cargarPersonas=function (){
+		$http.get("/estampateWEB/webresources/Persona/All").success(function (response){
+			$scope.personas = response;					
+		} );
+	}
+	$scope.eliminar=function(persona){
+			if(confirm("Esta seguro de eliminar la persona ?")){
+				$http.delete("/estampateWEB/webresources/Persona/",persona).success(function (){
+					 $scope.alerts=[{type: 'success',msg: 'Persona Eliminada'}];
+					 $scope.cargarPersona();
+				} ).error(function(data, status, headers, config){
+					$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la Persona:'+data}];
+					$scope.cargarPersonas();
+				});
+			}		
+	}
+	$scope.cargarPersonas();
+
+} ]);
+
+estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$scope.alerts=[];	
+	$scope.persona={"id":0,"apellidos":"", "departamento":"", "direccion":"", "email":"", "fechaNacimiento":null, "identificacion":"", "municipio":"", "nombres":"","pais":"", "telefono":""};
+	$http.get("/estampateWEB/webresources/Persona/ByUser").success(function (response){
+		$scope.persona= response;
+	} );
+	$scope.closeAlert=function() {
+	    $scope.alerts=[];
+	};
+	$scope.crearPersona=function(){
+		$http.post("/estampateWEB/webresources/Persona/",$scope.persona).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Persona Creada'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al crear la persona:'+data}];
+		});
+	}
+
+	// ****** DatePicker
+	$scope.today = function() {
+	    $scope.dt = new Date();
+	  };
+	  $scope.today();
+
+	  $scope.clear = function () {
+	    $scope.dt = null;
+	  };
+
+	  // Disable weekend selection
+	  $scope.disabled = function(date, mode) {
+	    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	  };
+
+	  $scope.toggleMin = function() {
+	    $scope.minDate = $scope.minDate ? null : new Date();
+	  };
+	  $scope.toggleMin();
+
+	  $scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    $scope.opened = true;
+	  };
+
+	  $scope.dateOptions = {
+	    formatYear: 'yy',
+	    startingDay: 1
+	  };
+
+	  $scope.formats = ['dd-MM-yyyy'];
+	  $scope.format = $scope.formats[0];
 } ]);
