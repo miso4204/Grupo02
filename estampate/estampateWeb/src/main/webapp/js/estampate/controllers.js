@@ -30,9 +30,10 @@ estampateControllers.controller('catalogoCtrl', [ '$scope', '$routeParams','$htt
 	$http.get("/estampateWEB/webresources/TipoCamiseta").success(function (response){
 		$scope.tiposCamisetas= response;					
 	} );
-	$scope.tipoCamisetaSelected=function(camisa){
-		$cookieStore.put('tipoCamisetaSelected',camisa);
-	}		
+	$scope.selecionarTipoCamiseta=function(tipoCamiseta){
+		$cookieStore.put('tipoCamisetaSelected',tipoCamiseta);
+		$location.path("#/personalizar");
+	}
 } ]);
 
 estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
