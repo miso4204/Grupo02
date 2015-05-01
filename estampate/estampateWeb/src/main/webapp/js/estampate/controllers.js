@@ -81,6 +81,31 @@ estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','
 		$http.get("/estampateWEB/webresources/Material").success(function (response){
 			$scope.materiales= response;					
 		} );
+		$http.get("/estampateWEB/webresources/Estampa").success(function (response){
+			$scope.estampas= response;					
+		} );
+		$scope.setEstampa = function(estampa) {
+	    	$scope.estampaSelected = estampa;
+	    }
+		$scope.addCarrito=function (){
+	    	if( typeof $scope.tallaSelected === 'undefined' )
+	    	{
+	    		$scope.tallaSelected=$scope.tallas[0];
+	    	}
+	    	if( typeof $scope.colorSelected === 'undefined' )
+	    	{
+	    		$scope.colorSelected=$scope.colores[0];
+	    	}
+	    	var precio = $scope.tipoCamisetaSeleccionado.valor + $scope.estampaSelected.precio;
+	    	$scope.camiseta={"cantidad":1, "tipoCamiseta": $scope.tipoCamisetaSeleccionado, "estampaBean":$scope.estampaSelected, "tallaCamiseta":$scope.tallaSelected, "colorCamiseta":$scope.colorSelected, "precio":precio, "materialCamiseta":$scope.materiales[0]};
+	    	
+	    	
+			$http.put("/estampateWEB/webresources/Carrito/",$scope.camiseta).success(function (){
+				 alert('La camiseta ha sido agregada al carrito de compras');
+			} ).error(function(data, status, headers, config){
+				alert('Error al actualizar el carrito:'+data);
+			});
+		};
 } ]);
 
 estampateControllers.controller('personalizarEstampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
@@ -218,6 +243,22 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 	        total += (product.precio * product.cantidad);
 	    }
 	    return total;
+	}
+	$scope.removeItem = function(item){
+		
+		if(confirm("Esta seguro de eliminar la camiseta del carrito?")){
+			$http.put("/estampateWEB/webresources/Carrito/Delete/",item).success(function (){
+				 $scope.alerts=[{type: 'success',msg: 'Camiseta Eliminada'}];
+				 $http.get("/estampateWEB/webresources/Carrito/").success(function (response){
+					 $scope.camisasEnCarrito = response;
+					 
+				} ).error(function(data, status, headers, config){
+					alert('Error al actualizar el carrito:'+data);
+				});	
+			} ).error(function(data, status, headers, config){
+				$scope.alerts=[{type: 'danger',msg: 'Error al eliminar la camiseta, por favor intente de nuevo: '+data}];
+			});
+		}
 	}
 } ]);
 estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	

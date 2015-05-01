@@ -63,7 +63,8 @@ public class CarritoResource {
 	 * ELIMINA UNA CAMISETA COMO ITEM AL CARRITO DE COMPRAS
 	 * @param camiseta
 	 */
-	@DELETE
+	@PUT
+	@Path("/Delete")
 	public void removeItem(Camiseta camiseta){
 		Principal principal=context.getCallerPrincipal();
 		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);

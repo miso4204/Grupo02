@@ -76,7 +76,6 @@ public class CarritoCompra implements Serializable {
 	public Camiseta removeCamiseta(Camiseta camiseta) {
 		getCamisetas().remove(camiseta);
 		camiseta.setCarritoCompra(null);
-
 		return camiseta;
 	}
 

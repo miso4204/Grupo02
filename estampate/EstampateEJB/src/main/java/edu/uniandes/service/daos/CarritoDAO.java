@@ -94,8 +94,11 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 		CarritoCompra carrito = getByUser(usuario);
 		BigDecimal total=carrito.getValorTotal().subtract(camiseta.getPrecio());
 		carrito.setValorTotal(total);
-		carrito.removeCamiseta(camiseta);
+		Camiseta c= carrito.removeCamiseta(camiseta);
+		getEntityManager().remove(getEntityManager().merge(c));
 		getEntityManager().merge(carrito);
+		
+		
 	}
 
 }
