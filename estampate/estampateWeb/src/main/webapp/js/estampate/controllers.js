@@ -254,24 +254,28 @@ estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http'
 		});
 	}  
 } ]);
+
 estampateControllers.controller('personaAdminCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
 	$scope.alerts=[];	
-
+	$scope.persona={"id":0,"apellidos":"", "departamento":"", "direccion":"", "email":"", "fechaNacimiento":null, "identificacion":"", "municipio":"", "nombres":"","pais":"", "telefono":""};
 	$scope.cargarPersonas=function (){
 		$http.get("/estampateWEB/webresources/Persona/All").success(function (response){
 			$scope.personas = response;					
 		} );
 	}
-	$scope.eliminar=function(persona){
-			if(confirm("Esta seguro de eliminar la persona ?")){
-				$http.delete("/estampateWEB/webresources/Persona/",persona).success(function (){
+	$scope.closeAlert=function() {
+	    $scope.alerts=[];
+	};
+	$scope.eliminarPersona=function eliminarPersona(persona){
+		if(confirm("Esta seguro de eliminar la persona ?")){
+				$http.put("/estampateWEB/webresources/Persona/Delete",persona).success(function (){
 					 $scope.alerts=[{type: 'success',msg: 'Persona Eliminada'}];
-					 $scope.cargarPersona();
+					 $scope.cargarPersonas();
 				} ).error(function(data, status, headers, config){
 					$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la Persona:'+data}];
 					$scope.cargarPersonas();
 				});
-			}		
+		}		
 	}
 	$scope.cargarPersonas();
 
@@ -280,9 +284,6 @@ estampateControllers.controller('personaAdminCtrl', [ '$scope', '$routeParams','
 estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
 	$scope.alerts=[];	
 	$scope.persona={"id":0,"apellidos":"", "departamento":"", "direccion":"", "email":"", "fechaNacimiento":null, "identificacion":"", "municipio":"", "nombres":"","pais":"", "telefono":""};
-	$http.get("/estampateWEB/webresources/Persona/ByUser").success(function (response){
-		$scope.persona= response;
-	} );
 	$scope.closeAlert=function() {
 	    $scope.alerts=[];
 	};
@@ -292,6 +293,60 @@ estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','
 		} ).error(function(data, status, headers, config){
 			$scope.alerts=[{type: 'danger',msg: 'Error al crear la persona:'+data}];
 		});
+	}
+
+	// ****** DatePicker
+	$scope.today = function() {
+	    $scope.dt = new Date();
+	  };
+	  $scope.today();
+
+	  $scope.clear = function () {
+	    $scope.dt = null;
+	  };
+
+	  // Disable weekend selection
+	  $scope.disabled = function(date, mode) {
+	    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	  };
+
+	  $scope.toggleMin = function() {
+	    $scope.minDate = $scope.minDate ? null : new Date();
+	  };
+	  $scope.toggleMin();
+
+	  $scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    $scope.opened = true;
+	  };
+
+	  $scope.dateOptions = {
+	    formatYear: 'yy',
+	    startingDay: 1
+	  };
+
+	  $scope.formats = ['dd-MM-yyyy'];
+	  $scope.format = $scope.formats[0];
+} ]);
+
+estampateControllers.controller('modificarPersonaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$scope.alerts=[];	
+	$http.get("/estampateWEB/webresources/Persona/ById/"+$routeParams.persona).success(function (response){
+		//alert("uyyy");
+		$scope.persona= response;
+		//alert(persona.nombres);
+	} );
+	$scope.closeAlert=function() {
+	    $scope.alerts=[];
+	};
+	$scope.actualizarPersona=function(){
+			$http.put("/estampateWEB/webresources/Persona",$scope.persona).success(function (){
+				 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+			} ).error(function(data, status, headers, config){
+				$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la persona:'+data}];
+			});
 	}
 
 	// ****** DatePicker
