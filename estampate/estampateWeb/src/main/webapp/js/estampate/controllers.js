@@ -56,21 +56,15 @@ estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http'
 
 estampateControllers.controller('reportesCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$sce', function($scope, $routeParams, $http,$cookieStore,$sce) {	
 	$scope.report = 1;
-	$scope.changeContent = function(bytes) {
-	    var file = new Blob([bytes], {type: 'application/pdf'});
-	    var fileURL = URL.createObjectURL(file);
-	    console.log("fileURL is "+ fileURL);
-	    $scope.content = $sce.trustAsResourceUrl(fileURL);
-	}
 	$http.get("/estampateWEB/webresources/reportes/getReporte/1").success(function (response){
 		$scope.reporte= response;					
 	} );
-	/*$http.get('/estampateWEB/webresources/reportes/getReporte',report, {responseType:'arraybuffer'})
-	  .success(function (response) {
-	       var file = new Blob([response], {type: 'application/pdf'});
-	       var fileURL = URL.createObjectURL(file);
-	       $scope.content = $sce.trustAsResourceUrl(fileURL);
-	});*/
+	$scope.changeContent = function(bytes) {
+		
+	    $scope.content = 'http://localhost:8080/reporterRatingDisenosArtistas.pdf';
+	    
+	}
+	
 } ]);
 
 estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	

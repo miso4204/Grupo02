@@ -1,6 +1,6 @@
 <h1 class="page-header">Camisetas</h1>
 
-                <div class="row placeholders">
+                <div class="row placeholders"  ng-repeat="tipoCamisa in tiposCamisetas |  filter: search " ng-show="tiposCamisetas!=null">
                     <div class="col-xs-6 col-sm-3 placeholder">
                         <a href="../html/personalizar.html">
                             <img src="http://www.siman.com/media/catalog/product/cache/1/image/920x/9df78eab33525d08d6e5fb8d27136e95/4/9/490395300043.jpg" class="img-responsive" alt="Generic placeholder thumbnail">

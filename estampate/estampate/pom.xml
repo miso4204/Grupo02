@@ -10,7 +10,7 @@
 		<module>../EstampateEJB</module>
 		<module>../estampateWEB</module>
 		<module>../persistencia</module>
-		<module>../EstampateReportEJB/EstampateReportEJB</module>
+		<module>../EstampateReportEJB</module>
 	</modules>
 </project>
 

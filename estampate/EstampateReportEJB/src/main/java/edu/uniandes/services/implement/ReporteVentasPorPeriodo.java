@@ -18,43 +18,43 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.io.FileUtils;
 
 import edu.uniandes.services.daos.ReportesDAO;
-import edu.uniandes.services.interfaces.IReporteRating;
-import edu.uniandes.services.vos.ReporteRatingDisenoVO;
+import edu.uniandes.services.interfaces.IReporteVentas;
+import edu.uniandes.services.vos.ReporteVentaPeriodoVO;
 
 /**
- * Producto reporte de ratting de dise�os
+ * Producto reporte de ventas por periodo
  * 
  * @author Juan Camilo Cerquera Lozada<jc.cerquera10@uniandes.edu.co>
  * 
  */
-public class ReporteRatingDisenos implements IReporteRating {
+public class ReporteVentasPorPeriodo implements IReporteVentas {
 	
 	private ReportesDAO reportesDAO;
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see edu.uniandes.services.interfaces.IReporteRating#obtenerReporte()
+	 * @see edu.uniandes.services.interfaces.IReporteVentas#obtenerReporte()
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public byte[] obtenerReporte() {
-		
+		System.out.println("Inicio obtener reporte");
 		JasperReport jasperReport = null;
         JasperPrint jasperPrint = null;
-//        JasperDesign jasperDesign = null;
-        Map<String, Object> parameters = new HashMap<String, Object>();
+        Map parameters = new HashMap();
         try {
-//        	File reporteJasper = null;
-//			reporteJasper = new File();
-        	jasperReport = JasperCompileManager.compileReport("C:/Users/template/Desktop/Vabrik/Private Tunnel.lnk/estampate/EstampateReportEJB/EstampateReportEJB/src/main/java/edu/uniandes/services/implement/reporteRatingDiseno.jrxml");
-            jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInfoReporteRatingDisenos()));
-            JasperExportManager.exportReportToPdfFile(jasperPrint,"reporterRatingDise�os.pdf");
+        	System.out.println("Try");
+        	jasperReport = JasperCompileManager.compileReport("C:\\Users\\template\\Desktop\\Vabrik\\Private Tunnel.lnk\\estampate\\EstampateReportEJB\\src\\main\\java\\edu\\uniandes\\services\\implement\\reporteVentasPeriodo.jrxml");
+            jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInfoReporteVentasPorPeriodo()));
+            JasperExportManager.exportReportToPdfFile(jasperPrint,"reporteVentasPeriodo.pdf");
+            System.out.println("Termino");
 			
 		} catch (JRException e) {
 			e.printStackTrace();
 			return null;
 		}
-        File file = new File("reporterRatingDise�os.pdf");
+        File file = new File("reporteVentasPeriodo.pdf");
 		try {
 			return FileUtils.readFileToByteArray(file);
 		} catch (IOException e) {
@@ -63,14 +63,12 @@ public class ReporteRatingDisenos implements IReporteRating {
 		}
 	}
 	
-	public static List<ReporteRatingDisenoVO> getList(){
-		return new ArrayList<ReporteRatingDisenoVO>();
+	public static List<ReporteVentaPeriodoVO> getList(){
+		return new ArrayList<ReporteVentaPeriodoVO>();
 	}
 
 	public void setReportesDAO(ReportesDAO reportesDAO) {
 		this.reportesDAO = reportesDAO;
 	}
-	
-	
 
 }

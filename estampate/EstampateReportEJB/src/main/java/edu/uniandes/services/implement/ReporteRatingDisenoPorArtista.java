@@ -1,6 +1,9 @@
 package edu.uniandes.services.implement;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +47,9 @@ public class ReporteRatingDisenoPorArtista implements IReporteRating {
         JasperPrint jasperPrint = null;
         Map parameters = new HashMap();
         try {
-        	jasperReport = JasperCompileManager.compileReport("C:/Users/template/Desktop/Vabrik/Private Tunnel.lnk/estampate/EstampateReportEJB/EstampateReportEJB/src/main/java/edu/uniandes/services/implement/reporteRatingDisenoArtistas.jrxml");
+        	jasperReport = JasperCompileManager.compileReport("C:\\Users\\template\\Desktop\\Vabrik\\Private Tunnel.lnk\\estampate\\EstampateReportEJB\\src\\main\\java\\edu\\uniandes\\services\\implement\\reporteRatingDisenoArtistas.jrxml");
             jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInfoReporteDisenosArtistas()));
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"C:\\Users\\template\\Desktop\\eclipse\\eclipse\\jboss-eap-6.3\\welcome-content\\reporterRatingDisenosArtistas.pdf");
             JasperExportManager.exportReportToPdfFile(jasperPrint,"reporterRatingDisenosArtistas.pdf");
 			
 		} catch (JRException e) {
@@ -54,6 +58,21 @@ public class ReporteRatingDisenoPorArtista implements IReporteRating {
 		}
         File file = new File("reporterRatingDisenosArtistas.pdf");
 		try {
+			try {
+				File outFile = new File("C:\\Users\\template\\Desktop\\eclipse\\eclipse\\jboss-eap-6.3\\welcome-content\\reporterRatingDisenosArtistas.pdf");
+
+				FileInputStream in = new FileInputStream(file);
+				FileOutputStream out = new FileOutputStream(outFile);
+
+				int c;
+				while( (c = in.read() ) != -1)
+					out.write(c);
+
+				in.close();
+				out.close();
+			} catch(IOException e) {
+				System.err.println("Hubo un error de entrada/salida!!!");
+			}
 			return FileUtils.readFileToByteArray(file);
 		} catch (IOException e) {
 			e.printStackTrace();

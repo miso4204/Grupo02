@@ -45,7 +45,7 @@ public class ReporteVentasPorArtista implements IReporteVentas {
         JasperPrint jasperPrint = null;
         Map parameters = new HashMap();
         try {
-        	jasperReport = JasperCompileManager.compileReport("C:/Users/template/Desktop/Vabrik/Private Tunnel.lnk/estampate/EstampateReportEJB/EstampateReportEJB/src/main/java/edu/uniandes/services/implement/reporteVentasArtista.jrxml");
+        	jasperReport = JasperCompileManager.compileReport("C:\\Users\\template\\Desktop\\Vabrik\\Private Tunnel.lnk\\estampate\\EstampateReportEJB\\src\\main\\java\\edu\\uniandes\\services\\implement\\reporteVentasArtista.jrxml");
             jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInformacionReporteVentasPorArtista()));
             JasperExportManager.exportReportToPdfFile(jasperPrint,"reporteVentasArtista.pdf");
 			
