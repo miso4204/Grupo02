@@ -3,7 +3,7 @@
                 <h1 class="page-header">Crear Persona</h1>  
                 <form name='datosForm'>
 					<tabset justified="true"> 
-						<tab heading="Datos Personales">							
+						<tab heading="Datos Personales">
                             <div class="form-group">
                                 <label class="control-label">Nombres</label>
                                 <input  maxlength="100" type="text" required="required" class="form-control" ng-model="persona.nombres"/>
@@ -66,14 +66,18 @@
                             </div>
 						</tab>
 						<tab heading="Contrase&ntilde;a">
-                      
                             <br/>
                             <div class="form-group">
+                                <label class="control-label">Usuario</label>
+                                <input  maxlength="100" type="text" required="required" class="form-control" ng-model="usuario.username"/>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label">Nueva Contrase&ntilde;a</label>
-                                <input  maxlength="100" type="password" required="required" class="form-control"   />
+                                <input  maxlength="100" type="password" required="required" class="form-control" ng-model="usuario.password"/>
                             </div>
                             <div>
-                                <button class="btn btn-primary" ng-click="crearPersona()">Crear</button>
+                            	<a class="btn btn-primary" href="#/personaAdmin">Atras</a>
+                                <button class="btn btn-primary" ng-click="crearUsuario(usuario)">Crear</button>
                             </div>
 						</tab>
                   </tabset>

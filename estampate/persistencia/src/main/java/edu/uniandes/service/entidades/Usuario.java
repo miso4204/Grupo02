@@ -20,18 +20,20 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USUARIO_ID_GENERATOR" )
+	@SequenceGenerator(name="USUARIO_ID_GENERATOR", sequenceName= "USUARIO_ID_GENERATOR")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_ID_GENERATOR")
 	private long id;
 
 	@Column(name="CANTIDAD_VOTOS")
 	private BigDecimal cantidadVotos;
-	@JsonIgnore
+	//@JsonIgnore
 	private String password;
 
 	private BigDecimal ratting;
 
 	private String username;
+	@Transient
+	private String identificaPersona;
 
 	//bi-directional many-to-one association to CarritoCompra
 	@OneToMany(mappedBy="usuarioBean")
@@ -180,4 +182,11 @@ public class Usuario implements Serializable {
 		return usuarioRedsocial;
 	}
 
+	public String getIdentificaPersona() {
+		return identificaPersona;
+	}
+
+	public void setIdentificaPersona(String identificaPersona) {
+		this.identificaPersona = identificaPersona;
+	}
 }

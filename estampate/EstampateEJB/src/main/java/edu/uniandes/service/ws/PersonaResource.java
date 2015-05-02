@@ -54,17 +54,12 @@ public class PersonaResource {
 	@GET
 	@Path("/ById/{id}")
 	public Persona getById(@PathParam("id") Long id){			
-		//System.out.println("+++++ Inicio modificar");
-		//System.out.println(id);
-		//System.out.println("+++++ Fin modificar");
-		return personaDAO.find(id,true);
+		Persona persona = personaDAO.find(id,true);
+		return persona;
 	}
-	
+
 	@PUT
 	public void edit(Persona persona) {
-		//System.out.println("+++++ Inicio Logs");
-		//System.out.println(persona.getId());
-		//System.out.println("+++++ Fin Logs");
 		personaDAO.edit(persona);		
 	}
 	

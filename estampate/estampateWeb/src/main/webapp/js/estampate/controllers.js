@@ -314,7 +314,7 @@ estampateControllers.controller('personaAdminCtrl', [ '$scope', '$routeParams','
 					 $scope.alerts=[{type: 'success',msg: 'Persona Eliminada'}];
 					 $scope.cargarPersonas();
 				} ).error(function(data, status, headers, config){
-					$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la Persona:'+data}];
+					$scope.alerts=[{type: 'danger',msg: 'Error al eliminar la Persona:'+data}];
 					$scope.cargarPersonas();
 				});
 		}		
@@ -322,21 +322,30 @@ estampateControllers.controller('personaAdminCtrl', [ '$scope', '$routeParams','
 	$scope.cargarPersonas();
 
 } ]);
-
 estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
 	$scope.alerts=[];	
 	$scope.persona={"id":0,"apellidos":"", "departamento":"", "direccion":"", "email":"", "fechaNacimiento":null, "identificacion":"", "municipio":"", "nombres":"","pais":"", "telefono":""};
 	$scope.closeAlert=function() {
 	    $scope.alerts=[];
 	};
+	/*Crea una persona*/
 	$scope.crearPersona=function(){
 		$http.post("/estampateWEB/webresources/Persona/",$scope.persona).success(function (){
-			 $scope.alerts=[{type: 'success',msg: 'Persona Creada'}];
+			$scope.alerts=[{type: 'success',msg: 'Persona Creada'}];
 		} ).error(function(data, status, headers, config){
 			$scope.alerts=[{type: 'danger',msg: 'Error al crear la persona:'+data}];
 		});
 	}
-
+	/*Crea una persona*/
+	$scope.crearUsuario=function crearUsuario(usuario){
+		$scope.usuarioCrear={"username":usuario.username, "password": usuario.password, "identificaPersona": $scope.persona.identificacion};
+		alert("Usuario Crear: " +$scope.usuarioCrear.identificaPersona);
+		$http.post("/estampateWEB/webresources/Usuario/",$scope.usuarioCrear).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Usuario Creado'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al crear el usuario:'+data}];
+		});
+	}
 	// ****** DatePicker
 	$scope.today = function() {
 	    $scope.dt = new Date();
@@ -374,15 +383,20 @@ estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','
 } ]);
 
 estampateControllers.controller('modificarPersonaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
-	$scope.alerts=[];	
+	$scope.alerts=[];
+	/*Obtiene persona por id*/
 	$http.get("/estampateWEB/webresources/Persona/ById/"+$routeParams.persona).success(function (response){
-		//alert("uyyy");
-		$scope.persona= response;
-		//alert(persona.nombres);
+		$scope.persona = response;
 	} );
+	/*Obtiene Usuario por persona id*/
+	$http.get("/estampateWEB/webresources/Usuario/ByPersona/"+$routeParams.persona).success(function (response){
+		$scope.usuario= response;
+	} );
+	
 	$scope.closeAlert=function() {
 	    $scope.alerts=[];
 	};
+	/*Actualiza una persona*/
 	$scope.actualizarPersona=function(){
 			$http.put("/estampateWEB/webresources/Persona",$scope.persona).success(function (){
 				 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
@@ -390,7 +404,16 @@ estampateControllers.controller('modificarPersonaCtrl', [ '$scope', '$routeParam
 				$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la persona:'+data}];
 			});
 	}
-
+	
+	/*Actualiza una usuario*/
+	$scope.actualizarUsuario=function(){
+		$http.put("/estampateWEB/webresources/Usuario/",$scope.usuario).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+		});
+	}
+	
 	// ****** DatePicker
 	$scope.today = function() {
 	    $scope.dt = new Date();
