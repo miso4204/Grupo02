@@ -338,8 +338,7 @@ estampateControllers.controller('crearPersonaCtrl', [ '$scope', '$routeParams','
 	}
 	/*Crea una persona*/
 	$scope.crearUsuario=function crearUsuario(usuario){
-		$scope.usuarioCrear={"username":usuario.username, "password": usuario.password, "identificaPersona": $scope.persona.identificacion};
-		alert("Usuario Crear: " +$scope.usuarioCrear.identificaPersona);
+		$scope.usuarioCrear={"username":usuario.username, "password": usuario.password, "personaBean": {"identificacion":$scope.persona.identificacion}};
 		$http.post("/estampateWEB/webresources/Usuario/",$scope.usuarioCrear).success(function (){
 			 $scope.alerts=[{type: 'success',msg: 'Usuario Creado'}];
 		} ).error(function(data, status, headers, config){
@@ -414,6 +413,73 @@ estampateControllers.controller('modificarPersonaCtrl', [ '$scope', '$routeParam
 		});
 	}
 	
+	// ****** DatePicker
+	$scope.today = function() {
+	    $scope.dt = new Date();
+	  };
+	  $scope.today();
+
+	  $scope.clear = function () {
+	    $scope.dt = null;
+	  };
+
+	  // Disable weekend selection
+	  $scope.disabled = function(date, mode) {
+	    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	  };
+
+	  $scope.toggleMin = function() {
+	    $scope.minDate = $scope.minDate ? null : new Date();
+	  };
+	  $scope.toggleMin();
+
+	  $scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    $scope.opened = true;
+	  };
+
+	  $scope.dateOptions = {
+	    formatYear: 'yy',
+	    startingDay: 1
+	  };
+
+	  $scope.formats = ['dd-MM-yyyy'];
+	  $scope.format = $scope.formats[0];
+} ]);
+estampateControllers.controller('usuarioCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$location', function($scope, $routeParams, $http,$cookieStore,$location) {	
+	$scope.alerts=[];	
+	$scope.persona={"id":0,"apellidos":"", "departamento":"", "direccion":"", "email":"", "fechaNacimiento":null, "identificacion":"", "municipio":"", "nombres":"","pais":"", "telefono":""};
+	$scope.closeAlert=function() {
+	    $scope.alerts=[];
+	};
+	/*Crea una persona*/
+	$scope.crearPersona=function(){
+		$http.post("/estampateWEB/webresources/Persona/",$scope.persona).success(function (){
+			$scope.alerts=[{type: 'success',msg: 'Persona Creada'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al crear la persona:'+data}];
+		});
+	}
+	/*Crea una persona*/
+	$scope.crearUsuario=function crearUsuario(usuario){
+		$scope.tipoUsuario = $location.search().dat;
+		$scope.tipoR=0;
+		if($scope.tipoUsuario = 'a')
+		{
+			$scope.tipoR = 2;
+		}else
+			{
+				$scope.tipoR = 3;
+			}
+		$scope.usuarioCrear={"username":usuario.username, "password": usuario.password, "personaBean":{"identificacion":$scope.persona.identificacion},"rolBean":{"id":$scope.tipoR}};
+		$http.post("/estampateWEB/webresources/Usuario/UsuarioRol",$scope.usuarioCrear).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Usuario Creado'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al crear el usuario:'+data}];
+		});
+	}
 	// ****** DatePicker
 	$scope.today = function() {
 	    $scope.dt = new Date();

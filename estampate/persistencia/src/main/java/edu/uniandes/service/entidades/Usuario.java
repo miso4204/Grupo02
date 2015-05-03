@@ -32,8 +32,6 @@ public class Usuario implements Serializable {
 	private BigDecimal ratting;
 
 	private String username;
-	@Transient
-	private String identificaPersona;
 
 	//bi-directional many-to-one association to CarritoCompra
 	@OneToMany(mappedBy="usuarioBean")
@@ -180,13 +178,5 @@ public class Usuario implements Serializable {
 		usuarioRedsocial.setUsuario(null);
 
 		return usuarioRedsocial;
-	}
-
-	public String getIdentificaPersona() {
-		return identificaPersona;
-	}
-
-	public void setIdentificaPersona(String identificaPersona) {
-		this.identificaPersona = identificaPersona;
 	}
 }

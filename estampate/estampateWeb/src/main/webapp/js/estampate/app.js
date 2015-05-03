@@ -68,6 +68,9 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/catalogo', {
 		templateUrl : '/estampateWEB/html/catalogo.html',
 		controller : 'catalogoCtrl'
+	}).when('/crearUsuario', {
+		templateUrl : '/estampateWEB/public/usuario.html',
+		controller : 'usuarioCtrl'
 	})
 } ]);
 

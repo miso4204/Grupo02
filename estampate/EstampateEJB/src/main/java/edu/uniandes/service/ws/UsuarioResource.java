@@ -44,14 +44,30 @@ public class UsuarioResource {
 	@POST
 	public void create(Usuario usuario) {
 		Persona persona = new Persona();
-		System.out.println("+++++ Inicio create");
-		System.out.println("username: " + usuario.getUsername());
-		System.out.println("password: " + usuario.getPassword());
-		System.out.println("identificacion: " + usuario.getIdentificaPersona());
-		persona = personaDAO.getPersonaPorIdentifica(usuario.getIdentificaPersona(), true);
-		System.out.println("persona nombre: " + persona.getNombres());
+		//System.out.println("+++++ Inicio create");
+		//System.out.println("username: " + usuario.getUsername());
+		//System.out.println("password: " + usuario.getPassword());
+		//System.out.println("identificacion: " + usuario.getPersonaBean().getIdentificacion());
+		persona = personaDAO.getPersonaPorIdentifica(usuario.getPersonaBean().getIdentificacion(), true);
+		//System.out.println("persona nombre: " + persona.getNombres());
 		usuario.setPersonaBean(persona);
-		System.out.println("+++++ Fin create");
+		//System.out.println("+++++ Fin create");
+		usuarioDAO.create(usuario);	
+	}
+	
+	@POST
+	@Path("/UsuarioRol")
+	public void createUsuarioRol(Usuario usuario) {
+		Persona persona = new Persona();
+		//System.out.println("+++++ Inicio create");
+		//System.out.println("username: " + usuario.getUsername());
+		//System.out.println("password: " + usuario.getPassword());
+		//System.out.println("Rol: " + usuario.getRolBean().getId());
+		//System.out.println("identificacion: " + usuario.getPersonaBean().getIdentificacion());
+		persona = personaDAO.getPersonaPorIdentifica(usuario.getPersonaBean().getIdentificacion(), true);
+		//System.out.println("persona nombre: " + persona.getNombres());
+		usuario.setPersonaBean(persona);
+		//System.out.println("+++++ Fin create");
 		usuarioDAO.create(usuario);	
 	}
 	
