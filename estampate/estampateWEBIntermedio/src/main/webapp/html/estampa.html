@@ -1,0 +1,16 @@
+<div class="col-md-9 main">
+	<h1 class="page-header">Catalogo de Estampados</h1>
+<div ng-show="vista=='Galeria'">
+    <carousel interval="myInterval">
+      <slide ng-repeat="estampa in estampas | filter:search">
+        <img ng-src="{{estampa.imagen}}" style="margin:auto;" class="img-circle" width="250" height="250">
+        <div class="carousel-caption">
+          <h4>{{estampa.nombre}}</h4>
+		  <p>{{estampa.informacion}}</p>
+		  <p>{{estampa.usuarioBean.personaBean.nombres+" "+estampa.usuarioBean.personaBean.apellidos}}</p>
+		  <p><a href="#/estampado" class="btn btn-primary" role="button" ng-click="selecionarEstampa(estampa)">Ver</a></p>				
+        </div>
+      </slide>
+    </carousel>
+</div>
+</div>

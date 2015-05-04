@@ -1,0 +1,37 @@
+
+<div class="col-md-9 main">
+	<h1 class="page-header">Crear Estampa</h1>
+
+	<div class="form-group">
+		<label class="control-label">Imagen</label> <input maxlength="100"
+			type="text" required="required" class="form-control"
+			ng-model="estampa.imagen" />
+	</div>
+	<div class="form-group">
+		<label class="control-label">Nombre</label> <input maxlength="100"
+			type="text" required="required" class="form-control"
+			ng-model="estampa.nombre" />
+	</div>
+	<div class="form-group">
+		<label class="control-label">Informacion&oacute;n</label> <input
+			maxlength="100" type="text" required="required" class="form-control"
+			ng-model="estampa.informacion" />
+	</div>
+	<div class="form-group">
+		<label class="control-label">Precio</label> <input maxlength="100"
+			type="text" required="required" class="form-control"
+			ng-model="estampa.precio" />
+	</div>
+	<div class="form-group">
+		<label class="control-label">Tema</label><select
+			ng-options="tema.nombre for tema in temas"
+			ng-model="estampa.temaBean">
+		</select>
+	</div>
+	<div>
+		<a class="btn btn-primary" href="#/estampaAdmin">Atras</a>
+		<button class="btn btn-primary" ng-click="crear()">Crear</button>
+	</div>
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}"
+		close="closeAlert()">{{alert.msg}}</alert>
+</div>
