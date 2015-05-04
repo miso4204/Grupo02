@@ -100,5 +100,19 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 		
 		
 	}
+	
+	public CarritoCompra getCarritoPorId(Long idCarrito,boolean detach) {
+		CarritoCompra carrito = null;
+
+		try {
+			Query query = em.createQuery("select c from CarritoCompra c where c.id= :id");
+			query.setParameter("id", idCarrito);
+			carrito = (CarritoCompra) query.getSingleResult();
+			detachObject(carrito);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return carrito;
+	}
 
 }

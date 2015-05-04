@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import edu.uniandes.service.daos.CarritoDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.Camiseta;
+import edu.uniandes.service.entidades.CarritoCompra;
 import edu.uniandes.service.entidades.Usuario;
 
 /**
@@ -70,4 +71,9 @@ public class CarritoResource {
 		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
 		carritoDAO.removeItemByUser(usuario, camiseta);
 	}
+	@PUT
+	@Path("/ByCarrito")
+	public CarritoCompra obtenerCarrito(CarritoCompra carrito){
+		return carritoDAO.getCarritoPorId(carrito.getId(),true);
+	}	
 }

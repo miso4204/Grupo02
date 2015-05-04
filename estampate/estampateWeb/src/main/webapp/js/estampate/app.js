@@ -74,3 +74,17 @@ estampateApp.config([ '$routeProvider', function($routeProvider) {
 	})
 } ]);
 
+function registerRoutes($stateProvider, $urlRouterProvider) {
+
+	  $stateProvider
+	    .state('ruta-qs', {
+	      url: '/checkout?dat',
+	      templateUrl: '',
+	      controller: function($scope, $stateParams) {
+	         $scope.dat = $stateParams.dat;
+	      }
+	    });
+	    
+	  $urlRouterProvider.otherwise('/');
+	}
+

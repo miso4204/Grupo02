@@ -73,9 +73,12 @@
                                                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                                                 </button></td>
                                                 <td>
-                                                <button type="button" class="btn btn-success" onClick="location.href='#/checkout'">
+                                                <button type="button" class="btn btn-success" onClick="location.href='#/checkout?dat=1&xaj=1'">
                                                     Checkout <span class="glyphicon glyphicon-play"></span>
-                                                </button></td>
+                                                </button>
+                                                <p><a ui-sref="ruta-qs({ dat: 1 })">Checkout</a></p>
+                                                </td>
+												
                                             </tr>
                                         </tbody>
                                     </table>

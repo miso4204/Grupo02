@@ -260,14 +260,34 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 			});
 		}
 	}
+	$scope.enviarCheckout = function (Dato) {
+	    var path = "location.href='#/checkout?mdf="+Dato+"'";
+	    return $location.path(path);
+	};
 } ]);
-estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$location', function($scope, $routeParams, $http,$cookieStore,$location) {	
 	$http.get("/estampateWEB/webresources/Persona").success(function (response){
 		$scope.persona= response;					
 	} );
-	$scope.realizarPago=function (){
-		alert("Gracias por realizar su compra.");
+	$scope.consultarCarrito=function (){
+		$scope.ca = $location.search().dat;
+		//$scope.me = $location.search().xhj;
+		$scope.carritoConsulta = {"id":1,"valorTotal":0};
+		
+		$http.put("/estampateWEB/webresources/Carrito/ByCarrito/",$scope.carritoConsulta).success(function (response){
+			$scope.carrito= response;					
+		} );
+	}
+	$scope.realizarPago=function(carrito){
+		$scope.rand = 5465898989 - Math.random();
+		$http.post("/estampateWEB/webresources/Venta/",carrito).success(function (response){
+			alert("El pago fue exitoso con código de referencia:");
+			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: '}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+		});
 	};
+	$scope.consultarCarrito();
 } ]);
 
 estampateControllers.controller('perfilCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {

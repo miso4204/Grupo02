@@ -1,7 +1,9 @@
 package edu.uniandes.service.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -36,6 +38,12 @@ public class Venta implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="METODO_PAGO")
 	private MetodoPago metodoPagoBean;
+	@Transient
+	private String referenciaPagoPSE;
+	@Transient
+	private String referenciaPagoTarjeta;
+	@Transient
+	private String referenciaPagoPIN;
 
 	public Venta() {
 	}
@@ -78,6 +86,30 @@ public class Venta implements Serializable {
 
 	public void setMetodoPagoBean(MetodoPago metodoPagoBean) {
 		this.metodoPagoBean = metodoPagoBean;
+	}
+
+	public String getReferenciaPagoPSE() {
+		return referenciaPagoPSE;
+	}
+
+	public void setReferenciaPagoPSE(String referenciaPagoPSE) {
+		this.referenciaPagoPSE = referenciaPagoPSE;
+	}
+
+	public String getReferenciaPagoTarjeta() {
+		return referenciaPagoTarjeta;
+	}
+
+	public void setReferenciaPagoTarjeta(String referenciaPagoTarjeta) {
+		this.referenciaPagoTarjeta = referenciaPagoTarjeta;
+	}
+
+	public String getReferenciaPagoPIN() {
+		return referenciaPagoPIN;
+	}
+
+	public void setReferenciaPagoPIN(String referenciaPagoPIN) {
+		this.referenciaPagoPIN = referenciaPagoPIN;
 	}
 
 }
