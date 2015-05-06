@@ -73,10 +73,9 @@
                                                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                                                 </button></td>
                                                 <td>
-                                                <button type="button" class="btn btn-success" onClick="location.href='#/checkout?dat=1&xaj=1'">
-                                                    Checkout <span class="glyphicon glyphicon-play"></span>
-                                                </button>
-                                                <p><a ui-sref="ruta-qs({ dat: 1 })">Checkout</a></p>
+									            <div class="btn-group cart">
+									            	<a href="#/checkout" class="btn btn-success" role="button" ng-click="enviarDatos(metodoEnvio)">Checkout </a>
+									            </div>
                                                 </td>
 												
                                             </tr>

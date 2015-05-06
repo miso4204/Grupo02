@@ -49,7 +49,15 @@ public class CarritoResource {
 		items=carritoDAO.getItemsByUser(usuario);
 		System.out.println("Obtuvo lista de camisas.");
 		return items;
-	}	
+	}
+	@GET
+	@Path("/ByUser")
+	public CarritoCompra obtenerCarritoPorUsuario(){
+		Principal principal=context.getCallerPrincipal();
+		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
+		CarritoCompra carrito = carritoDAO.getCarritoPorUsuario(usuario);
+		return carrito;
+	}
 	/**
 	 * ADICIONA UNA CAMISETA COMO ITEM AL CARRITO
 	 * @param camiseta
@@ -75,5 +83,5 @@ public class CarritoResource {
 	@Path("/ByCarrito")
 	public CarritoCompra obtenerCarrito(CarritoCompra carrito){
 		return carritoDAO.getCarritoPorId(carrito.getId(),true);
-	}	
+	}
 }

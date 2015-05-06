@@ -114,5 +114,19 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 		}
 		return carrito;
 	}
+	
+	public CarritoCompra getCarritoPorUsuario(Usuario usuario) {
+		CarritoCompra carrito = null;
+
+		try {
+			Query query = em.createQuery("select c from CarritoCompra c where c.usuarioBean= :usuario");
+			query.setParameter("usuario",usuario);
+			carrito = (CarritoCompra) query.getSingleResult();
+			detachObject(carrito);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return carrito;
+	}
 
 }
