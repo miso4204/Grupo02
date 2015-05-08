@@ -1,6 +1,9 @@
 package edu.uniandes.service.ws;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -21,6 +24,8 @@ import edu.uniandes.service.daos.ColorCamisetaDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.CarritoCompra;
 import edu.uniandes.service.entidades.ColorCamiseta;
+import edu.uniandes.service.entidades.MetodoEnvio;
+import edu.uniandes.service.entidades.MetodoPago;
 import edu.uniandes.service.entidades.Usuario;
 import edu.uniandes.service.entidades.Venta;
 import edu.uniandes.service.patterns.RecaudoContraEntregaDAO;
@@ -74,34 +79,51 @@ public class VentasResource{
 	
 	@POST
 	@Path("/Pagar")
-	public CarritoCompra createVenta(String cadena) {
+	public void createVenta(String cadena) {
 			System.out.println("+++++ Inicio createVenta");
 			System.out.println(cadena);
+
+			List<Venta> ventas = new ArrayList<Venta>();
+			Venta venta = new Venta();
+			MetodoEnvio metodoEnvio = new MetodoEnvio();
+			MetodoPago metodoPago = new MetodoPago();
+			Date fecha = new Date();
 			String[] temp;
 			temp = cadena.split("|");
-			Long metodoEnvioId = Long.parseLong(temp[0]);
-			Long medioPagoId = Long.parseLong(temp[0]);
 			
+			Long metodoEnvioId = Long.parseLong(temp[1]);
+			Long medioPagoId = Long.parseLong(temp[3]);
+
 			Principal principal=context.getCallerPrincipal();
 			Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
 			CarritoCompra carrito = carritoDAO.getCarritoPorUsuario(usuario);
+
+			metodoPago.setId(medioPagoId);
+			metodoEnvio.setId(metodoEnvioId);
 			
-			Venta venta = new Venta();
+			venta.setId(0);
+			venta.setFecha(fecha);
+			venta.setCarritoCompra(carrito);
+			venta.setMetodoEnvioBean(metodoEnvio);
+			venta.setMetodoPagoBean(metodoPago);
 			
-			//if(carrito.getVentas().get(0).getMetodoPagoBean().getId() == 1)
-			if(metodoEnvioId.equals("1"))
+			carrito.setVentas(ventas);
+			carrito.addVenta(venta);
+
+			if(metodoEnvioId == 1)
 			{
-				//recaudoPSEDAO.hacerPago(carrito);
+				System.out.println("equals recaudoPSEDAO ");
+				recaudoPSEDAO.hacerPago(carrito);
 			}
-			//else if(carrito.getVentas().get(0).getMetodoPagoBean().getId() == 2){
-			else if(metodoEnvioId.equals("2")){
-				//recaudoTarjetaCreditoDAO.hacerPago(carrito);
+			else if(metodoEnvioId == 2){
+				System.out.println("equals recaudoTarjetaCreditoDAO ");
+				recaudoTarjetaCreditoDAO.hacerPago(carrito);
 			}
-			else if(metodoEnvioId.equals("3")){
-				//recaudoContraEntregaDAO.hacerPago(carrito);
+			else if(metodoEnvioId == 3){
+				System.out.println("equals recaudoContraEntregaDAO ");
+				recaudoContraEntregaDAO.hacerPago(carrito);
 			}
 			System.out.println("+++++ Fin");
-		return carrito;
 	}
 
 }
