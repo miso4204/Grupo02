@@ -230,6 +230,13 @@ estampateControllers.controller('camisetasAdminCtrl', [ '$scope', '$routeParams'
 	}
 } ]);
 estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	$http.get("/estampateWEB/webresources/MetodoEnvio").success(function (response){
+		$scope.metodosDeEnvio= response;					
+	} );
+	$scope.setMetodoEnvio=function (metodoEnvio){
+    	$scope.metodoEnvioSelected=metodoEnvio;
+    	$scope.totalConEnvio();
+	};
 	$http.get("/estampateWEB/webresources/Carrito/").success(function (response){
 		 $scope.camisasEnCarrito = response;
 		 
@@ -243,6 +250,10 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 	        total += (product.precio * product.cantidad);
 	    }
 	    return total;
+	}
+	$scope.totalConEnvio = function(){
+	    
+	    return $scope.getTotal()+$scope.metodoEnvioSelected.valor;;
 	}
 	$scope.removeItem = function(item){
 		
@@ -260,9 +271,8 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 			});
 		}
 	}
-	$scope.enviarDatos = function(metodoEnvio){
-		var metodoEnvioQ = {"id":1,"nombre":"NACIONAL"};
-		$cookieStore.put('metodoEnvioSelected',metodoEnvioQ);
+	$scope.enviarDatos = function(){
+		$cookieStore.put('metodoEnvioSelected',$scope.metodoEnvioSelected);
 		$location.path("#/checkout");
 	}
 } ]);
