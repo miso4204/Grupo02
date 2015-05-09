@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and abstract="true" mandatory="true" name="EstampateVabrik">
+				<and mandatory="true" name="Catalogo">
+					<and mandatory="true" name="Products">
+						<feature mandatory="true" name="SearchProducts"/>
+						<feature name="RateProducts"/>
+					</and>
+					<and mandatory="true" name="Design">
+						<feature mandatory="true" name="SearchDesign"/>
+						<feature name="RateDesign"/>
+					</and>
+					<or mandatory="true" name="View">
+						<feature mandatory="true" name="List"/>
+						<feature mandatory="true" name="Gallery"/>
+					</or>
+				</and>
+				<feature mandatory="true" name="ShoppingCart"/>
+				<and mandatory="true" name="Pay">
+					<feature mandatory="true" name="CreditCard"/>
+					<feature mandatory="true" name="PSE"/>
+					<feature name="CashOnDelivery"/>
+				</and>
+				<and mandatory="true" name="ProductAdmin">
+					<and mandatory="true" name="ProductDesign">
+						<feature mandatory="true" name="Size"/>
+						<feature name="Text"/>
+						<feature name="Color"/>
+						<feature mandatory="true" name="StampDesign"/>
+					</and>
+				</and>
+				<and mandatory="true" name="User">
+					<and mandatory="true" name="Session">
+						<feature mandatory="true" name="Login"/>
+						<feature mandatory="true" name="Logout"/>
+					</and>
+					<and mandatory="true" name="UpdateProfile">
+						<feature name="ChangePassword"/>
+						<feature name="ChangeAddress"/>
+					</and>
+					<feature mandatory="true" name="CreateAccount"/>
+				</and>
+				<and name="Reports">
+					<and name="Rating">
+						<feature mandatory="true" name="Designs"/>
+						<feature name="DesignByArtist"/>
+					</and>
+					<and name="Sales">
+						<feature name="ByArtist"/>
+						<feature mandatory="true" name="ByPeriod"/>
+					</and>
+				</and>
+				<alt name="SocialNetworks">
+					<feature mandatory="true" name="Twitter"/>
+					<feature mandatory="true" name="Facebook"/>
+				</alt>
+				<and mandatory="true" name="QualityAttributes">
+					<feature mandatory="true" name="Configurability"/>
+					<feature name="Scalability"/>
+					<feature mandatory="true" name="Functionality"/>
+				</and>
+				<alt mandatory="true" name="WEB">
+					<feature mandatory="true" name="Basic"/>
+					<feature mandatory="true" name="Intermediate"/>
+					<feature mandatory="true" name="Advance"/>
+				</alt>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>Gallery</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>Reports</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>SocialNetworks</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<conj>
+					<not>
+						<conj>
+							<var>Basic</var>
+							<var>RateDesign</var>
+						</conj>
+					</not>
+					<not>
+						<conj>
+							<var>Basic</var>
+							<var>RateProducts</var>
+						</conj>
+					</not>
+				</conj>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>Text</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>Color</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Basic</var>
+						<var>CashOnDelivery</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<conj>
+					<not>
+						<conj>
+							<var>Basic</var>
+							<var>ChangeAddress</var>
+						</conj>
+					</not>
+					<not>
+						<conj>
+							<var>Basic</var>
+							<var>ChangePassword</var>
+						</conj>
+					</not>
+				</conj>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>List</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>Rating</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>CashOnDelivery</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>Text</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>ByArtist</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>RateProducts</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Advance</var>
+						<var>Twitter</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<not>
+					<conj>
+						<var>Intermediate</var>
+						<var>Facebook</var>
+					</conj>
+				</not>
+			</rule>
+			<rule>
+				<imp>
+					<var>Intermediate</var>
+					<var>SocialNetworks</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Advance</var>
+					<var>SocialNetworks</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Intermediate</var>
+					<var>Reports</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Advance</var>
+					<var>Reports</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Intermediate</var>
+					<var>Sales</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Advance</var>
+					<var>Rating</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Rating</var>
+					<conj>
+						<var>RateDesign</var>
+						<var>RateProducts</var>
+					</conj>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
