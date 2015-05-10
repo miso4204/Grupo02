@@ -15,61 +15,61 @@ var estampateApp = angular.module('estampateApp', [ 'ui.bootstrap','ngRoute', 'e
 });
 estampateApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl : '/estampateWEB/html/inicio.html',
+		templateUrl : '/estampateWEBAvanzado/html/inicio.html',
 		controller : 'mainCtrl'
 	}).when('/estampa', {
-		templateUrl : '/estampateWEB/html/estampa.html',
+		templateUrl : '/estampateWEBAvanzado/html/estampa.html',
 		controller : 'catalogoEstampaCtrl'
 	}).when('/camisa', {
-		templateUrl : '/estampateWEB/html/camiseta.html',
+		templateUrl : '/estampateWEBAvanzado/html/camiseta.html',
 		controller : 'camisaCtrl'
 	}).when('/personalizar', {
-		templateUrl : '/estampateWEB/html/personalizar.html',
+		templateUrl : '/estampateWEBAvanzado/html/personalizar.html',
 		controller : 'personalizarCtrl'
 	}).when('/estampaAdmin', {
-		templateUrl : '/estampateWEB/html/estampaAdmin.html',
+		templateUrl : '/estampateWEBAvanzado/html/estampaAdmin.html',
 		controller : 'estampaAdminCtrl'
 	}).when('/camisetasAdmin', {
-		templateUrl : '/estampateWEB/html/camisetasAdmin.html',
+		templateUrl : '/estampateWEBAvanzado/html/camisetasAdmin.html',
 		controller : 'camisetasAdminCtrl'
 	}).when('/perfil', {
-		templateUrl : '/estampateWEB/html/perfil.html',
+		templateUrl : '/estampateWEBAvanzado/html/perfil.html',
 		controller : 'perfilCtrl'
 	}).when('/estampado', {
-		templateUrl : '/estampateWEB/html/catalogoEstampas.html',
+		templateUrl : '/estampateWEBAvanzado/html/catalogoEstampas.html',
 		controller : 'estampaCtrl'
 	}).when('/personalizarEstampa', {
-		templateUrl : '/estampateWEB/html/personalizarEstampa.html',
+		templateUrl : '/estampateWEBAvanzado/html/personalizarEstampa.html',
 		controller : 'personalizarEstampaCtrl'
 	}).when('/crearEstampa', {
-		templateUrl : '/estampateWEB/html/crearEstampa.html',
+		templateUrl : '/estampateWEBAvanzado/html/crearEstampa.html',
 		controller : 'crearEstampaCtrl'
 	}).when('/modificarEstampa/:estampa', {
-		templateUrl : '/estampateWEB/html/modificarEstampa.html',
+		templateUrl : '/estampateWEBAvanzado/html/modificarEstampa.html',
 		controller : 'modificarEstampaCtrl'
 	}).when('/personaAdmin', {
-		templateUrl : '/estampateWEB/html/persona/personaAdmin.html',
+		templateUrl : '/estampateWEBAvanzado/html/persona/personaAdmin.html',
 		controller : 'personaAdminCtrl'
 	}).when('/crearPersona', {
-		templateUrl : '/estampateWEB/html/persona/persona.html',
+		templateUrl : '/estampateWEBAvanzado/html/persona/persona.html',
 		controller : 'crearPersonaCtrl'
 	}).when('/modificarPersona/:persona', {
-		templateUrl : '/estampateWEB/html/persona/modificarPersona.html',
+		templateUrl : '/estampateWEBAvanzado/html/persona/modificarPersona.html',
 		controller : 'modificarPersonaCtrl'
 	}).when('/carrito', {
-		templateUrl : '/estampateWEB/html/carrito.html',
+		templateUrl : '/estampateWEBAvanzado/html/carrito.html',
 		controller : 'carritoCtrl'
 	}).when('/checkout', {
-		templateUrl : '/estampateWEB/html/compras.html',
+		templateUrl : '/estampateWEBAvanzado/html/compras.html',
 		controller : 'comprasCtrl'
 	}).when('/reportesAdmin', {
-		templateUrl : '/estampateWEB/html/reportes.html',
+		templateUrl : '/estampateWEBAvanzado/html/reportes.html',
 		controller : 'reportesCtrl'
 	}).when('/catalogo', {
-		templateUrl : '/estampateWEB/html/catalogo.html',
+		templateUrl : '/estampateWEBAvanzado/html/catalogo.html',
 		controller : 'catalogoCtrl'
 	}).when('/crearUsuario', {
-		templateUrl : '/estampateWEB/public/usuario.html',
+		templateUrl : '/estampateWEBAvanzado/public/usuario.html',
 		controller : 'usuarioCtrl'
 	})
 } ]);

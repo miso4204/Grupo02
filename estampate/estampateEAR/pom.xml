@@ -81,7 +81,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.uniandes</groupId>
-			<artifactId>estampateWEB</artifactId>
+			<artifactId>estampateWEBIntermedio</artifactId>
 			<version>1.0.0.1</version>
 			<type>war</type>
 		</dependency>
