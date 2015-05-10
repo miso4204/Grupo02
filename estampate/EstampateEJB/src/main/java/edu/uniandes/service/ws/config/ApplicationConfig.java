@@ -49,7 +49,7 @@ public class ApplicationConfig extends Application {
         resources.add(edu.uniandes.service.ws.TemaResource.class);
         resources.add(edu.uniandes.service.ws.CarritoResource.class);
         resources.add(edu.uniandes.services.ws.ReportesResource.class);
-        
+        resources.add(edu.uniandes.service.ws.FeaturesAppResource.class);
     }
     
 }
