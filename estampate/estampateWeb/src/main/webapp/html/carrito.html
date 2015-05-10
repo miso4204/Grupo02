@@ -30,7 +30,7 @@
                                                     </div>
                                                 </div></td>
                                                 <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                <input type="number" class="form-control" id="exampleInputEmail1" ng-model="item.cantidad">
+                                                <input type="number" class="form-control" id="exampleInputEmail1" ng-model="item.cantidad" ng-change="updateItem(item)">
                                                 </td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>{{item.precio}}</strong></td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>{{(item.precio)*item.cantidad}}</strong></td>
@@ -52,6 +52,7 @@
                                                 <td>  </td>
                                                 <td><h5>Estimated shipping</h5>
                                                 	<select name="metodoEnvio">
+                                                		<option value="?" selected="selected"></option>
                                                 		<option ng-repeat="metodoEnvio in metodosDeEnvio" ng-click="setMetodoEnvio(metodoEnvio)">{{metodoEnvio.nombre}}</option>
                                                 	</select>
                                                 </td>

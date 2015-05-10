@@ -92,7 +92,7 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 	 */
 	public void removeItemByUser(Usuario usuario, Camiseta camiseta){
 		CarritoCompra carrito = getByUser(usuario);
-		BigDecimal total=carrito.getValorTotal().subtract(camiseta.getPrecio());
+		BigDecimal total=carrito.getValorTotal().subtract(camiseta.getPrecio().multiply(new BigDecimal(camiseta.getCantidad())));
 		carrito.setValorTotal(total);
 		Camiseta c= carrito.removeCamiseta(camiseta);
 		getEntityManager().remove(getEntityManager().merge(c));
@@ -127,6 +127,18 @@ public class CarritoDAO extends AbstractDAO<CarritoCompra>{
 			e.printStackTrace();
 		}
 		return carrito;
+	}
+	/**
+	 * Actualiza el total del carrito con base en el item modificado
+	 * @param carrito.  Carrito sobre el cual se va a modificar el total
+	 * @param item. Item modificado
+	 */
+	public void updateItem(CarritoCompra carrito, Camiseta old, Camiseta item) {
+		BigDecimal total=carrito.getValorTotal().subtract(old.getPrecio().multiply(new BigDecimal(old.getCantidad())));
+		total=total.add(item.getPrecio().multiply(new BigDecimal(item.getCantidad())));
+		carrito.setValorTotal(total);
+		getEntityManager().merge(carrito);
+		
 	}
 
 }

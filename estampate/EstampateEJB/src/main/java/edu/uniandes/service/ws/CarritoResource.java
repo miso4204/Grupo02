@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.service.daos.CamisetaDAO;
 import edu.uniandes.service.daos.CarritoDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.Camiseta;
@@ -36,6 +37,9 @@ public class CarritoResource {
 	private CarritoDAO carritoDAO;
 	@EJB
 	private UsuarioDAO usuarioDAO;
+	@EJB
+	private CamisetaDAO camisetaDAO;
+	
 	/**
 	 * Metodo que obtiene la lista de items del carrito de compras de un usuario
 	 * @return Lista de items(camiseta personalizadas) del carrito de un usuario
@@ -78,6 +82,19 @@ public class CarritoResource {
 		Principal principal=context.getCallerPrincipal();
 		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
 		carritoDAO.removeItemByUser(usuario, camiseta);
+	}
+	/**
+	 * Actualiza el carrito de compras
+	 * @param carrito. Carrito con nuevo datos
+	 */
+	@PUT
+	@Path("/Update")
+	public void updateCarrito(Camiseta item){
+		CarritoCompra carrito = obtenerCarritoPorUsuario();
+		item.setCarritoCompra(carrito);
+		Camiseta old=camisetaDAO.find(item.getId(), false);
+		carritoDAO.updateItem(carrito,old,item);
+		camisetaDAO.edit(item);
 	}
 	@PUT
 	@Path("/ByCarrito")

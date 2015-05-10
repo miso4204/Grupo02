@@ -230,6 +230,7 @@ estampateControllers.controller('camisetasAdminCtrl', [ '$scope', '$routeParams'
 	}
 } ]);
 estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	
+	
 	$http.get("/estampateWEB/webresources/MetodoEnvio").success(function (response){
 		$scope.metodosDeEnvio= response;					
 	} );
@@ -243,6 +244,12 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 	} ).error(function(data, status, headers, config){
 		alert('Error al actualizar el carrito:'+data);
 	});	
+	$scope.updateItem=function(item)
+	{
+		$http.put("/estampateWEB/webresources/Carrito/Update/",item).success(function (response){
+			 
+		});	
+	}
 	$scope.getTotal = function(){
 	    var total = 0;
 	    for(var i = 0; i < $scope.camisasEnCarrito.length; i++){
@@ -252,8 +259,10 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 	    return total;
 	}
 	$scope.totalConEnvio = function(){
-	    
-	    return $scope.getTotal()+$scope.metodoEnvioSelected.valor;;
+	    if($scope.metodoEnvioSelected === undefined || $scope.metodoEnvioSelected === null)
+	    	return $scope.getTotal();
+	    else
+	    	return $scope.getTotal()+$scope.metodoEnvioSelected.valor;
 	}
 	$scope.removeItem = function(item){
 		
