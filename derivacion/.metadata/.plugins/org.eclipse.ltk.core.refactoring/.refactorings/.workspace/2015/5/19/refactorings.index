@@ -1,0 +1,4 @@
+1431211149500	Rename resource 'estampateEAR'
+1431211171682	Rename resource 'derivacionParent'
+1431212043110	Delete resource 'DerivacionEAR/src/main/application/META-INF/persistence.xml'
+1431239484410	Delete resource 'DerivacionEAR/src/main/application/META-INF/jboss-deployment-structure.xml'

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="estampatePU" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/estampateDS2</jta-data-source>
+		<class>edu.uniandes.service.entidades.Camiseta</class>
+		<class>edu.uniandes.service.entidades.CarritoCompra</class>
+		<class>edu.uniandes.service.entidades.ColorCamiseta</class>
+		<class>edu.uniandes.service.entidades.Estampa</class>
+		<class>edu.uniandes.service.entidades.MaterialCamiseta</class>
+		<class>edu.uniandes.service.entidades.MetodoEnvio</class>
+		<class>edu.uniandes.service.entidades.MetodoPago</class>
+		<class>edu.uniandes.service.entidades.Persona</class>
+		<class>edu.uniandes.service.entidades.Privilegio</class>
+		<class>edu.uniandes.service.entidades.RedSocial</class>
+		<class>edu.uniandes.service.entidades.Rol</class>
+		<class>edu.uniandes.service.entidades.RolPrivilegio</class>
+		<class>edu.uniandes.service.entidades.TallaCamiseta</class>
+		<class>edu.uniandes.service.entidades.TamanoEstampado</class>
+		<class>edu.uniandes.service.entidades.Tema</class>
+		<class>edu.uniandes.service.entidades.TipoCamiseta</class>
+		<class>edu.uniandes.service.entidades.UbicacionEstampado</class>
+		<class>edu.uniandes.service.entidades.Usuario</class>
+		<class>edu.uniandes.service.entidades.UsuarioRedsocial</class>
+		<class>edu.uniandes.service.entidades.Venta</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="javax.persistence.schema-generation.database.action" value="create" />
+		</properties>
+	</persistence-unit>
+</persistence>

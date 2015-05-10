@@ -1,0 +1,76 @@
+package edu.uniandes.derivacion;
+
+import javax.servlet.annotation.WebServlet;
+
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.CheckBox;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.TreeTable;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * Implementa la pagina de configuracion del producto
+ * 
+ * @author juan camilo cerquera lozada<jc.cerquera10@uniandes.edu.co>
+ *
+ */
+@Theme("mytheme")
+@Widgetset("edu.uniandes.derivacion.MyAppWidgetset")
+public class MyUI extends UI {
+
+	private static final long serialVersionUID = -2494457110738218967L;
+
+	@Override
+	protected void init(VaadinRequest vaadinRequest) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		setContent(layout);
+
+		Panel panel = new Panel("Configuración del Producto");
+//		panel.addStyleName("mypanelexample");
+		panel.setSizeUndefined(); // Shrink to fit content
+		layout.addComponent(panel);
+
+		// Create the content
+		VerticalLayout verticalLayout = new VerticalLayout();
+		
+		final TreeTable ttable = new TreeTable("");
+		ttable.addContainerProperty("", CheckBox.class, "");
+		ttable.setWidth("20em");
+		        
+		// Create the tree nodes
+		ttable.addItem(new Object[]{new CheckBox("Redes Sociales")}, 0);
+		ttable.addItem(new Object[]{new CheckBox("Facebook")}, 1);
+		ttable.addItem(new Object[]{new CheckBox("Twitter")}, 2);
+		
+		// Set the hierarchy
+		ttable.setParent(1, 0);
+		ttable.setParent(2, 0);
+		
+		// Expand the tree
+		ttable.setCollapsed(2, false);
+		for (Object itemId: ttable.getItemIds())
+		    ttable.setCollapsed(itemId, false);
+		        
+		ttable.setPageLength(ttable.size());
+
+		panel.setContent(verticalLayout);
+		layout.addComponent(panel);
+		layout.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
+
+	}
+
+	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+	public static class MyUIServlet extends VaadinServlet {
+	}
+}

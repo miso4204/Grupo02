@@ -1,0 +1,11 @@
+package edu.uniandes.derivacion.enums;
+
+public enum Caracteristicas {
+	REDES_SOCIALES(Boolean.FALSE), FACEBOOK(Boolean.FALSE), TWITTER(Boolean.FALSE)
+	
+	private final Boolean seleccionada;
+	
+	private Caracteristicas(Boolean seleccionada) {
+		this.seleccionada = seleccionada;
+	}
+}
