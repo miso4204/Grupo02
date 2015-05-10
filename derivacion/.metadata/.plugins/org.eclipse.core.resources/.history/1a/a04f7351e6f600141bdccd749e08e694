@@ -1,0 +1,22 @@
+package edu.uniandes.derivacion;
+
+public class Caracteristica {
+	private String nombre;
+	private Boolean seleccionada;
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Boolean getSeleccionada() {
+		return seleccionada;
+	}
+
+	public void setSeleccionada(Boolean seleccionada) {
+		this.seleccionada = seleccionada;
+	}
+}

@@ -209,7 +209,7 @@ estampateControllers.controller('estampaAdminCtrl', [ '$scope', '$routeParams','
 	$scope.eliminar=function(estampa){
 		
 			if(confirm("Esta seguro de eliminar la estampa ?")){
-				$http.delete("/estampateWEB/webresources/Estampa/",estampa).success(function (){
+				$http.delete("/estampateWEB/webresources/Estampa/"+estampa.id).success(function (){
 					 $scope.alerts=[{type: 'success',msg: 'Estampa Eliminada'}];
 					 $scope.cargarEstampas();
 				} ).error(function(data, status, headers, config){

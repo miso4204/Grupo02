@@ -8,7 +8,9 @@
     <web-resource-collection>
       <web-resource-name>Protected Area</web-resource-name>
       <url-pattern>/html/*</url-pattern>
+      <!--  
       <url-pattern>/webresources/*</url-pattern>
+		-->
       <http-method>DELETE</http-method>
       <http-method>GET</http-method>
       <http-method>POST</http-method>

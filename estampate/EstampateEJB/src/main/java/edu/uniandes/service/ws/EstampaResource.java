@@ -67,8 +67,13 @@ public class EstampaResource {
 	public void edit(Estampa estampa){
 		estampaDAO.edit(estampa);
 	}
+	@Path("{id}")
 	@DELETE
-	public void delete(Estampa estampa){
-		estampaDAO.remove(estampa);
+	public void delete(@PathParam("id") Long id){
+		try{
+			estampaDAO.remove(estampaDAO.find(id, false));
+		}catch(Exception e){
+			throw new RuntimeException(e);
+		}
 	}
 }

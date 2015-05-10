@@ -1,0 +1,6 @@
+package edu.uniandes.derivacion;
+
+public class Caracteristica {
+	private String nombre;
+	private Boolean caracteristica;
+}

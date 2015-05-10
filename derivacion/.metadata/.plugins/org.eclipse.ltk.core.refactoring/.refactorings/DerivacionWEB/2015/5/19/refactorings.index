@@ -1,0 +1,9 @@
+1431214250224	Encapsulate field 'seleccionada'
+1431215182507	Encapsulate field 'nombre'
+1431215186465	Encapsulate field 'caracteristica'
+1431215507575	Encapsulate field 'seleccionada'
+1431233354667	Rename resource 'jboss-deployment-structure.xml'
+1431233393329	Rename resource 'jboss-deployment-structure'
+1431236767482	Delete element
+1431239401009	Delete element
+1431242978660	Encapsulate field 'codigo'

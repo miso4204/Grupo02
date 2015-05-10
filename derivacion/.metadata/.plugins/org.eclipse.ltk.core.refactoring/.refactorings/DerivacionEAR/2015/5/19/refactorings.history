@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;jboss-deployment-structure.xml&apos; to &apos;META-INF&apos;&#x0D;&#x0A;- Original project: &apos;DerivacionEAR&apos;&#x0D;&#x0A;- Destination element: &apos;META-INF&apos;&#x0D;&#x0A;- Original element: &apos;jboss-deployment-structure.xml&apos;" description="Copy file" element1="target/DerivacionEAR-1.0.0.1/META-INF/jboss-deployment-structure.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1431237875163" target="/DerivacionWEB/src/main/webapp/META-INF" units="0" version="1.0"/>
+</session>

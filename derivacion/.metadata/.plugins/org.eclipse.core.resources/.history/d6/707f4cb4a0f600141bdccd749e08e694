@@ -1,0 +1,50 @@
+package edu.uniandes.derivacion;
+
+import javax.servlet.annotation.WebServlet;
+
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * Implementa la pagina de configuracion del producto
+ * 
+ * @author juan camilo cerquera lozada<jc.cerquera10@uniandes.edu.co>
+ *
+ */
+@Theme("mytheme")
+@Widgetset("edu.uniandes.derivacion.MyAppWidgetset")
+public class MyUI extends UI {
+
+	@Override
+	protected void init(VaadinRequest vaadinRequest) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		setContent(layout);
+
+		Panel panel = new Panel("Astronomy Panel");
+		panel.addStyleName("mypanelexample");
+		panel.setSizeUndefined(); // Shrink to fit content
+		layout.addComponent(panel);
+
+		// Create the content
+		VerticalLayout verticalLayout = new VerticalLayout();
+
+		panel.setContent(verticalLayout);
+		layout.addComponent(panel);
+
+	}
+
+	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+	public static class MyUIServlet extends VaadinServlet {
+	}
+}
