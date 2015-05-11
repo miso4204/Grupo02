@@ -52,6 +52,7 @@
                                                 <td>  </td>
                                                 <td><h5>Estimated shipping</h5>
                                                 	<select name="metodoEnvio">
+                                                		<option value="?" selected="selected"></option>
                                                 		<option ng-repeat="metodoEnvio in metodosDeEnvio" ng-click="setMetodoEnvio(metodoEnvio)">{{metodoEnvio.nombre}}</option>
                                                 	</select>
                                                 </td>
@@ -73,9 +74,10 @@
                                                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                                                 </button></td>
                                                 <td>
-                                                <button type="button" class="btn btn-success" onClick="location.href='#/checkout'">
-                                                    Checkout <span class="glyphicon glyphicon-play"></span>
-                                                </button></td>
+									            <div class="btn-group cart">
+									            	<a href="#/checkout" class="btn btn-success" role="button" ng-click="enviarDatos(metodoEnvio)">Checkout </a>
+									            </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
