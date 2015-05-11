@@ -3,12 +3,15 @@
   <display-name>estampateEAR</display-name>
   <module>
     <web>
-      <web-uri>estampateWEB-1.0.0.1.war</web-uri>
-      <context-root>/estampateWEB</context-root>
+      <web-uri>estampateWEBIntermedio-1.0.0.1.war</web-uri>
+      <context-root>/estampateWEBIntermedio</context-root>
     </web>
   </module>
   <module>
     <ejb>EstampateEJB-1.0.0.1.jar</ejb>
+  </module>
+  <module>
+    <ejb>EstampateReportEJB-1.0-SNAPSHOT.jar</ejb>
   </module>
   <library-directory>lib</library-directory>
 </application>
