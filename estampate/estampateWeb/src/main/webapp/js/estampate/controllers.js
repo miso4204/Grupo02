@@ -287,6 +287,7 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 } ]);
 estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$location', function($scope, $routeParams, $http,$cookieStore,$location) {	
 	$scope.alerts=[];
+    $scope.checkboxModel = {value1:false,value2:false,value3:false};
 	$http.get("/estampateWEB/webresources/Persona").success(function (response){
 		$scope.persona= response;					
 	} );
@@ -301,11 +302,22 @@ estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http
 		$scope.rand = 5465898989 - Math.random();
 		$scope.met = $scope.metodoEnvio.id.toString()+"|"+mediopago;
 		$http.post("/estampateWEB/webresources/Venta/Pagar/",$scope.met).success(function (){
-			alert("El pago fue exitoso con código de referencia:" + $scope.rand);
-			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: ' + $scope.rand}];
+			alert("El pago fue exitoso con código de referencia:" + $scope.rand.toString().replace(".", ""));
+			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: ' + $scope.rand.toString().replace(".", "")}];
 		} ).error(function(data, status, headers, config){
 			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
 		});
+	}
+	$scope.cambiarCheck=function(id){
+		if(id==1){
+		    $scope.checkboxModel = {value1:true,value2:false,value2:false};
+		}
+		if(id==2){
+		    $scope.checkboxModel = {value1:false,value2:true,value2:false};
+		}
+		if(id==3){
+		    $scope.checkboxModel = {value1:false,value2:false,value2:true};
+		}
 	}
 	$scope.closeAlert=function() {
 	    $scope.alerts=[];
