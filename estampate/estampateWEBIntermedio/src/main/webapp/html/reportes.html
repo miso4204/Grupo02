@@ -1,5 +1,29 @@
+<link href="/estampateWEBIntermedio/css/bootstrap/datepicker.css" rel="stylesheet">
+<script src="/estampateWEBIntermedio/js/bootstrap/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+	    format: 'mm/dd/yyyy',
+	    startDate: '-3d'
+	})
+</script>
 <h1 class="page-header">Reporte de Ratings</h1>
+<h2 class="page-header">Reporte de Ventas por periodo: (Seleccione las fechas del reporte)</h2>
+
+<div class="container">
+	
+    <div class='col-md-6'>
+        Fecha de inicio: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+        
+    </div>
+    <div class='col-md-'>
+        Fecha de Finalizaci&oacute;n: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+    </div>
+</div>
+<br/>
+<br/>
 <p><a href="#/reportesAdmin" class="btn btn-primary" role="button" ng-click="changeContent(reporte)">Generar Reporte</a></p>
+<hr/>
+
 <div class="col-sm-6" style="background-color:lavender;">
     <embed ng-src="{{content}}" style="width:700px;height:800px;" id="pdf" />
 </div>

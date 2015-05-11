@@ -30,7 +30,7 @@
                                                     </div>
                                                 </div></td>
                                                 <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                <input type="number" class="form-control" id="exampleInputEmail1" ng-model="item.cantidad">
+                                                <input type="number" class="form-control" id="exampleInputEmail1" ng-model="item.cantidad" ng-change="updateItem(item)">
                                                 </td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>{{item.precio}}</strong></td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>{{(item.precio)*item.cantidad}}</strong></td>
@@ -44,7 +44,7 @@
                                                 <td>  </td>
                                                 <td>  </td>
                                                 <td><h5>Subtotal</h5></td>
-                                                <td class="text-right"><h5><strong>{{getTotal()}}</strong></h5></td>
+                                                <td class="text-right" ng-model="camisasEnCarrito"><h5><strong>{{getTotal()}}</strong></h5></td>
                                             </tr>
                                             <tr>
                                            		<td>  </td>
@@ -52,6 +52,7 @@
                                                 <td>  </td>
                                                 <td><h5>Estimated shipping</h5>
                                                 	<select name="metodoEnvio">
+                                                		<option value="?" selected="selected"></option>
                                                 		<option ng-repeat="metodoEnvio in metodosDeEnvio" ng-click="setMetodoEnvio(metodoEnvio)">{{metodoEnvio.nombre}}</option>
                                                 	</select>
                                                 </td>
@@ -62,7 +63,7 @@
                                                 <td>  </td>
                                                 <td>  </td>
                                                 <td><h3>Total</h3></td>
-                                                <td class="text-right"><h3><strong>{{metodoEnvioSelected.valor+subtotal()}}</strong></h3></td>
+                                                <td class="text-right" ><h3><strong>{{totalConEnvio()}}</strong></h3></td>
                                             </tr>
                                             <tr>
                                                 <td>  </td>
@@ -73,9 +74,11 @@
                                                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                                                 </button></td>
                                                 <td>
-                                                <button type="button" class="btn btn-success" onClick="location.href='#/checkout'">
-                                                    Checkout <span class="glyphicon glyphicon-play"></span>
-                                                </button></td>
+									            <div class="btn-group cart">
+									            	<a href="#/checkout" class="btn btn-success" role="button" ng-click="enviarDatos(metodoEnvio)">Checkout </a>
+									            </div>
+                                                </td>
+												
                                             </tr>
                                         </tbody>
                                     </table>

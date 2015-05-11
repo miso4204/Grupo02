@@ -1,3 +1,20 @@
+<script>
+window.twttr=(function(d,s,id){
+	var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
+	if(d.getElementById(id))return t;
+	js=d.createElement(s);
+	js.id=id;
+	js.src="https://platform.twitter.com/widgets.js";
+	fjs.parentNode.insertBefore(js,fjs);
+	t._e=[];
+	t.ready=function(f){
+		t._e.push(f);
+	};
+	return t;
+	}
+	(document,"script","twitter-wjs"));
+</script>
+<link href="/estampateWEBIntermedio/css/rating.css" rel="stylesheet">
 <div class="col-md-9 main">
 	<h1 class="page-header">Personaliza tu Camiseta!</h1>
 <div class="row placeholders">
@@ -21,16 +38,37 @@
 		            <div class="product-title" align="left">{{estampaSeleccionada.nombre}}</div>
 		            <div class="product-desc" align="left">{{estampaSeleccionada.informacion}}</div>
 					<div class="product-desc" align="left">Por: {{estampaSeleccionada.usuarioBean.username}}</div>
-		            <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+					<div class="product-rating" ng-model="estampaSeleccionada.ratting">
+						<i id="star1" class="fa fa-star-o"></i> <i id="star2" class="fa fa-star-o"></i> <i id="star3" class="fa fa-star-o"></i> <i id="star4" class="fa fa-star-o"></i> <i id="star5" class="fa fa-star-o"></i>
+					</div>
 		            <hr>
 		
 		            <div class="product-price">{{estampaSeleccionada.precio|currency}}</div>
 		            <hr>
 		            <div class="btn-group cart">
 		            	<a href="#/personalizarEstampa" class="btn btn-success" role="button" ng-click="selecionarEstampa(estampaSeleccionada)">Agregar a Camiseta </a>
-		                
 		            </div>
+		            <br/>
+		            <br/>
+		            <div> <a class="twitter-share-button" href="https://twitter.com/share"> Tweet	</a></div>
+		           
 		        </div>
+		        <div class="col-md-12">
+		        <hr>
+		        <div class="product-title" align="center">Califique esta estampa:</div>
+		            <span class="starRating">
+					  <input id="rating5" type="radio" name="rating" value="5">
+					  <label for="rating5">5</label>
+					  <input id="rating4" type="radio" name="rating" value="4">
+					  <label for="rating4">4</label>
+					  <input id="rating3" type="radio" name="rating" value="3">
+					  <label for="rating3">3</label>
+					  <input id="rating2" type="radio" name="rating" value="2">
+					  <label for="rating2">2</label>
+					  <input id="rating1" type="radio" name="rating" value="1">
+					  <label for="rating1">1</label>
+					</span>
+				</div>
 	    	</div> 
 		</div>                          
 	</div>

@@ -31,15 +31,9 @@
 						<div class="container service1-items col-sm-1 col-md-1 pull-left">
 							<a id="item-1" class="service1-item"> <img src="{{tipoCamisetaSeleccionado.ubicacion}}" alt=""></img>
 							</a>
-							<!--<a id="item-2" class="service1-item">
-                                                    <img src="http://www.huetrap.com/imageuploads/product/00243/1000X1000_20140324173759_HT12WKGRAWHT00243%20BACK.jpg" alt=""></img>
-                                                </a>-->
 						</div>
 					</div>
 					<div class="col-md-2">
-						<div class="product-rating">
-							<i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i>
-						</div>
 						<hr>
 
 						<div class="product-price">{{tipoCamisetaSeleccionado.valor|currency}}</div>
@@ -76,6 +70,7 @@
 						</div>
 					</div>
 				</section>
+				
 				</tab> <tab heading="Color">
 				<section class="container">
 					<br />
@@ -89,7 +84,7 @@
 						</div>
 					</div>
 				</section>
-				</tab> <tab heading="Estampas">
+				</tab><tab heading="Estampas">
 				<section class="container">
 					<br />
 					<p>Arrastra una estampa sobre la camiseta</p>
@@ -105,14 +100,7 @@
 					</div>
 				</section>
 				</tab>
-				<tab heading="Texto">
-				<section class="container">
-					<br />
-					<p>Texto sobre la camiseta</p>
-					<br />
-					<input type="text" ng-model="texto"> 
-				</section>
-				</tab> </tabset>
+				 </tabset>
 			</div>
 		</div>
 	</div>
