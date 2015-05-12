@@ -64,16 +64,18 @@
 			<type>ejb</type>
 		</dependency>
 		
+		
 		<dependency>
 		  <groupId>org.facebook4j</groupId>
 		  <artifactId>facebook4j-core</artifactId>
 		  <version>[2.2,)</version>
 		</dependency>
 		
+		
 		 <dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.7.0</version>
+			<version>1.7.4</version>
 		</dependency>
 	</dependencies>
 	
@@ -125,38 +127,23 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+			        <groupId>org.codehaus.mojo</groupId>
+			        <artifactId>aspectj-maven-plugin</artifactId>
+			        <version>1.6</version>
+			        <executions>
+			          <execution>
+			            <goals>
+			              <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+			              <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+			            </goals>
+			            <configuration>
+		                    <complianceLevel>1.6</complianceLevel>
+		                </configuration>
+			          </execution>
+			        </executions>
+			      </plugin>
 		</plugins>
-		<pluginManagement>
-    	<plugins>
-    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-    		<plugin>
-    			<groupId>org.eclipse.m2e</groupId>
-    			<artifactId>lifecycle-mapping</artifactId>
-    			<version>1.0.0</version>
-    			<configuration>
-    				<lifecycleMappingMetadata>
-    					<pluginExecutions>
-    						<pluginExecution>
-    							<pluginExecutionFilter>
-    								<groupId>org.codehaus.mojo</groupId>
-    								<artifactId>
-    									aspectj-maven-plugin
-    								</artifactId>
-    								<versionRange>[1.4,)</versionRange>
-    								<goals>
-    									<goal>test-compile</goal>
-    									<goal>compile</goal>
-    								</goals>
-    							</pluginExecutionFilter>
-    							<action>
-    								<ignore></ignore>
-    							</action>
-    						</pluginExecution>
-    					</pluginExecutions>
-    				</lifecycleMappingMetadata>
-    			</configuration>
-    		</plugin>
-    	</plugins>
-    </pluginManagement>
 	</build>
 </project>

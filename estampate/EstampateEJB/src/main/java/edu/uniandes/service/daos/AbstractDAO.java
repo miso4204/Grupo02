@@ -1,4 +1,4 @@
-package edu.uniandes.service.daos;
+ package edu.uniandes.service.daos;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -69,8 +69,13 @@ public abstract class AbstractDAO<T> {
     		}else if(manyToOne!=null||oneToOne!=null){    			
     			try {
     				field.setAccessible(true);
-    				detachObject(field.get(entity));
-				} catch (IllegalArgumentException | IllegalAccessException e) {
+    				try {
+						detachObject(field.get(entity));
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (IllegalArgumentException e) {
 					throw new RuntimeException(e);
 				}    			
     		}    		
