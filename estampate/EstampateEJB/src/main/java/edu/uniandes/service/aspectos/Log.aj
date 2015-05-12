@@ -6,12 +6,12 @@ public aspect Log {
 	before(): methodCall() {
 		System.out.println("\n -- TestClass."
 				+ thisJoinPointStaticPart.getSignature().getName()
-				+ " start --");
+				+ " inicio --");
 	}
 
 	after(): methodCall() {
 		System.out.println(" -- TestClass."
 				+ thisJoinPointStaticPart.getSignature().getName()
-				+ " stop --\n");
+				+ " fin --\n");
 	}
 }
