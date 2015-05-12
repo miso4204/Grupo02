@@ -8,7 +8,7 @@
 	<modules>
 		<module>../estampateEAR</module>
 		<module>../EstampateEJB</module>
-		<module>../estampateWEBIntermedio</module>
+		<module>../estampateWEBAvanzado</module>
 		<module>../persistencia</module>
 		<module>../EstampateReportEJB</module>
 	</modules>
