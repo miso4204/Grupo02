@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.derivacion.enums.Caracteristicas;
 
 @Path("/featuresApp")
@@ -16,6 +17,7 @@ import edu.uniandes.service.derivacion.enums.Caracteristicas;
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
 @LocalBean
+@Feature(name="SocialNetworks")
 public class FeaturesAppResource {
 
 	@POST

@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.TemaDAO;
 import edu.uniandes.service.entidades.Tema;
 
@@ -17,6 +18,7 @@ import edu.uniandes.service.entidades.Tema;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
+@Feature(name="StampDesign")
 public class TemaResource {
 	@EJB 
 	private TemaDAO temaDAO;

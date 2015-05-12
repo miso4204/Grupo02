@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ejb.SessionContext;
 
-
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.PrivilegioDAO;
 import edu.uniandes.service.entidades.Privilegio;
 
@@ -23,6 +23,7 @@ import edu.uniandes.service.entidades.Privilegio;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
+@Feature(name="User")
 public class FuncionalidadesResource {
 	@Resource
 	private SessionContext context;

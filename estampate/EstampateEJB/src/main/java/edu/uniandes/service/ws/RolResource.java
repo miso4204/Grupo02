@@ -18,6 +18,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.PersonaDAO;
 import edu.uniandes.service.daos.RolDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
@@ -29,6 +30,7 @@ import edu.uniandes.service.util.Constantes;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
+@Feature(name="User")
 public class RolResource {
 	@Resource
 	private SessionContext context;

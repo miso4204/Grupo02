@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.CamisetaDAO;
 import edu.uniandes.service.daos.CarritoDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
@@ -30,6 +31,7 @@ import edu.uniandes.service.entidades.Usuario;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
+@Feature(name="ShoppingCart")
 public class CarritoResource {
 	@Resource
 	private SessionContext context;

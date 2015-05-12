@@ -17,6 +17,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.EstampaDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.Estampa;
@@ -27,6 +28,7 @@ import edu.uniandes.service.util.Constantes;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
+@Feature(name="StampDesign")
 public class EstampaResource {
 	@Resource
 	private SessionContext context;
