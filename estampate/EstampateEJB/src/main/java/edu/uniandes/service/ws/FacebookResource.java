@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import edu.uniandes.annotations.Feature;
 import facebook4j.Account;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
@@ -20,6 +21,7 @@ import facebook4j.auth.AccessToken;
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
 @LocalBean
+@Feature(name="Facebook")
 public class FacebookResource {
 
 	public Response compartirFacebook(String mensaje, String urlImagen) {

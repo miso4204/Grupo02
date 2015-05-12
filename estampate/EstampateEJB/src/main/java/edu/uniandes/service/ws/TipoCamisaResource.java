@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.TipoCamisetaDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
 import edu.uniandes.service.entidades.TipoCamiseta;
@@ -22,6 +23,7 @@ import edu.uniandes.service.entidades.TipoCamiseta;
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
 @Path("/TipoCamiseta")
+@Feature(name="ProductAdmin")
 public class TipoCamisaResource {
 	@Resource
 	private SessionContext context;

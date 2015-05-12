@@ -19,6 +19,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.daos.CarritoDAO;
 import edu.uniandes.service.daos.ColorCamisetaDAO;
 import edu.uniandes.service.daos.UsuarioDAO;
@@ -43,6 +44,7 @@ import edu.uniandes.service.patterns.RecaudoTarjetaCreditoDAO;
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
 @LocalBean
+@Feature(name="Pay")
 public class VentasResource{
 	@Resource
 	private SessionContext context;
