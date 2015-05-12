@@ -7,19 +7,63 @@
 	})
 </script>
 <h1 class="page-header">Reporte de Ratings</h1>
-<h2 class="page-header">Reporte de Ventas por periodo: (Seleccione las fechas del reporte)</h2>
-
-<div class="container">
-	
-    <div class='col-md-6'>
-        Fecha de inicio: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
-        
-    </div>
-    <div class='col-md-'>
-        Fecha de Finalizaci&oacute;n: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
-    </div>
+<div class='col-md-12'>
+	<select ng-options="tipo for tipo in ['Ventas por periodo','Ventas por artista','Rating por dise&ntilde;o','Rating por artista']" ng-model="vista">
+	</select>
 </div>
 <br/>
+<div ng-show="vista=='Ventas por periodo'">
+	<h2 class="page-header">Reporte de Ventas por periodo: (Seleccione las fechas del reporte)</h2>
+	
+	<div class="container">
+		
+	    <div class='col-md-6'>
+	        Fecha de inicio: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+	        
+	    </div>
+	    <div class='col-md-6'>
+	        Fecha de Finalizaci&oacute;n: <input class="datepicker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+	    </div>
+	</div>
+	<br/>
+</div>
+
+<div ng-show="vista=='Ventas por artista'">
+	<h2 class="page-header">Reporte de Ventas por artista: (Escriba el usuario del artista)</h2>
+	
+	<div class="container">
+		
+	    <div class='col-md-6'>
+	        Artista: <input type="text" id="usaurioArtista" placeholder="usuario del artista">
+	    </div>
+	</div>
+	<br/>
+</div>
+
+<div ng-show="vista=='Rating por dise&ntilde;o'">
+	<h2 class="page-header">Reporte de Rating por dise&ntilde;o: (Escriba el nombre del dise&ntilde;o)</h2>
+	
+	<div class="container">
+		
+	    <div class='col-md-6'>
+	        Dise&ntilde;o: <input type="text" id="disenho" placeholder="nombre del dise&ntilde;o">
+	    </div>
+	</div>
+	<br/>
+</div>
+
+<div ng-show="vista=='Rating por artista'">
+	<h2 class="page-header">Reporte de Rating por artista: (Escriba el usuario del artista)</h2>
+	
+	<div class="container">
+		
+	    <div class='col-md-6'>
+	        Artista: <input type="text" id="usaurioArtista" placeholder="usuario del artista">
+	    </div>
+	</div>
+	<br/>
+</div>
+
 <br/>
 <p><a href="#/reportesAdmin" class="btn btn-primary" role="button" ng-click="changeContent(reporte)">Generar Reporte</a></p>
 <hr/>
