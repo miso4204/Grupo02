@@ -3,8 +3,8 @@
   <display-name>estampateEAR</display-name>
   <module>
     <web>
-      <web-uri>estampateWEBIntermedio-1.0.0.1.war</web-uri>
-      <context-root>/estampateWEBIntermedio</context-root>
+      <web-uri>estampateWEBAvanzado-1.0.0.1.war</web-uri>
+      <context-root>/estampateWEBAvanzado</context-root>
     </web>
   </module>
   <module>

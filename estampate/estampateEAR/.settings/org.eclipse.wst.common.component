@@ -2,7 +2,7 @@
     <wb-module deploy-name="estampateEAR-0.0.1">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="estampateWEBIntermedio-1.0.0.1.war" deploy-path="/" handle="module:/resource/estampateWEBIntermedio/estampateWEBIntermedio">
+        <dependent-module archiveName="estampateWEBAvanzado-1.0.0.1.war" deploy-path="/" handle="module:/resource/estampateWEBAvanzado/estampateWEBAvanzado">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="EstampateEJB-1.0.0.1.jar" deploy-path="/" handle="module:/resource/EstampateEJB/EstampateEJB">
@@ -18,6 +18,12 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="jackson-mapper-asl-1.9.13.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="facebook4j-core-2.2.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/facebook4j/facebook4j-core/2.2.2/facebook4j-core-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aspectjrt-1.7.4.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/aspectj/aspectjrt/1.7.4/aspectjrt-1.7.4.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="persistencia-1.0.0.1.jar" deploy-path="/lib" handle="module:/resource/persistencia/persistencia">
