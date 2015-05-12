@@ -305,7 +305,15 @@ estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http
 			alert("El pago fue exitoso con código de referencia:" + $scope.rand.toString().replace(".", ""));
 			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: ' + $scope.rand.toString().replace(".", "")}];
 		} ).error(function(data, status, headers, config){
-			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+			if(data.indexOf("Error CAR1543:") !=-1)
+			{
+			  alert("Error CAR1543: La característica seleccionada no esta disponible en la versión actual.");
+			  $scope.alerts=[{type: 'danger',msg: 'Error al realizar el pago: ' + 'Error CAR1543: La característica seleccionada no esta disponible en la versión actual.'}];	
+			}
+			else
+			{
+				$scope.alerts=[{type: 'danger',msg: 'Error al realizar el pago:' + data}];				
+			}
 		});
 	}
 	$scope.cambiarCheck=function(id){

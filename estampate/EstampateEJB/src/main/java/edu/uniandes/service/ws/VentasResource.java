@@ -16,7 +16,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import edu.uniandes.service.daos.CarritoDAO;
@@ -31,6 +30,8 @@ import edu.uniandes.service.entidades.Venta;
 import edu.uniandes.service.patterns.RecaudoContraEntregaDAO;
 import edu.uniandes.service.patterns.RecaudoPSEDAO;
 import edu.uniandes.service.patterns.RecaudoTarjetaCreditoDAO;
+import edu.uniandes.service.resources.CaracteristicasConf;
+import edu.uniandes.service.util.Constantes;
 
 /**
  * Implementa los m�todos requeridos para la gesti�n de ventas.
@@ -79,51 +80,68 @@ public class VentasResource{
 	
 	@POST
 	@Path("/Pagar")
-	public void createVenta(String cadena) {
-			System.out.println("+++++ Inicio createVenta");
-			System.out.println(cadena);
+	public void createVenta(String cadena) throws Exception {
+		CaracteristicasConf caracteristicas =  new CaracteristicasConf();
 
-			List<Venta> ventas = new ArrayList<Venta>();
-			Venta venta = new Venta();
-			MetodoEnvio metodoEnvio = new MetodoEnvio();
-			MetodoPago metodoPago = new MetodoPago();
-			Date fecha = new Date();
-			String[] temp;
-			temp = cadena.split("|");
+		List<Venta> ventas = new ArrayList<Venta>();
+		Venta venta = new Venta();
+		MetodoEnvio metodoEnvio = new MetodoEnvio();
+		MetodoPago metodoPago = new MetodoPago();
+		Date fecha = new Date();
+		String[] temp;
+		temp = cadena.split("|");
 			
-			Long metodoEnvioId = Long.parseLong(temp[1]);
-			Long medioPagoId = Long.parseLong(temp[3]);
-
-			Principal principal=context.getCallerPrincipal();
-			Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
-			CarritoCompra carrito = carritoDAO.getCarritoPorUsuario(usuario);
-
-			metodoPago.setId(medioPagoId);
-			metodoEnvio.setId(metodoEnvioId);
+		Long metodoEnvioId = Long.parseLong(temp[1]);
+		Long medioPagoId = Long.parseLong(temp[3]);
+		Principal principal=context.getCallerPrincipal();
+		Usuario usuario=usuarioDAO.getUsuario(principal.getName(),false);
+		CarritoCompra carrito = carritoDAO.getCarritoPorUsuario(usuario);
+		metodoPago.setId(medioPagoId);
+		metodoEnvio.setId(metodoEnvioId);
+		
+		venta.setId(0);
+		venta.setFecha(fecha);
+		venta.setCarritoCompra(carrito);
+		venta.setMetodoEnvioBean(metodoEnvio);
+		venta.setMetodoPagoBean(metodoPago);
 			
-			venta.setId(0);
-			venta.setFecha(fecha);
-			venta.setCarritoCompra(carrito);
-			venta.setMetodoEnvioBean(metodoEnvio);
-			venta.setMetodoPagoBean(metodoPago);
-			
-			carrito.setVentas(ventas);
-			carrito.addVenta(venta);
+		carrito.setVentas(ventas);
+		carrito.addVenta(venta);
 
-			if(metodoEnvioId == 1)
+		if(medioPagoId == 1)
+		{
+			if(caracteristicas.existeCaracteristica(Constantes.CARACTERISTICA_PSE))
 			{
-				System.out.println("equals recaudoPSEDAO ");
 				recaudoPSEDAO.hacerPago(carrito);
 			}
-			else if(metodoEnvioId == 2){
-				System.out.println("equals recaudoTarjetaCreditoDAO ");
+			else
+			{
+				throw new Exception(Constantes.EXCEPCION_CARACTERISTICA);
+			}
+		}
+		else if(medioPagoId  == 2)
+		{
+			if(caracteristicas.existeCaracteristica(Constantes.CARACTERISTICA_CREDIT_CARD))
+			{
 				recaudoTarjetaCreditoDAO.hacerPago(carrito);
 			}
-			else if(metodoEnvioId == 3){
-				System.out.println("equals recaudoContraEntregaDAO ");
+			else
+			{
+				throw new Exception(Constantes.EXCEPCION_CARACTERISTICA);
+			}
+		}
+		else if(medioPagoId  == 3)
+		{
+			if(caracteristicas.existeCaracteristica(Constantes.CARACTERISTICA_CASH))
+			{
 				recaudoContraEntregaDAO.hacerPago(carrito);
 			}
-			System.out.println("+++++ Fin");
+			else
+			{
+				throw new Exception(Constantes.EXCEPCION_CARACTERISTICA);
+			}
+				
+		}
 	}
 
 }

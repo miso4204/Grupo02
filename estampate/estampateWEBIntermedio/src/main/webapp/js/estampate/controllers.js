@@ -308,11 +308,12 @@ estampateControllers.controller('carritoCtrl', [ '$scope', '$routeParams','$http
 } ]);
 estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$location', function($scope, $routeParams, $http,$cookieStore,$location) {	
 	$scope.alerts=[];
-	$http.get("/estampateWEBIntermedio/webresources/Persona").success(function (response){
+    $scope.checkboxModel = {value1:false,value2:false,value3:false};
+	$http.get("/estampateWEB/webresources/Persona").success(function (response){
 		$scope.persona= response;					
 	} );
 	$scope.consultarCarrito=function (){
-		$http.get("/estampateWEBIntermedio/webresources/Carrito/ByUser/").success(function (response){
+		$http.get("/estampateWEB/webresources/Carrito/ByUser/").success(function (response){
 			 $scope.carrito = response;
 			 $scope.metodoEnvio=$cookieStore.get("metodoEnvioSelected");
 		});
@@ -321,12 +322,31 @@ estampateControllers.controller('comprasCtrl', [ '$scope', '$routeParams','$http
 		//alert(angular.toJson(carrito));
 		$scope.rand = 5465898989 - Math.random();
 		$scope.met = $scope.metodoEnvio.id.toString()+"|"+mediopago;
-		$http.post("/estampateWEBIntermedio/webresources/Venta/Pagar/",$scope.met).success(function (){
-			alert("El pago fue exitoso con código de referencia:" + $scope.rand);
-			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: ' + $scope.rand}];
+		$http.post("/estampateWEB/webresources/Venta/Pagar/",$scope.met).success(function (){
+			alert("El pago fue exitoso con código de referencia:" + $scope.rand.toString().replace(".", ""));
+			$scope.alerts=[{type: 'success',msg: 'El pago fue exitoso con código de referencia: ' + $scope.rand.toString().replace(".", "")}];
 		} ).error(function(data, status, headers, config){
-			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar el perfil:'+data}];
+			if(data.indexOf("Error CAR1543:") !=-1)
+			{
+			  alert("Error CAR1543: La característica seleccionada no esta disponible en la versión actual.");
+			  $scope.alerts=[{type: 'danger',msg: 'Error al realizar el pago: ' + 'Error CAR1543: La característica seleccionada no esta disponible en la versión actual.'}];	
+			}
+			else
+			{
+				$scope.alerts=[{type: 'danger',msg: 'Error al realizar el pago:' + data}];				
+			}
 		});
+	}
+	$scope.cambiarCheck=function(id){
+		if(id==1){
+		    $scope.checkboxModel = {value1:true,value2:false,value2:false};
+		}
+		if(id==2){
+		    $scope.checkboxModel = {value1:false,value2:true,value2:false};
+		}
+		if(id==3){
+		    $scope.checkboxModel = {value1:false,value2:false,value2:true};
+		}
 	}
 	$scope.closeAlert=function() {
 	    $scope.alerts=[];
