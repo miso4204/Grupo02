@@ -35,9 +35,12 @@ public class CaracteristicasConf {
 		      {
 		    	  listaCaracteristicas.add(linea);
 		      }
+		      
+		      fr.close();
+		      bf.close();
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } 
 	}
 
 	public boolean existeCaracteristica(String caractaristica){
