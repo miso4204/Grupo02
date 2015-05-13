@@ -11,23 +11,29 @@ import javax.ws.rs.core.MediaType;
 import edu.uniandes.annotations.Feature;
 import edu.uniandes.service.resources.CaracteristicasConf;
 
-@Path("/facebook")
+/**
+ * Administración de integración con facebook
+ * 
+ * @author Juan Camilo Cerquera Lozada<jc.cerquera10@uniandes.edu.co>
+ *
+ */
+@Path("/twitter")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
 @LocalBean
-@Feature(name="Facebook")
-public class FacebookResource {
+@Feature(name="Twitter")
+public class TwitterResource {
 
 	@GET
 	@Path("/habilitado")
-	public boolean compartirFacebook() {
+	public boolean name() {
 		CaracteristicasConf caracteristicasConf = new CaracteristicasConf();
-		if (caracteristicasConf.existeCaracteristica("Facebook")) {
+		if (caracteristicasConf.existeCaracteristica("Twitter")) {
 			return true;
 		}else {
 			return false;
 		}
-		
 	}
+	
 }

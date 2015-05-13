@@ -6,11 +6,12 @@
 	<version>1.0.0.1</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>../estampateEAR</module>
-		<module>../EstampateEJB</module>
-		<module>../estampateWEBAvanzado</module>
-		<module>../persistencia</module>
 		<module>../EstampateReportEJB</module>
+<module>../estampateEAR</module>
+<module>../EstampateEJB</module>
+<module>../estampateWEBIntermedio</module>
+<module>../persistencia</module>
+
 	</modules>
 </project>
 

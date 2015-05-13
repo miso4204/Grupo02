@@ -72,8 +72,8 @@ estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http
 		$cookieStore.put('estampaSelected',estampa);
 	}		
 	
-	$http.get("/estampateWEBIntermedio/webresources/facebook").success(function(response) {
-		$scope.facebookHabilitado = response;
+	$http.get("/estampateWEBIntermedio/webresources/twitter/habilitado").success(function(response) {
+		$scope.twitterHabilitado = response;
 	});
 } ]);
 

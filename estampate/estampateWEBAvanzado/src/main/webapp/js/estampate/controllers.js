@@ -72,9 +72,9 @@ estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http
 		$cookieStore.put('estampaSelected',estampa);
 	}		
 	
-	$http.get("/estampateWEBAvanzado/webresources/facebook").success(function(response) {
+	$http.get("/estampateWEBAvanzado/webresources/facebook/habilitado").success(function(response) {
 		$scope.facebookHabilitado = response;
-	});	
+	});
 } ]);
 
 estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	

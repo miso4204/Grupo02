@@ -106,10 +106,13 @@
 	        			<goal>compile</goal>
 	      			</goals>
 	      			<phase>generate-sources</phase>     
-				      <configuration>
+				      <configuration>				       
 				        <annotationProcessors>
-				        <annotationProcessor>edu.uniandes.annotations.FeatureProcessor</annotationProcessor>
-				        </annotationProcessors>	        			
+				        	<annotationProcessor>edu.uniandes.annotations.FeatureProcessor</annotationProcessor>
+				        </annotationProcessors>
+				        <excludes>
+				        	<exclude>**/edu.uniandes.service.ws.ColorResource</exclude><exclude>**/edu.uniandes.service.ws.FacebookResource</exclude><exclude>**/edu.uniandes.service.ws.TemaResource</exclude>                 			
+              		   </excludes>	        			
 				      </configuration>
 				    </execution>
 			  </executions>

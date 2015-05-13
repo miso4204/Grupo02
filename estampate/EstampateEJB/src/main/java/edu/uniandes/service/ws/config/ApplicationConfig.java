@@ -51,6 +51,7 @@ public class ApplicationConfig extends Application {
         resources.add(edu.uniandes.services.ws.ReportesResource.class);
         resources.add(edu.uniandes.service.ws.FeaturesAppResource.class);
         resources.add(edu.uniandes.service.ws.FacebookResource.class);
+        resources.add(edu.uniandes.service.ws.TwitterResource.class);
     }
     
 }
