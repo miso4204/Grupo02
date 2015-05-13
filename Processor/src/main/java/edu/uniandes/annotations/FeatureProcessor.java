@@ -1,12 +1,20 @@
 package edu.uniandes.annotations;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
@@ -15,6 +23,7 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+
 
 @SupportedAnnotationTypes("edu.uniandes.annotations.Feature")
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
@@ -27,7 +36,7 @@ public class FeatureProcessor extends AbstractProcessor {
 				.getElementsAnnotatedWith(Feature.class);
 		try {
 			if (!annotations.isEmpty()) {
-				StringBuilder builde=new StringBuilder();
+				StringBuilder builde = new StringBuilder();
 				builde.append(" /* \n");
 				builde.append("  * To change this license header, choose License Headers in Project Properties.  \n");
 				builde.append("  * To change this template file, choose Tools | Templates  \n");
@@ -66,33 +75,38 @@ public class FeatureProcessor extends AbstractProcessor {
 				builde.append("      * If required, comment out calling this method in getClasses().  \n");
 				builde.append("      */  \n");
 				builde.append("     private void addRestResourceClasses(Set<Class<?>> resources) {  \n");
-				/*builde.append("         resources.add(edu.uniandes.service.ws.VentasResource.class);         ");
-				builde.append("         resources.add(edu.uniandes.service.ws.PersonaResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.FuncionalidadesResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.TipoCamisaResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.EstampaResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.ColorResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.TallaResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.MaterialResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.MetodoEnvioResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.UsuarioResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.TemaResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.CarritoResource.class); ");
-				builde.append("         resources.add(edu.uniandes.services.ws.ReportesResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.FeaturesAppResource.class); ");
-				builde.append("         resources.add(edu.uniandes.service.ws.FacebookResource.class); ");*/				
 				List<String> datos = new ArrayList<String>();
-				Path file=Paths.get("./src/main/java/edu/uniandes/service/ws/config/ApplicationConfig.java").normalize().toAbsolutePath();								
+				List<String> configuraciones = new ArrayList<String>();
+				File fileConfig=Paths.get("../../EstampateVabrik/configs/default.config").toRealPath().toFile();
+				FileReader fr = new FileReader(fileConfig);
+				BufferedReader bf = new BufferedReader(fr);
+				String linea = bf.readLine();
+				while (linea!= null) {
+					configuraciones.add(linea);
+					linea = bf.readLine();
+				}
+
+				fr.close();
+				bf.close();								
+				Path file = Paths
+						.get("../EstampateEJB/src/main/java/edu/uniandes/service/ws/config/ApplicationConfig.java")
+						.toRealPath();
 				for (Element element : annotationsSet) {
-					builde.append("         resources.add(");
-					builde.append(element.toString());					
-					builde.append(".class); \n");
+					Feature feature = element.getAnnotation(Feature.class);
+					if (configuraciones.contains(feature.name())) {
+						builde.append("         resources.add(");
+						builde.append(element.toString());
+						builde.append(".class); \n");
+					}
 				}
 				builde.append("     }  \n");
 				builde.append("       \n");
-				builde.append(" }  /*V1*/\n");
-				datos.add(builde.toString());
-				Files.write(file, datos);
+				builde.append(" }  /*V1*/\n");				
+				PrintWriter fileWriter=new PrintWriter(file.toFile());
+				fileWriter.write(builde.toString());
+				fileWriter.flush();
+				fileWriter.close();
+				
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
