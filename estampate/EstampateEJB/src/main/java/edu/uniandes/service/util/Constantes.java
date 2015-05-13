@@ -8,7 +8,8 @@ public class Constantes {
 	public static final String CARACTERISTICA_CREDIT_CARD="CreditCard";
 	public static final String CARACTERISTICA_CASH="CashOnDelivery";
 	public static final String CARACTERISTICA_RATING_DESIGN="RateDesign";
-
+	public static final String CARACTERISTICA_PASS="ChangePassword";
+	public static final String CARACTERISTICA_EMAIL="ChangeAddress";
 	public static final String CARACTERISTICA_TEXTO="Text";
 	public static final String CARACTERISTICA_COLOR="Color";
 	public static final String EXCEPCION_CARACTERISTICA="Error CAR1543: La característica seleccionada no esta disponible en la versión actual.";
