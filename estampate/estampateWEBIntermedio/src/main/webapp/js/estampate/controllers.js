@@ -56,7 +56,7 @@ estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http
 	}
 	
 	$scope.ratingDesign=function(){
-		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.cantidadVotos*$scope.estampaSeleccionada.ratting+$scope.rating;
+		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.cantidadVotos*$scope.estampaSeleccionada.ratting+parseInt($scope.rating);
 		$scope.estampaSeleccionada.cantidadVotos= $scope.estampaSeleccionada.cantidadVotos+1;
 		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.ratting/$scope.estampaSeleccionada.cantidadVotos;
 		$http.put("/estampateWEBIntermedio/webresources/Estampa/",$scope.estampaSeleccionada).success(function (){
