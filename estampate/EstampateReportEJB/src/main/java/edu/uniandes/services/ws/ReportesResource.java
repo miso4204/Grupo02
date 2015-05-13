@@ -31,18 +31,23 @@ public class ReportesResource {
 
 	@GET
 	@Path("/getReporte/{idReporte}")
-	public byte[] getReporte(@PathParam("idReporte") String idReporte) {
-		byte[] reporte = null;
-
+	public String getReporte(@PathParam("idReporte") String idReporte) {
+		String reporte = null;
+		
+		System.out.println("+++ Inicia reportes");
+		System.out.println("+++ Parametro reporte id: " + idReporte);
+		System.out.println("+++ enum tipo rep: " + TiposReportes.REPORTE_RATING_DISENO.ordinal());
+		System.out.println("+++ enum tipo rep get id: " + TiposReportes.REPORTE_RATING_DISENO.getIdReporte());
+		
 		FabricaReportes fabricaReportes = null;
 
-		// Implementa una f�brica abstracta para la generaci�n de reportes
-		if (idReporte.equals(TiposReportes.REPORTE_RATING_DISENO.getIdReporte())) {
+		// Implementa una fabrica abstracta para la generacion de reportes
+		if (idReporte.equals(TiposReportes.REPORTE_RATING_DISENO.getIdReporte().toString())) {
 			fabricaReportes = new FabricaReportesDefault();
 			IReporteRating reporteRating = fabricaReportes.crearReporteRating();
 			reporteRating.setReportesDAO(reportesDAO);
 			return reporteRating.obtenerReporte();
-		} else if (idReporte.equals(TiposReportes.REPORTE_VENTAS_PERIODO.getIdReporte())) {
+		} else if (idReporte.equals(TiposReportes.REPORTE_VENTAS_PERIODO.getIdReporte().toString())) {
 			System.out.println("Inicio generar reporte");
 			fabricaReportes = new FabricaReportesDefault();
 			System.out.println("Creada fabrica");
@@ -51,17 +56,19 @@ public class ReportesResource {
 			reporteVentas.setReportesDAO(reportesDAO);
 			System.out.println("Set de reporte");
 			return reporteVentas.obtenerReporte();
-		} else if (idReporte.equals(TiposReportes.REPORTE_RATING_DISENO_ARTISTA.getIdReporte())) {
+		} else if (idReporte.equals(TiposReportes.REPORTE_RATING_DISENO_ARTISTA.getIdReporte().toString())) {
 			fabricaReportes = new FabricaReportesPorArtista();
 			IReporteRating reporteRating = fabricaReportes.crearReporteRating();
 			reporteRating.setReportesDAO(reportesDAO);
 			return reporteRating.obtenerReporte();
-		} else if (idReporte.equals(TiposReportes.REPORTE_VENTAS_ARTISTA.getIdReporte())) {
+		} else if (idReporte.equals(TiposReportes.REPORTE_VENTAS_ARTISTA.getIdReporte().toString())) {
 			fabricaReportes = new FabricaReportesPorArtista();
 			IReporteVentas reporteVentas = fabricaReportes.crearReporteVentas();
 			reporteVentas.setReportesDAO(reportesDAO);
 			return reporteVentas.obtenerReporte();
 		}
+		
+		System.out.println("+++ Finaliza reportes");
 		return reporte;
 	}
 }

@@ -1,7 +1,5 @@
 package edu.uniandes.services.implement;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +14,10 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
-import org.apache.commons.io.FileUtils;
 
 import edu.uniandes.services.daos.ReportesDAO;
 import edu.uniandes.services.interfaces.IReporteVentas;
+import edu.uniandes.services.util.Constantes;
 import edu.uniandes.services.vos.ReporteVentaArtistaVO;
 
 /**
@@ -39,24 +37,26 @@ public class ReporteVentasPorArtista implements IReporteVentas {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public byte[] obtenerReporte() {
+	public String obtenerReporte() {
 		
 		JasperReport jasperReport = null;
         JasperPrint jasperPrint = null;
         Map parameters = new HashMap();
+        String nombreArchivo ="reporteVentasArtista.pdf";
+        
         try {
-        	jasperReport = JasperCompileManager.compileReport("C:\\Users\\template\\Desktop\\Vabrik\\Private Tunnel.lnk\\estampate\\EstampateReportEJB\\src\\main\\java\\edu\\uniandes\\services\\implement\\reporteVentasArtista.jrxml");
+        	jasperReport = JasperCompileManager.compileReport(Constantes.REPORTES_RUTA + "reporteVentasArtista.jrxml");
             jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInformacionReporteVentasPorArtista()));
-            JasperExportManager.exportReportToPdfFile(jasperPrint,"reporteVentasArtista.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint,Constantes.PDF_RUTA + nombreArchivo);
 			
 		} catch (JRException e) {
 			e.printStackTrace();
 			return null;
 		}
-        File file = new File("reporteVentasArtista.pdf");
+
 		try {
-			return FileUtils.readFileToByteArray(file);
-		} catch (IOException e) {
+			return nombreArchivo;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

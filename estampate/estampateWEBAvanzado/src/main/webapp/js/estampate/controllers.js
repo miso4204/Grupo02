@@ -87,16 +87,42 @@ estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http'
 } ]);
 
 estampateControllers.controller('reportesCtrl', [ '$scope', '$routeParams','$http','$cookieStore','$sce', function($scope, $routeParams, $http,$cookieStore,$sce) {	
-	$scope.report = 1;
-	$http.get("/estampateWEBAvanzado/webresources/reportes/getReporte/1").success(function (response){
+	$scope.reporte = {"idReporte":3,"nombre":"Ventas por periodo"};
+	$scope.reportes = [{"idReporte":1,"nombre":"Rating por diseño"},{"idReporte":2,"nombre":"Rating por artista"},{"idReporte":3,"nombre":"Ventas por periodo"},{"idReporte":4,"nombre":"Ventas por artista"}];
+	/*
+	$http.get("/estampateWEBAvanzado/webresources/reportes/getReporte/3").success(function (response){
 		$scope.reporte= response;					
-	} );
-	$scope.changeContent = function(bytes) {
-		
-	    $scope.content = 'http://localhost:8080/reporterRatingDisenosArtistas.pdf';
-	    
+	} );*/
+	$scope.changeContent = function(reporte) {
+		//alert("ingreso");
+		//alert(reporte.idReporte);
+		$http.get("/estampateWEBAvanzado/webresources/reportes/getReporte/"+reporte.idReporte).success(function (response){
+			$scope.reporteGen= response;					
+		} );
+		//alert("datos: " + $scope.reporteGen);
+		if(reporte.idReporte == "1")
+		{
+			$scope.content = 'http://localhost:8080/estampateWEBAvanzado/public/reporterRatingDisenos.pdf';
+		}
+		else if(reporte.idReporte == "2")
+		{
+			$scope.content = 'http://localhost:8080/estampateWEBAvanzado/public/reporterRatingDisenosArtistas.pdf';
+		}
+		else if(reporte.idReporte == "3")
+		{
+			//$scope.content = 'http://localhost:8080/estampateWEBAvanzado/public/reporteVentasPeriodo.pdf';
+			//alert("ingreso");
+			//$window.location.href = 'http://localhost:8080/estampateWEBAvanzado/public/reporteVentasPeriodo.pdf';
+		}
+		else if(reporte.idReporte == "3")
+		{
+			$scope.content = 'http://localhost:8080/estampateWEBAvanzado/public/reporteVentasArtista.pdf';
+		}
 	}
-	
+	$scope.selectAction = function(reporte) {
+	    //alert("seleccion: " + reporte.idReporte);
+	    $scope.reporteSelected = reporte;
+	};
 } ]);
 
 estampateControllers.controller('personalizarCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	

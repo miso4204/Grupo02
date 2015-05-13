@@ -8,8 +8,10 @@
 </script>
 <h1 class="page-header">Reporte de Ratings</h1>
 <div class='col-md-12'>
-	<select ng-options="tipo for tipo in ['Ventas por periodo','Ventas por artista','Rating por dise&ntilde;o','Rating por artista']" ng-model="vista">
-	</select>
+    <select name="reporte">
+    		<option value="?" selected="selected"></option>
+       		<option ng-repeat="reporte in reportes" ng-click="selectAction(reporte)">{{reporte.nombre}}</option>
+    </select>
 </div>
 <br/>
 <div ng-show="vista=='Ventas por periodo'">
@@ -65,7 +67,7 @@
 </div>
 
 <br/>
-<p><a href="#/reportesAdmin" class="btn btn-primary" role="button" ng-click="changeContent(reporte)">Generar Reporte</a></p>
+<p><a href="http://localhost:8080/estampateWEBAvanzado/public/reporteVentasPeriodo.pdf" class="btn btn-primary" role="button" ng-click="changeContent(reporte)">Generar Reporte</a></p>
 <hr/>
 
 <div class="col-sm-6" style="background-color:lavender;">

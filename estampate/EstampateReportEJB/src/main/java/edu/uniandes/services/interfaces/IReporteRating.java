@@ -4,7 +4,7 @@ import edu.uniandes.services.daos.ReportesDAO;
 
 
 /**
- * Define los método requeridos para la gestión de reportes de rating
+ * Define los mï¿½todo requeridos para la gestiï¿½n de reportes de rating
  * 
  * @author Juan Camilo Cerquera Lozada<jc.cerquera10@uniandes.edu.co>
  * 
@@ -18,5 +18,5 @@ public interface IReporteRating {
 	 * 
 	 * @return
 	 */
-	byte[] obtenerReporte();
+	String obtenerReporte();
 }

@@ -17,5 +17,5 @@ public interface IReporteVentas {
 	 * 
 	 * @return
 	 */
-	byte[] obtenerReporte();
+	String obtenerReporte();
 }

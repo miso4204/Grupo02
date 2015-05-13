@@ -1,10 +1,5 @@
 package edu.uniandes.services.implement;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +13,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-import org.apache.commons.io.FileUtils;
-
 import edu.uniandes.services.daos.ReportesDAO;
 import edu.uniandes.services.interfaces.IReporteRating;
+import edu.uniandes.services.util.Constantes;
 import edu.uniandes.services.vos.ReporteRatingDisenoArtistaVO;
 
 /**
@@ -40,41 +34,28 @@ public class ReporteRatingDisenoPorArtista implements IReporteRating {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public byte[] obtenerReporte() {
+	public String obtenerReporte() {
 		
 		
 		JasperReport jasperReport = null;
         JasperPrint jasperPrint = null;
         Map parameters = new HashMap();
+        String nombreArchivo ="reporterRatingDisenosArtistas.pdf";
+        
         try {
-        	jasperReport = JasperCompileManager.compileReport("C:\\Users\\template\\Desktop\\Vabrik\\Private Tunnel.lnk\\estampate\\EstampateReportEJB\\src\\main\\java\\edu\\uniandes\\services\\implement\\reporteRatingDisenoArtistas.jrxml");
+        	jasperReport = JasperCompileManager.compileReport(Constantes.REPORTES_RUTA + "reporteRatingDisenoArtistas.jrxml");
             jasperPrint  = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(reportesDAO.consultarInfoReporteDisenosArtistas()));
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"C:\\Users\\template\\Desktop\\eclipse\\eclipse\\jboss-eap-6.3\\welcome-content\\reporterRatingDisenosArtistas.pdf");
-            JasperExportManager.exportReportToPdfFile(jasperPrint,"reporterRatingDisenosArtistas.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint,Constantes.PDF_RUTA + nombreArchivo);
 			
 		} catch (JRException e) {
 			e.printStackTrace();
 			return null;
 		}
-        File file = new File("reporterRatingDisenosArtistas.pdf");
 		try {
-			try {
-				File outFile = new File("C:\\Users\\template\\Desktop\\eclipse\\eclipse\\jboss-eap-6.3\\welcome-content\\reporterRatingDisenosArtistas.pdf");
 
-				FileInputStream in = new FileInputStream(file);
-				FileOutputStream out = new FileOutputStream(outFile);
-
-				int c;
-				while( (c = in.read() ) != -1)
-					out.write(c);
-
-				in.close();
-				out.close();
-			} catch(IOException e) {
-				System.err.println("Hubo un error de entrada/salida!!!");
-			}
-			return FileUtils.readFileToByteArray(file);
-		} catch (IOException e) {
+			return nombreArchivo;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
