@@ -4,7 +4,7 @@ public aspect Log {
  public pointcut methodCall():
   call(* * (..)) && within(edu.uniandes.service.ws.*);
 
- before(): methodCall() {
+ /*before(): methodCall() {
   System.out.println("\n -- TestClass."
     + " start --");
  }
@@ -12,5 +12,5 @@ public aspect Log {
  after(): methodCall() {
   System.out.println(" -- TestClass."
     + " stop --\n");
- }
+ }*/
 }

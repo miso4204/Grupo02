@@ -66,7 +66,7 @@ public class EstampaResource {
 		estampaDAO.create(estampa);
 	}
 	@PUT
-	public void edit(Estampa estampa){
+	public void edit(Estampa estampa) throws Exception{
 		estampaDAO.edit(estampa);
 	}
 	@Path("{id}")

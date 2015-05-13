@@ -38,12 +38,43 @@ estampateControllers.controller('catalogoCtrl', [ '$scope', '$routeParams','$htt
 
 estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {
 	$scope.estampaSeleccionada=$cookieStore.get('estampaSelected');
+	if($scope.estampaSeleccionada.ratting>=1){
+		document.getElementById("star1").className = "fa fa-star gold";
+		if($scope.estampaSeleccionada.ratting>=2){
+			document.getElementById("star2").className = "fa fa-star gold";
+			if($scope.estampaSeleccionada.ratting>=3){
+				document.getElementById("star3").className = "fa fa-star gold";
+				if($scope.estampaSeleccionada.ratting>=4){
+					document.getElementById("star4").className = "fa fa-star gold";
+					if($scope.estampaSeleccionada.ratting=5){
+						document.getElementById("star5").className = "fa fa-star gold";
+					}
+				}
+				
+			}
+		}
+	}
+	
+	$scope.ratingDesign=function(){
+		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.cantidadVotos*$scope.estampaSeleccionada.ratting+$scope.rating;
+		$scope.estampaSeleccionada.cantidadVotos= $scope.estampaSeleccionada.cantidadVotos+1;
+		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.ratting/$scope.estampaSeleccionada.cantidadVotos;
+		$http.put("/estampateWEBAvanzado/webresources/Estampa/",$scope.estampaSeleccionada).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la estampa:'+data}];
+		});
+	}
 	$http.get("/estampateWEBAvanzado/webresources/Estampa").success(function (response){
 		$scope.estampas= response;					
 	} );
 	$scope.selecionarEstampa=function(estampa){
 		$cookieStore.put('estampaSelected',estampa);
 	}		
+	
+	$http.get("/estampateWEBAvanzado/webresources/facebook").success(function(response) {
+		$scope.facebookHabilitado = response;
+	});	
 } ]);
 
 estampateControllers.controller('camisaCtrl', [ '$scope', '$routeParams','$http','$cookieStore', function($scope, $routeParams, $http,$cookieStore) {	

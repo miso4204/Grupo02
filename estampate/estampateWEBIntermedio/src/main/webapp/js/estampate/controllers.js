@@ -55,6 +55,16 @@ estampateControllers.controller('estampaCtrl', [ '$scope', '$routeParams','$http
 		}
 	}
 	
+	$scope.ratingDesign=function(){
+		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.cantidadVotos*$scope.estampaSeleccionada.ratting+$scope.rating;
+		$scope.estampaSeleccionada.cantidadVotos= $scope.estampaSeleccionada.cantidadVotos+1;
+		$scope.estampaSeleccionada.ratting = $scope.estampaSeleccionada.ratting/$scope.estampaSeleccionada.cantidadVotos;
+		$http.put("/estampateWEBIntermedio/webresources/Estampa/",$scope.estampaSeleccionada).success(function (){
+			 $scope.alerts=[{type: 'success',msg: 'Datos Actualizados'}];
+		} ).error(function(data, status, headers, config){
+			$scope.alerts=[{type: 'danger',msg: 'Error al actualizar la estampa:'+data}];
+		});
+	}
 	$http.get("/estampateWEBIntermedio/webresources/Estampa").success(function (response){
 		$scope.estampas= response;					
 	} );
